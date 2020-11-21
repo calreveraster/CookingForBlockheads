@@ -91,3 +91,5 @@ gradlew.bat
 *.errored
 /build/
 /run
+
+.idea

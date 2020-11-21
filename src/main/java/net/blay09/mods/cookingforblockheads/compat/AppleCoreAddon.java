@@ -1,6 +1,6 @@
-package net.blay09.mods.cookingforblockheads.addon;
+package net.blay09.mods.cookingforblockheads.compat;
 
-import net.blay09.mods.cookingforblockheads.api.CookingAPI;
+import net.blay09.mods.cookingforblockheads.api.CookingForBlockheadsAPI;
 import net.blay09.mods.cookingforblockheads.api.FoodStatsProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -9,7 +9,7 @@ import squeek.applecore.api.food.FoodValues;
 public class AppleCoreAddon implements FoodStatsProvider {
 
     public AppleCoreAddon() {
-        CookingAPI.setFoodStatsProvider(this);
+        CookingForBlockheadsAPI.setFoodStatsProvider(this);
     }
 
     @Override

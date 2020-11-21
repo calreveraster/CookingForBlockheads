@@ -1,4 +1,4 @@
-package net.blay09.mods.cookingforblockheads.addon;
+package net.blay09.mods.cookingforblockheads.compat;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.GuiInfo;

@@ -2,17 +2,17 @@ package net.blay09.mods.cookingforblockheads.api;
 
 import net.minecraft.item.ItemStack;
 
-public class CookingAPI {
+public class CookingForBlockheadsAPI {
 
     private static IInternalMethods internalMethods;
     private static FoodStatsProvider foodStatsProvider;
 
     public static void setupAPI(IInternalMethods internalMethods) {
-        CookingAPI.internalMethods = internalMethods;
+        CookingForBlockheadsAPI.internalMethods = internalMethods;
     }
 
     public static void setFoodStatsProvider(FoodStatsProvider foodStatsProvider) {
-        CookingAPI.foodStatsProvider = foodStatsProvider;
+        CookingForBlockheadsAPI.foodStatsProvider = foodStatsProvider;
     }
 
     public static FoodStatsProvider getFoodStatsProvider() {

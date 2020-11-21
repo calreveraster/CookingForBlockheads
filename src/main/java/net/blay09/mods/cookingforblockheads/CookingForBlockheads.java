@@ -4,8 +4,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
-import net.blay09.mods.cookingforblockheads.api.CookingAPI;
-import net.blay09.mods.cookingforblockheads.block.*;
+import net.blay09.mods.cookingforblockheads.api.CookingForBlockheadsAPI;
 import net.blay09.mods.cookingforblockheads.item.ItemRecipeBook;
 import net.blay09.mods.cookingforblockheads.item.ItemToast;
 import net.blay09.mods.cookingforblockheads.block.BlockCookingOven;
@@ -49,7 +48,7 @@ public class CookingForBlockheads {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		CookingConfig.load(event.getSuggestedConfigurationFile());
-		CookingAPI.setupAPI(new InternalMethods());
+		CookingForBlockheadsAPI.setupAPI(new InternalMethods());
 
 		proxy.preInit(event);
 	}

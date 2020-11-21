@@ -1,6 +1,6 @@
 package net.blay09.mods.cookingforblockheads.container;
 
-import net.blay09.mods.cookingforblockheads.api.CookingAPI;
+import net.blay09.mods.cookingforblockheads.api.CookingForBlockheadsAPI;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -27,7 +27,7 @@ public class ComparatorSaturation implements Comparator<ItemStack> {
         } else if(!isSecondFood) {
             return -1;
         }
-        int result = (int) (CookingAPI.getFoodStatsProvider().getSaturation(o2, entityPlayer) * 100 - CookingAPI.getFoodStatsProvider().getSaturation(o1, entityPlayer) * 100);
+        int result = (int) (CookingForBlockheadsAPI.getFoodStatsProvider().getSaturation(o2, entityPlayer) * 100 - CookingForBlockheadsAPI.getFoodStatsProvider().getSaturation(o1, entityPlayer) * 100);
         if(result == 0) {
             return fallback.compare(o1, o2);
         }

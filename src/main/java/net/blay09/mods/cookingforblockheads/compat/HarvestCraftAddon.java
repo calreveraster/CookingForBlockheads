@@ -1,9 +1,9 @@
-package net.blay09.mods.cookingforblockheads.addon;
+package net.blay09.mods.cookingforblockheads.compat;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.blay09.mods.cookingforblockheads.KitchenMultiBlock;
-import net.blay09.mods.cookingforblockheads.api.CookingAPI;
+import net.blay09.mods.cookingforblockheads.api.CookingForBlockheadsAPI;
 import net.blay09.mods.cookingforblockheads.api.ToastHandler;
 import net.blay09.mods.cookingforblockheads.api.event.FoodRegistryInitEvent;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;
@@ -145,24 +145,24 @@ public class HarvestCraftAddon {
         KitchenMultiBlock.blockWrappers.put("harvestcraft:pot", PotWrapper.class);
         KitchenMultiBlock.blockWrappers.put("harvestcraft:cuttingboard", CuttingBoardWrapper.class);
 
-        CookingAPI.addOvenFuel(GameRegistry.findItemStack("harvestcraft", "oliveoilItem", 1), 1600);
+        CookingForBlockheadsAPI.addOvenFuel(GameRegistry.findItemStack("harvestcraft", "oliveoilItem", 1), 1600);
 
         for(int i = 0; i < OVEN_RECIPES.length; i += 2) {
             ItemStack source = GameRegistry.findItemStack("harvestcraft", OVEN_RECIPES[i], 1);
             ItemStack result = GameRegistry.findItemStack("harvestcraft", OVEN_RECIPES[i + 1], 1);
             if(source != null && result != null) {
-                CookingAPI.addOvenRecipe(source, result);
+                CookingForBlockheadsAPI.addOvenRecipe(source, result);
             }
         }
 
         for(String toolName : TOOLS) {
             ItemStack toolItem = GameRegistry.findItemStack("harvestcraft", toolName, 1);
             if(toolItem != null) {
-                CookingAPI.addToolItem(toolItem);
+                CookingForBlockheadsAPI.addToolItem(toolItem);
             }
         }
 
-        CookingAPI.addToastHandler(new ItemStack(Items.bread), new ToastHandler() {
+        CookingForBlockheadsAPI.addToastHandler(new ItemStack(Items.bread), new ToastHandler() {
             @Override
             public ItemStack getToasterOutput(ItemStack itemStack) {
                 return GameRegistry.findItemStack("harvestcraft", TOAST_ITEM, 1);

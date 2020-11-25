@@ -1,4 +1,4 @@
-package net.blay09.mods.cookingforblockheads.block;
+package net.blay09.mods.cookingforblockheads.tile;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;

@@ -1,6 +1,8 @@
-package net.blay09.mods.cookingforblockheads.block;
+package net.blay09.mods.cookingforblockheads.tile;
 
+import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenStorageProvider;
+import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -14,10 +16,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
-public class TileEntityToolRack extends TileEntity implements IInventory, IKitchenStorageProvider {
+public class TileEntityToaster extends TileEntity implements IInventory, IKitchenStorageProvider {
 
+//    private static final int TOAST_TICKS = 60 * 20;
+    private static final int TOAST_TICKS = 60;
     private ItemStack[] inventory = new ItemStack[2];
     private EntityItem[] renderItems = new EntityItem[2];
+    private boolean active;
+    private int toastTicks;
 
     @Override
     public void setWorldObj(World world) {
@@ -84,7 +90,7 @@ public class TileEntityToolRack extends TileEntity implements IInventory, IKitch
 
     @Override
     public String getInventoryName() {
-        return "container.cookingforblockheads:toolrack";
+        return "container." + CookingForBlockheads.MOD_ID + ":toaster";
     }
 
     @Override
@@ -165,6 +171,34 @@ public class TileEntityToolRack extends TileEntity implements IInventory, IKitch
         return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tagCompound);
     }
 
+    @Override
+    public void updateEntity() {
+        if(active) {
+            toastTicks--;
+            if(toastTicks <= 0) {
+                for(int i = 0; i < getSizeInventory(); i++) {
+                    ItemStack inputStack = getStackInSlot(i);
+                    if(inputStack != null) {
+                        ItemStack outputStack = CookingRegistry.getToastOutput(inputStack);
+                        if (outputStack == null) {
+                            outputStack = inputStack;
+                        }
+                        if (!worldObj.isRemote) {
+                            EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5f, yCoord + 0.75f, zCoord + 0.5f, outputStack);
+                            entityItem.motionX = 0f;
+                            entityItem.motionY = 0.1f;
+                            entityItem.motionZ = 0f;
+                            if (worldObj.spawnEntityInWorld(entityItem)) {
+                                setInventorySlotContents(i, null);
+                            }
+                        }
+                    }
+                }
+                setActive(false);
+            }
+        }
+    }
+
     public EntityItem getRenderItem(int i) {
         return renderItems[i];
     }
@@ -174,4 +208,16 @@ public class TileEntityToolRack extends TileEntity implements IInventory, IKitch
         return (IInventory) worldObj.getTileEntity(xCoord, yCoord, zCoord);
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+        if(active) {
+            toastTicks = TOAST_TICKS;
+        } else {
+            toastTicks = 0;
+        }
+    }
 }

@@ -1,9 +1,9 @@
 package net.blay09.mods.cookingforblockheads;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import net.blay09.mods.cookingforblockheads.block.TileEntityCookingOven;
-import net.blay09.mods.cookingforblockheads.block.TileEntityCookingTable;
-import net.blay09.mods.cookingforblockheads.block.TileEntityFridge;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingTable;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityFridge;
 import net.blay09.mods.cookingforblockheads.client.GuiCookingOven;
 import net.blay09.mods.cookingforblockheads.client.GuiFridge;
 import net.blay09.mods.cookingforblockheads.client.GuiRecipeBook;

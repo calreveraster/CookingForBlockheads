@@ -1,7 +1,7 @@
 package net.blay09.mods.cookingforblockheads.client.render;
 
 import net.blay09.mods.cookingforblockheads.CookingConfig;
-import net.blay09.mods.cookingforblockheads.block.TileEntityCookingOven;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
 import net.blay09.mods.cookingforblockheads.client.model.ModelOven;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;

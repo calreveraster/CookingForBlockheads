@@ -1,4 +1,4 @@
-package net.blay09.mods.cookingforblockheads.block;
+package net.blay09.mods.cookingforblockheads.tile;
 
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenStorageProvider;

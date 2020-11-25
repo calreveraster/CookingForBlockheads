@@ -3,8 +3,8 @@ package net.blay09.mods.cookingforblockheads.block;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.client.render.ToasterBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityToaster;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,13 +16,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockToaster extends BlockContainer {
+public class BlockToaster extends BlockKitchen {
 
     public BlockToaster() {
         super(Material.iron);
 
         setBlockName(CookingForBlockheads.MOD_ID + ":toaster");
-        setCreativeTab(CookingForBlockheads.creativeTab);
         setStepSound(soundTypeWood);
         setHardness(5f);
         setResistance(10f);

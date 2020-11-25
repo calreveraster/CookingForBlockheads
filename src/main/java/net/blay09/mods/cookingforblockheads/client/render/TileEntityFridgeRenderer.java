@@ -2,7 +2,7 @@ package net.blay09.mods.cookingforblockheads.client.render;
 
 import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
-import net.blay09.mods.cookingforblockheads.block.TileEntityFridge;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityFridge;
 import net.blay09.mods.cookingforblockheads.client.model.ModelFridge;
 import net.blay09.mods.cookingforblockheads.client.model.ModelSmallFridge;
 import net.minecraft.block.Block;

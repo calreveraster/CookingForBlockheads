@@ -1,11 +1,11 @@
 package net.blay09.mods.cookingforblockheads.block;
 
-import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.client.render.SinkBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
+import net.blay09.mods.cookingforblockheads.tile.TileEntitySink;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,13 +22,12 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-public class BlockSink extends BlockContainer {
+public class BlockSink extends BlockKitchen {
 
     public BlockSink() {
         super(Material.wood);
 
         setBlockName("cookingforblockheads:sink");
-        setCreativeTab(CookingForBlockheads.creativeTab);
         setStepSound(soundTypeWood);
         setHardness(5f);
         setResistance(10f);

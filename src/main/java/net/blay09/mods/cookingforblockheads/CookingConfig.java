@@ -29,7 +29,7 @@ public class CookingConfig {
 
     public static void load(File configFile) {
         Configuration config = new Configuration(configFile);
-        sinkRequiresWater = config.getBoolean("sinkRequiresWater", "general", false, "Set this to true if you'd like the sink to require water to be piped in, instead of providing infinite of it.");
+        sinkRequiresWater = config.getBoolean("sinkRequiresWater", "general", true, "Set this to true if you'd like the sink to require water to be piped in, instead of providing infinite of it.");
         ovenRequiresCookingOil = config.getBoolean("ovenRequiresCookingOil", "general", false, "Set this to true if you'd like the oven to only accept cooking oil as fuel (requires Pam's Harvestcraft)");
         disallowOvenAutomation = config.getBoolean("disallowOvenAutomation", "general", false, "Set this to true if you'd like to disallow automation of the oven (pipes and such won't be able to insert/extract)");
         ovenFuelTimeMultiplier = config.getFloat("ovenFuelTimeMultiplier", "general", 0.33f, 0.1f, 2f, "The fuel multiplier for the cooking oven. Higher values means fuel lasts longer, 1.0 is furnace default.");

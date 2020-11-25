@@ -1,6 +1,6 @@
 package net.blay09.mods.cookingforblockheads.client.render;
 
-import net.blay09.mods.cookingforblockheads.block.TileEntityCookingTable;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingTable;
 import net.blay09.mods.cookingforblockheads.client.model.ModelCookingTable;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

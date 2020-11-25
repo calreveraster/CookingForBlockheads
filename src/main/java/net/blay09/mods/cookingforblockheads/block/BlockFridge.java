@@ -4,9 +4,9 @@ import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
 import net.blay09.mods.cookingforblockheads.client.render.FridgeBlockRenderer;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockFridge;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityFridge;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,13 +20,12 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockFridge extends BlockContainer {
+public class BlockFridge extends BlockKitchen {
 
     public BlockFridge() {
         super(Material.iron);
 
         setBlockName("cookingforblockheads:fridge");
-        setCreativeTab(CookingForBlockheads.creativeTab);
         setStepSound(soundTypeMetal);
         setHardness(5f);
         setResistance(10f);

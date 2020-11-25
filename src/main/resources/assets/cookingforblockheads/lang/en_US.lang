@@ -5,6 +5,7 @@ item.cookingforblockheads:recipebook_tier2.name=Cooking for Blockheads II
 tile.cookingforblockheads:cookingtable.name=Cooking Table
 tile.cookingforblockheads:cookingoven.name=Cooking Oven
 tile.cookingforblockheads:fridge.name=Fridge
+tile.cookingforblockheads:kitchen_floor.name=Kitchen Floor
 tile.cookingforblockheads:sink.name=Sink
 tile.cookingforblockheads:toolrack.name=Tool Rack
 
@@ -28,6 +29,7 @@ cookingforblockheads:cookingtable.tooltipDesc=Enables crafting abilities.
 cookingforblockheads:cookingoven.tooltipDesc=Enables smelting abilities.
 cookingforblockheads:sink.tooltipDesc=Provides water to recipes.
 cookingforblockheads:fridge.tooltipDesc=Provides contained ingredients to recipes.
+cookingforblockheads:kitchen_floor.tooltipDesc=No use in particular.
 cookingforblockheads:toolrack.tooltipDesc=Provides contained tools to recipes.
 
 cookingforblockheads:sort_by_name.tooltip=Sort by Name

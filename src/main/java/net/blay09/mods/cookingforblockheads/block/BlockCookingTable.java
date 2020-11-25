@@ -3,8 +3,8 @@ package net.blay09.mods.cookingforblockheads.block;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
 import net.blay09.mods.cookingforblockheads.client.render.CookingTableBlockRenderer;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingTable;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,14 +16,13 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockCookingTable extends BlockContainer {
+public class BlockCookingTable extends BlockKitchen {
 
     public BlockCookingTable() {
         super(Material.wood);
 
         setBlockName("cookingforblockheads:cookingtable");
         setBlockTextureName("cookingforblockheads:cooking_table_side");
-        setCreativeTab(CookingForBlockheads.creativeTab);
         setStepSound(soundTypeWood);
         setHardness(2.5f);
         setBlockBounds(0.0625f, 0f, 0.0625f, 0.9375f, 0.975f, 0.9375f);

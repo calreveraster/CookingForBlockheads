@@ -2,7 +2,7 @@ package net.blay09.mods.cookingforblockheads.client.render;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.blay09.mods.cookingforblockheads.block.TileEntitySink;
+import net.blay09.mods.cookingforblockheads.tile.TileEntitySink;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;

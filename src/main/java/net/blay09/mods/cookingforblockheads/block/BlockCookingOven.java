@@ -6,8 +6,8 @@ import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
 import net.blay09.mods.cookingforblockheads.client.render.OvenBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,7 +26,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
-public class BlockCookingOven extends BlockContainer {
+public class BlockCookingOven extends BlockKitchen {
 
     private final Random random = new Random();
 
@@ -34,7 +34,6 @@ public class BlockCookingOven extends BlockContainer {
         super(Material.iron);
 
         setBlockName("cookingforblockheads:cookingoven");
-        setCreativeTab(CookingForBlockheads.creativeTab);
         setStepSound(soundTypeMetal);
         setHardness(5f);
         setResistance(10f);

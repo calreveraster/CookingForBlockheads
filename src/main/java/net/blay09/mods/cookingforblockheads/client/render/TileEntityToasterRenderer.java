@@ -1,7 +1,7 @@
 package net.blay09.mods.cookingforblockheads.client.render;
 
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
-import net.blay09.mods.cookingforblockheads.block.TileEntityToaster;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityToaster;
 import net.blay09.mods.cookingforblockheads.client.model.ModelToaster;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

@@ -8,16 +8,17 @@ import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.blay09.mods.cookingforblockheads.compat.VanillaAddon;
+import net.blay09.mods.cookingforblockheads.item.ItemBlockKitchenFloor;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockSink;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockToaster;
 import net.blay09.mods.cookingforblockheads.network.NetworkHandler;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
-import net.blay09.mods.cookingforblockheads.block.TileEntityCookingOven;
-import net.blay09.mods.cookingforblockheads.block.TileEntityCookingTable;
-import net.blay09.mods.cookingforblockheads.block.TileEntityFridge;
-import net.blay09.mods.cookingforblockheads.block.TileEntitySink;
-import net.blay09.mods.cookingforblockheads.block.TileEntityToaster;
-import net.blay09.mods.cookingforblockheads.block.TileEntityToolRack;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingTable;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityFridge;
+import net.blay09.mods.cookingforblockheads.tile.TileEntitySink;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityToaster;
+import net.blay09.mods.cookingforblockheads.tile.TileEntityToolRack;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockCookingOven;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockCookingTable;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockFridge;
@@ -39,9 +40,11 @@ public class CommonProxy {
 		GameRegistry.registerBlock(CookingForBlockheads.blockCookingTable, ItemBlockCookingTable.class, "cookingtable");
 		GameRegistry.registerBlock(CookingForBlockheads.blockCookingOven, ItemBlockCookingOven.class, "cookingoven");
 		GameRegistry.registerBlock(CookingForBlockheads.blockFridge, ItemBlockFridge.class, "fridge");
+		GameRegistry.registerBlock(CookingForBlockheads.blockKitchenFloor, ItemBlockKitchenFloor.class, "kitchen_floor");
 		GameRegistry.registerBlock(CookingForBlockheads.blockSink, ItemBlockSink.class, "sink");
 		GameRegistry.registerBlock(CookingForBlockheads.blockToolRack, ItemBlockToolRack.class, "toolrack");
 		GameRegistry.registerBlock(CookingForBlockheads.blockToaster, ItemBlockToaster.class, "toaster");
+		
 		GameRegistry.registerTileEntity(TileEntityCookingOven.class, CookingForBlockheads.MOD_ID + ":cookingoven");
 		GameRegistry.registerTileEntity(TileEntityFridge.class, CookingForBlockheads.MOD_ID + ":fridge");
 		GameRegistry.registerTileEntity(TileEntityToolRack.class, CookingForBlockheads.MOD_ID + ":toolrack");
@@ -104,18 +107,18 @@ public class CommonProxy {
 		try {
 			Class mtClass = Class.forName("minetweaker.MineTweakerImplementationAPI");
 			mtClass.getMethod("onPostReload", Class.forName("minetweaker.util.IEventHandler"));
-			event.buildSoftDependProxy("MineTweaker3", "net.blay09.mods.cookingforblockheads.addon.MineTweakerAddon");
+			event.buildSoftDependProxy("MineTweaker3", "net.blay09.mods.cookingforblockheads.compat.MineTweakerAddon");
 			mineTweakerHasPostReload = true;
 		} catch (ClassNotFoundException | NoSuchMethodException ignored) {}
 
 		if(CookingConfig.moduleHarvestCraft) {
-			event.buildSoftDependProxy("harvestcraft", "net.blay09.mods.cookingforblockheads.addon.HarvestCraftAddon");
+			event.buildSoftDependProxy("harvestcraft", "net.blay09.mods.cookingforblockheads.compat.HarvestCraftAddon");
 		}
 		if(CookingConfig.moduleEnviroMine) {
-			event.buildSoftDependProxy("enviromine", "net.blay09.mods.cookingforblockheads.addon.EnviroMineAddon");
+			event.buildSoftDependProxy("enviromine", "net.blay09.mods.cookingforblockheads.compat.EnviroMineAddon");
 		}
 		if(CookingConfig.moduleAppleCore) {
-			event.buildSoftDependProxy("AppleCore", "net.blay09.mods.cookingforblockheads.addon.AppleCoreAddon");
+			event.buildSoftDependProxy("AppleCore", "net.blay09.mods.cookingforblockheads.compat.AppleCoreAddon");
 		}
 
 		CookingRegistry.initFoodRegistry();

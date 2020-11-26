@@ -114,9 +114,6 @@ public class CommonProxy {
 		if(CookingConfig.moduleHarvestCraft) {
 			event.buildSoftDependProxy("harvestcraft", "net.blay09.mods.cookingforblockheads.compat.HarvestCraftAddon");
 		}
-		if(CookingConfig.moduleEnviroMine) {
-			event.buildSoftDependProxy("enviromine", "net.blay09.mods.cookingforblockheads.compat.EnviroMineAddon");
-		}
 		if(CookingConfig.moduleAppleCore) {
 			event.buildSoftDependProxy("AppleCore", "net.blay09.mods.cookingforblockheads.compat.AppleCoreAddon");
 		}

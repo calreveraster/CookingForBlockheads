@@ -16,7 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
-public class TileEntityToaster extends TileEntity implements IInventory, IKitchenStorageProvider {
+public class TileToaster extends TileEntity implements IInventory, IKitchenStorageProvider {
 
 //    private static final int TOAST_TICKS = 60 * 20;
     private static final int TOAST_TICKS = 60;

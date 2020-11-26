@@ -1,6 +1,6 @@
 package net.blay09.mods.cookingforblockheads.client;
 
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
+import net.blay09.mods.cookingforblockheads.tile.TileOven;
 import net.blay09.mods.cookingforblockheads.container.ContainerCookingOven;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
@@ -11,9 +11,9 @@ import org.lwjgl.opengl.GL11;
 public class GuiCookingOven extends GuiContainer {
 
     private static final ResourceLocation texture = new ResourceLocation("cookingforblockheads", "textures/gui/oven.png");
-    private TileEntityCookingOven tileEntity;
+    private TileOven tileEntity;
 
-    public GuiCookingOven(InventoryPlayer playerInventory, TileEntityCookingOven tileEntity) {
+    public GuiCookingOven(InventoryPlayer playerInventory, TileOven tileEntity) {
         super(new ContainerCookingOven(playerInventory, tileEntity));
         this.tileEntity = tileEntity;
         this.xSize += 22;

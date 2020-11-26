@@ -14,7 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
-public class TileEntityToolRack extends TileEntity implements IInventory, IKitchenStorageProvider {
+public class TileToolRack extends TileEntity implements IInventory, IKitchenStorageProvider {
 
     private ItemStack[] inventory = new ItemStack[2];
     private EntityItem[] renderItems = new EntityItem[2];

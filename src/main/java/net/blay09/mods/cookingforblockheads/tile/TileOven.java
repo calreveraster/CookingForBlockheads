@@ -26,7 +26,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.List;
 
-public class TileEntityCookingOven extends TileEntity implements ISidedInventory, IKitchenSmeltingProvider, IKitchenStorageProvider {
+public class TileOven extends TileEntity implements ISidedInventory, IKitchenSmeltingProvider, IKitchenStorageProvider {
 
     public static class OvenInventory implements IInventory {
         private final IInventory inventory;

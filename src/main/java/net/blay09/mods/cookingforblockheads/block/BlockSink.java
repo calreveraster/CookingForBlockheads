@@ -3,7 +3,7 @@ package net.blay09.mods.cookingforblockheads.block;
 import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.client.render.SinkBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
-import net.blay09.mods.cookingforblockheads.tile.TileEntitySink;
+import net.blay09.mods.cookingforblockheads.tile.TileSink;
 import net.minecraft.block.Block;
 
 import net.minecraft.block.material.Material;
@@ -94,7 +94,7 @@ public class BlockSink extends BlockKitchen {
             FluidStack fluidStack = null;
             int amount = FluidContainerRegistry.getContainerCapacity(new FluidStack(FluidRegistry.WATER, FluidContainerRegistry.BUCKET_VOLUME), player.getHeldItem());
             if(CookingConfig.sinkRequiresWater) {
-                TileEntitySink sink = (TileEntitySink) world.getTileEntity(x, y, z);
+                TileSink sink = (TileSink) world.getTileEntity(x, y, z);
                 if(sink.getWaterAmount() >= amount) {
                     fluidStack = sink.drain(ForgeDirection.UNKNOWN, amount, true);
                 }
@@ -118,7 +118,7 @@ public class BlockSink extends BlockKitchen {
         } else if(FluidContainerRegistry.isFilledContainer(player.getHeldItem())) {
             FluidStack fluidStack = FluidContainerRegistry.getFluidForFilledItem(player.getHeldItem());
             if(CookingConfig.sinkRequiresWater) {
-                TileEntitySink sink = (TileEntitySink) world.getTileEntity(x, y, z);
+                TileSink sink = (TileSink) world.getTileEntity(x, y, z);
                 sink.fill(ForgeDirection.UNKNOWN, fluidStack, true);
             }
             ItemStack emptyContainer = FluidContainerRegistry.drainFluidContainer(player.getHeldItem());
@@ -151,7 +151,7 @@ public class BlockSink extends BlockKitchen {
                 return true;
             } else {
                 if(CookingConfig.sinkRequiresWater) {
-                    TileEntitySink sink = (TileEntitySink) world.getTileEntity(x, y, z);
+                    TileSink sink = (TileSink) world.getTileEntity(x, y, z);
                     if(sink.getWaterAmount() < FluidContainerRegistry.BUCKET_VOLUME) {
                         return false;
                     }
@@ -200,7 +200,7 @@ public class BlockSink extends BlockKitchen {
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TileEntitySink();
+        return new TileSink();
     }
 
 }

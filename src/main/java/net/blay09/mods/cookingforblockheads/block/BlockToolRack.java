@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.client.render.ToolRackBlockRenderer;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityToolRack;
+import net.blay09.mods.cookingforblockheads.tile.TileToolRack;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -51,7 +51,7 @@ public class BlockToolRack extends BlockKitchen {
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TileEntityToolRack();
+        return new TileToolRack();
     }
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
@@ -142,24 +142,24 @@ public class BlockToolRack extends BlockKitchen {
                 case 5: hit = hitZ; break;
             }
             int hitSlot = hit > 0.5f ? 0 : 1;
-            TileEntityToolRack tileEntityToolRack = (TileEntityToolRack) world.getTileEntity(x, y, z);
-            if (tileEntityToolRack != null) {
+            TileToolRack tileToolRack = (TileToolRack) world.getTileEntity(x, y, z);
+            if (tileToolRack != null) {
                 if (player.getHeldItem() != null) {
 
-                    ItemStack oldToolItem = tileEntityToolRack.getStackInSlot(hitSlot);
+                    ItemStack oldToolItem = tileToolRack.getStackInSlot(hitSlot);
                     ItemStack toolItem = player.getHeldItem().splitStack(1);
                     if (oldToolItem != null) {
                         if (!player.inventory.addItemStackToInventory(oldToolItem)) {
                             player.dropPlayerItemWithRandomChoice(oldToolItem, false);
                         }
-                        tileEntityToolRack.setInventorySlotContents(hitSlot, toolItem);
+                        tileToolRack.setInventorySlotContents(hitSlot, toolItem);
                     } else {
-                        tileEntityToolRack.setInventorySlotContents(hitSlot, toolItem);
+                        tileToolRack.setInventorySlotContents(hitSlot, toolItem);
                     }
                 } else {
-                    ItemStack itemStack = tileEntityToolRack.getStackInSlot(hitSlot);
+                    ItemStack itemStack = tileToolRack.getStackInSlot(hitSlot);
                     if (itemStack != null) {
-                        tileEntityToolRack.setInventorySlotContents(hitSlot, null);
+                        tileToolRack.setInventorySlotContents(hitSlot, null);
                         player.inventory.setInventorySlotContents(player.inventory.currentItem, itemStack);
                     }
                 }
@@ -171,7 +171,7 @@ public class BlockToolRack extends BlockKitchen {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
-        TileEntityToolRack tileEntity = (TileEntityToolRack) world.getTileEntity(x, y, z);
+        TileToolRack tileEntity = (TileToolRack) world.getTileEntity(x, y, z);
         if (tileEntity != null) {
             for (int i = 0; i < tileEntity.getSizeInventory(); i++) {
                 ItemStack itemStack = tileEntity.getStackInSlot(i);

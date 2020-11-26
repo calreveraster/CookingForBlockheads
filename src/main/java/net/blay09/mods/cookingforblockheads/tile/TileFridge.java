@@ -22,7 +22,7 @@ import net.minecraftforge.common.util.Constants;
 import java.util.List;
 import java.util.Random;
 
-public class TileEntityFridge extends TileEntity implements IInventory, IKitchenStorageProvider {
+public class TileFridge extends TileEntity implements IInventory, IKitchenStorageProvider {
 
     private static final Random random = new Random();
 
@@ -36,7 +36,7 @@ public class TileEntityFridge extends TileEntity implements IInventory, IKitchen
     private int numPlayersUsing;
     private int tickCounter;
 
-    public TileEntityFridge() {
+    public TileFridge() {
         internalInventory = new InventoryFridge();
         sharedInventory = internalInventory;
     }
@@ -179,11 +179,11 @@ public class TileEntityFridge extends TileEntity implements IInventory, IKitchen
         return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tagCompound);
     }
 
-    public TileEntityFridge findNeighbourFridge() {
+    public TileFridge findNeighbourFridge() {
         if (worldObj.getBlock(xCoord, yCoord + 1, zCoord) == CookingForBlockheads.blockFridge) {
-            return (TileEntityFridge) worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
+            return (TileFridge) worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
         } else if (worldObj.getBlock(xCoord, yCoord - 1, zCoord) == CookingForBlockheads.blockFridge) {
-            return (TileEntityFridge) worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
+            return (TileFridge) worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
         }
         return null;
     }
@@ -297,13 +297,13 @@ public class TileEntityFridge extends TileEntity implements IInventory, IKitchen
     }
 
     public void updateMultiblock() {
-        TileEntityFridge bottomFridge;
-        TileEntityFridge upperFridge;
+        TileFridge bottomFridge;
+        TileFridge upperFridge;
         if (worldObj.getBlock(xCoord, yCoord + 1, zCoord) == CookingForBlockheads.blockFridge) {
             bottomFridge = this;
-            upperFridge = (TileEntityFridge) worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
+            upperFridge = (TileFridge) worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
         } else if (worldObj.getBlock(xCoord, yCoord - 1, zCoord) == CookingForBlockheads.blockFridge) {
-            bottomFridge = (TileEntityFridge) worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
+            bottomFridge = (TileFridge) worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
             upperFridge = this;
         } else {
             sharedInventory = internalInventory;

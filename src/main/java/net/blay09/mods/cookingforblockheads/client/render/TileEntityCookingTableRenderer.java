@@ -1,6 +1,6 @@
 package net.blay09.mods.cookingforblockheads.client.render;
 
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingTable;
+import net.blay09.mods.cookingforblockheads.tile.TileCookingTable;
 import net.blay09.mods.cookingforblockheads.client.model.ModelCookingTable;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -56,7 +56,7 @@ public class TileEntityCookingTableRenderer extends TileEntitySpecialRenderer {
         }
         GL11.glPopMatrix();
         GL11.glColor4f(1f, 1f, 1f, 1f);
-        TileEntityCookingTable tileEntityTable = (TileEntityCookingTable) tileEntity;
+        TileCookingTable tileEntityTable = (TileCookingTable) tileEntity;
         if(tileEntityTable.hasNoFilterBook()) {
             GL11.glPushMatrix();
             GL11.glTranslatef((float) x + 0.5f, (float) y + 0.9f, (float) z + 0.5f);

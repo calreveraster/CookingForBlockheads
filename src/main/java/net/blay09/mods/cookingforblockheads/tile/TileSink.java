@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileEntitySink extends TileEntity implements IKitchenItemProvider, IFluidHandler {
+public class TileSink extends TileEntity implements IKitchenItemProvider, IFluidHandler {
 
     private static class WaterTank extends FluidTank {
 
@@ -37,7 +37,7 @@ public class TileEntitySink extends TileEntity implements IKitchenItemProvider, 
 
     private final FluidTank waterTank = new WaterTank(16000);
     private int craftingBuffer;
-    public TileEntitySink() {
+    public TileSink() {
         itemStacks.add(new ItemStack(Items.water_bucket));
         ItemStack pamsWater = GameRegistry.findItemStack("harvestcraft", "freshwaterItem", 1);
         if(pamsWater != null) {

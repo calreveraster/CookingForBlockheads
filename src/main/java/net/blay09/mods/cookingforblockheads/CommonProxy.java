@@ -13,12 +13,12 @@ import net.blay09.mods.cookingforblockheads.item.ItemBlockSink;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockToaster;
 import net.blay09.mods.cookingforblockheads.network.NetworkHandler;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingTable;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityFridge;
-import net.blay09.mods.cookingforblockheads.tile.TileEntitySink;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityToaster;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityToolRack;
+import net.blay09.mods.cookingforblockheads.tile.TileOven;
+import net.blay09.mods.cookingforblockheads.tile.TileCookingTable;
+import net.blay09.mods.cookingforblockheads.tile.TileFridge;
+import net.blay09.mods.cookingforblockheads.tile.TileSink;
+import net.blay09.mods.cookingforblockheads.tile.TileToaster;
+import net.blay09.mods.cookingforblockheads.tile.TileToolRack;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockCookingOven;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockCookingTable;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockFridge;
@@ -45,12 +45,12 @@ public class CommonProxy {
 		GameRegistry.registerBlock(CookingForBlockheads.blockToolRack, ItemBlockToolRack.class, "toolrack");
 		GameRegistry.registerBlock(CookingForBlockheads.blockToaster, ItemBlockToaster.class, "toaster");
 		
-		GameRegistry.registerTileEntity(TileEntityCookingOven.class, CookingForBlockheads.MOD_ID + ":cookingoven");
-		GameRegistry.registerTileEntity(TileEntityFridge.class, CookingForBlockheads.MOD_ID + ":fridge");
-		GameRegistry.registerTileEntity(TileEntityToolRack.class, CookingForBlockheads.MOD_ID + ":toolrack");
-		GameRegistry.registerTileEntity(TileEntitySink.class, CookingForBlockheads.MOD_ID + ":sink");
-		GameRegistry.registerTileEntity(TileEntityCookingTable.class, CookingForBlockheads.MOD_ID + ":cookingtable");
-		GameRegistry.registerTileEntity(TileEntityToaster.class, CookingForBlockheads.MOD_ID + ":toaster");
+		GameRegistry.registerTileEntity(TileOven.class, CookingForBlockheads.MOD_ID + ":cookingoven");
+		GameRegistry.registerTileEntity(TileFridge.class, CookingForBlockheads.MOD_ID + ":fridge");
+		GameRegistry.registerTileEntity(TileToolRack.class, CookingForBlockheads.MOD_ID + ":toolrack");
+		GameRegistry.registerTileEntity(TileSink.class, CookingForBlockheads.MOD_ID + ":sink");
+		GameRegistry.registerTileEntity(TileCookingTable.class, CookingForBlockheads.MOD_ID + ":cookingtable");
+		GameRegistry.registerTileEntity(TileToaster.class, CookingForBlockheads.MOD_ID + ":toaster");
 
 		// #NoFilter Edition
 		if(CookingConfig.enableNoFilter) {

@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import invtweaks.api.container.ContainerSection;
 import invtweaks.api.container.ContainerSectionCallback;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
+import net.blay09.mods.cookingforblockheads.tile.TileOven;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -20,12 +20,12 @@ import java.util.Map;
 
 public class ContainerCookingOven extends Container {
 
-    private final TileEntityCookingOven tileEntity;
+    private final TileOven tileEntity;
     private final int[] lastCookTime = new int[9];
     private int lastBurnTime;
     private int lastItemBurnTime;
 
-    public ContainerCookingOven(InventoryPlayer inventoryPlayer, TileEntityCookingOven tileEntity) {
+    public ContainerCookingOven(InventoryPlayer inventoryPlayer, TileOven tileEntity) {
         this.tileEntity = tileEntity;
 
         for(int i = 0; i < 3; i++) {
@@ -136,8 +136,8 @@ public class ContainerCookingOven extends Container {
                     return null;
                 }
             } else if (slotIndex >= 20) {
-                ItemStack smeltingResult = TileEntityCookingOven.getSmeltingResult(slotStack);
-                if (TileEntityCookingOven.isItemFuel(slotStack)) {
+                ItemStack smeltingResult = TileOven.getSmeltingResult(slotStack);
+                if (TileOven.isItemFuel(slotStack)) {
                     if (!mergeItemStack(slotStack, 3, 4, false)) {
                         return null;
                     }
@@ -191,7 +191,7 @@ public class ContainerCookingOven extends Container {
         return map;
     }
 
-    public TileEntityCookingOven getTileEntity() {
+    public TileOven getTileEntity() {
         return tileEntity;
     }
 }

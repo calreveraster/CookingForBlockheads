@@ -1,6 +1,6 @@
 package net.blay09.mods.cookingforblockheads.container;
 
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
+import net.blay09.mods.cookingforblockheads.tile.TileOven;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,7 @@ public class SlotOvenFuel extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack itemStack) {
-        return TileEntityCookingOven.isItemFuel(itemStack);
+        return TileOven.isItemFuel(itemStack);
     }
 
 }

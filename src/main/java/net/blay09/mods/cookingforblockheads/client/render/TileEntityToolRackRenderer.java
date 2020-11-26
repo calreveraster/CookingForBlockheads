@@ -1,6 +1,6 @@
 package net.blay09.mods.cookingforblockheads.client.render;
 
-import net.blay09.mods.cookingforblockheads.tile.TileEntityToolRack;
+import net.blay09.mods.cookingforblockheads.tile.TileToolRack;
 import net.blay09.mods.cookingforblockheads.client.model.ModelToolRack;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -19,7 +19,7 @@ public class TileEntityToolRackRenderer extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float delta) {
-        TileEntityToolRack tileEntityToolRack = (TileEntityToolRack) tileEntity;
+        TileToolRack tileToolRack = (TileToolRack) tileEntity;
         int metadata = 0;
         if(tileEntity.hasWorldObj()) {
             metadata = tileEntity.getBlockMetadata();
@@ -52,14 +52,14 @@ public class TileEntityToolRackRenderer extends TileEntitySpecialRenderer {
         GL11.glRotatef(angle, 0f, 1f, 0f);
         bindTexture(texture);
         model.renderAll();
-        if(tileEntityToolRack.getStackInSlot(0) != null) {
+        if(tileToolRack.getStackInSlot(0) != null) {
             RenderItem.renderInFrame = true;
-            RenderManager.instance.renderEntityWithPosYaw(tileEntityToolRack.getRenderItem(0), 0.25d, 0.3d, 0.4d, 0f, 0f);
+            RenderManager.instance.renderEntityWithPosYaw(tileToolRack.getRenderItem(0), 0.25d, 0.3d, 0.4d, 0f, 0f);
             RenderItem.renderInFrame = false;
         }
-        if(tileEntityToolRack.getStackInSlot(1) != null) {
+        if(tileToolRack.getStackInSlot(1) != null) {
             RenderItem.renderInFrame = true;
-            RenderManager.instance.renderEntityWithPosYaw(tileEntityToolRack.getRenderItem(1), -0.25d, 0.3d, 0.4d, 0f, 0f);
+            RenderManager.instance.renderEntityWithPosYaw(tileToolRack.getRenderItem(1), -0.25d, 0.3d, 0.4d, 0f, 0f);
             RenderItem.renderInFrame = false;
         }
         if(!oldRescaleNormal) {

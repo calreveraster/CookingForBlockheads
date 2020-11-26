@@ -3,7 +3,7 @@ package net.blay09.mods.cookingforblockheads.block;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
 import net.blay09.mods.cookingforblockheads.client.render.CookingTableBlockRenderer;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingTable;
+import net.blay09.mods.cookingforblockheads.tile.TileCookingTable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -103,13 +103,13 @@ public class BlockCookingTable extends BlockKitchen {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ) {
         ItemStack heldItem = player.getHeldItem();
         if(heldItem != null) {
-            TileEntityCookingTable tileEntity = (TileEntityCookingTable) world.getTileEntity(x, y, z);
+            TileCookingTable tileEntity = (TileCookingTable) world.getTileEntity(x, y, z);
             if(!tileEntity.hasNoFilterBook() && heldItem.getItem() == CookingForBlockheads.itemRecipeBook && heldItem.getItemDamage() == 3) {
                 tileEntity.setNoFilterBook(heldItem.splitStack(1));
                 return true;
             }
         } else if(player.isSneaking()) {
-            TileEntityCookingTable tileEntity = (TileEntityCookingTable) world.getTileEntity(x, y, z);
+            TileCookingTable tileEntity = (TileCookingTable) world.getTileEntity(x, y, z);
             ItemStack noFilterBook = tileEntity.getNoFilterBook();
             if(noFilterBook != null) {
                 if(!player.inventory.addItemStackToInventory(noFilterBook)) {
@@ -127,6 +127,6 @@ public class BlockCookingTable extends BlockKitchen {
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TileEntityCookingTable();
+        return new TileCookingTable();
     }
 }

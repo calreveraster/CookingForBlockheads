@@ -3,7 +3,7 @@ package net.blay09.mods.cookingforblockheads.block;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.client.render.ToasterBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityToaster;
+import net.blay09.mods.cookingforblockheads.tile.TileToaster;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -84,7 +84,7 @@ public class BlockToaster extends BlockKitchen {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-        TileEntityToaster tileEntity = (TileEntityToaster) world.getTileEntity(x, y, z);
+        TileToaster tileEntity = (TileToaster) world.getTileEntity(x, y, z);
         ItemStack heldItem = player.getHeldItem();
         if(heldItem == null) {
 //            if(!tileEntity.isActive()) {
@@ -124,7 +124,7 @@ public class BlockToaster extends BlockKitchen {
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TileEntityToaster();
+        return new TileToaster();
     }
 
 }

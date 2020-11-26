@@ -6,7 +6,7 @@ import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
 import net.blay09.mods.cookingforblockheads.client.render.OvenBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
+import net.blay09.mods.cookingforblockheads.tile.TileOven;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -118,7 +118,7 @@ public class BlockCookingOven extends BlockKitchen {
                     slotId = 3;
                 }
                 slotId += 16;
-                TileEntityCookingOven tileEntityOven = (TileEntityCookingOven) world.getTileEntity(x, y, z);
+                TileOven tileEntityOven = (TileOven) world.getTileEntity(x, y, z);
                 if (tileEntityOven.getStackInSlot(slotId) == null) {
                     ItemStack toolItem = player.getHeldItem().splitStack(1);
                     tileEntityOven.setInventorySlotContents(slotId, toolItem);
@@ -135,7 +135,7 @@ public class BlockCookingOven extends BlockKitchen {
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEntityCookingOven();
+        return new TileOven();
     }
 
     @Override
@@ -157,7 +157,7 @@ public class BlockCookingOven extends BlockKitchen {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block blockBroken, int meta) {
-        TileEntityCookingOven tileEntity = (TileEntityCookingOven) world.getTileEntity(x, y, z);
+        TileOven tileEntity = (TileOven) world.getTileEntity(x, y, z);
         if (tileEntity != null) {
             for (int i1 = 0; i1 < tileEntity.getSizeInventory(); ++i1) {
                 ItemStack itemstack = tileEntity.getStackInSlot(i1);
@@ -196,7 +196,7 @@ public class BlockCookingOven extends BlockKitchen {
     @SideOnly(Side.CLIENT)
     @Override
     public void randomDisplayTick(World world, int x, int y, int z, Random random) {
-        TileEntityCookingOven tileEntity = (TileEntityCookingOven) world.getTileEntity(x, y, z);
+        TileOven tileEntity = (TileOven) world.getTileEntity(x, y, z);
         if (tileEntity.isBurning()) {
             int l = world.getBlockMetadata(x, y, z);
             float f = (float)x + 0.5F;

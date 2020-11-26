@@ -1,9 +1,9 @@
 package net.blay09.mods.cookingforblockheads;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingTable;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityFridge;
+import net.blay09.mods.cookingforblockheads.tile.TileOven;
+import net.blay09.mods.cookingforblockheads.tile.TileCookingTable;
+import net.blay09.mods.cookingforblockheads.tile.TileFridge;
 import net.blay09.mods.cookingforblockheads.client.GuiCookingOven;
 import net.blay09.mods.cookingforblockheads.client.GuiFridge;
 import net.blay09.mods.cookingforblockheads.client.GuiRecipeBook;
@@ -40,7 +40,7 @@ public class GuiHandler implements IGuiHandler {
                 break;
             case GUI_ID_COOKINGTABLE:
                 if(world.getBlock(x, y, z) == CookingForBlockheads.blockCookingTable) {
-                    TileEntityCookingTable tileEntity = (TileEntityCookingTable) world.getTileEntity(x, y, z);
+                    TileCookingTable tileEntity = (TileCookingTable) world.getTileEntity(x, y, z);
                     if(tileEntity.hasNoFilterBook()) {
                         return new ContainerRecipeBook(player, true, true, false).setNoFilter().setKitchenMultiBlock(new KitchenMultiBlock(world, x, y, z));
                     } else {
@@ -50,12 +50,12 @@ public class GuiHandler implements IGuiHandler {
                 break;
             case GUI_ID_COOKINGOVEN:
                 if(world.getBlock(x, y, z) == CookingForBlockheads.blockCookingOven) {
-                    return new ContainerCookingOven(player.inventory, (TileEntityCookingOven) world.getTileEntity(x, y, z));
+                    return new ContainerCookingOven(player.inventory, (TileOven) world.getTileEntity(x, y, z));
                 }
                 break;
             case GUI_ID_FRIDGE:
                 if(world.getBlock(x, y, z) == CookingForBlockheads.blockFridge) {
-                    return new ContainerFridge(player.inventory, getInventoryForFridge((TileEntityFridge) world.getTileEntity(x, y, z)));
+                    return new ContainerFridge(player.inventory, getInventoryForFridge((TileFridge) world.getTileEntity(x, y, z)));
                 }
                 break;
         }
@@ -74,14 +74,14 @@ public class GuiHandler implements IGuiHandler {
             case GUI_ID_COOKINGTABLE:
                 return new GuiRecipeBook(new ContainerRecipeBook(player, true, true, true));
             case GUI_ID_COOKINGOVEN:
-                return new GuiCookingOven(player.inventory, (TileEntityCookingOven) world.getTileEntity(x, y, z));
+                return new GuiCookingOven(player.inventory, (TileOven) world.getTileEntity(x, y, z));
             case GUI_ID_FRIDGE:
-                return new GuiFridge(player.inventory, getInventoryForFridge((TileEntityFridge) world.getTileEntity(x, y, z)));
+                return new GuiFridge(player.inventory, getInventoryForFridge((TileFridge) world.getTileEntity(x, y, z)));
         }
         return null;
     }
 
-    private IInventory getInventoryForFridge(TileEntityFridge tileEntity) {
+    private IInventory getInventoryForFridge(TileFridge tileEntity) {
         tileEntity.updateMultiblock();
         return tileEntity.getInventory();
     }

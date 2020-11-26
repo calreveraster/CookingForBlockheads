@@ -1,6 +1,6 @@
 package net.blay09.mods.cookingforblockheads.container;
 
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
+import net.blay09.mods.cookingforblockheads.tile.TileOven;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemFood;
@@ -14,7 +14,7 @@ public class SlotOvenInput extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        ItemStack smeltingResult = TileEntityCookingOven.getSmeltingResult(stack);
+        ItemStack smeltingResult = TileOven.getSmeltingResult(stack);
         return smeltingResult != null && smeltingResult.getItem() instanceof ItemFood;
     }
 

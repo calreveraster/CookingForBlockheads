@@ -2,7 +2,7 @@ package net.blay09.mods.cookingforblockheads.client.render;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityFridge;
+import net.blay09.mods.cookingforblockheads.tile.TileFridge;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 public class FridgeBlockRenderer implements ISimpleBlockRenderingHandler {
 
     public static final int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
-    private static final TileEntityFridge tileEntity = new TileEntityFridge();
+    private static final TileFridge tileEntity = new TileFridge();
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {

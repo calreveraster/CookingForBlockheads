@@ -10,7 +10,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class TileEntityCookingTable extends TileEntity implements IMultiblockKitchen {
+public class TileCookingTable extends TileEntity implements IMultiblockKitchen {
 
     private EntityItem renderItem;
     private ItemStack noFilterBook;

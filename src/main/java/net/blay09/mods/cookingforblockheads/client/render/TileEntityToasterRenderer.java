@@ -1,7 +1,7 @@
 package net.blay09.mods.cookingforblockheads.client.render;
 
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityToaster;
+import net.blay09.mods.cookingforblockheads.tile.TileToaster;
 import net.blay09.mods.cookingforblockheads.client.model.ModelToaster;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -27,7 +27,7 @@ public class TileEntityToasterRenderer extends TileEntitySpecialRenderer {
             GL11.glScalef(2f, 2f, 2f);
             GL11.glTranslatef(0, 0.25f, 0);
         }
-        TileEntityToaster tileEntityToaster = (TileEntityToaster) tileEntity;
+        TileToaster tileToaster = (TileToaster) tileEntity;
         boolean oldRescaleNormal = GL11.glIsEnabled(GL12.GL_RESCALE_NORMAL);
         if(oldRescaleNormal) {
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
@@ -58,27 +58,27 @@ public class TileEntityToasterRenderer extends TileEntitySpecialRenderer {
         model.renderAll();
         GL11.glRotatef(180f, 0f, 0f, 1f);
 
-        if(tileEntityToaster.isActive()) {
+        if(tileToaster.isActive()) {
             model.ToasterButtonThingy.offsetY = 0.17f;
         } else {
             model.ToasterButtonThingy.offsetY = 0;
         }
 
         GL11.glPushMatrix();
-        GL11.glTranslatef(0.0575f, 0.025f - (tileEntityToaster.isActive() ? 0.08f : 0f), -0.05f);
+        GL11.glTranslatef(0.0575f, 0.025f - (tileToaster.isActive() ? 0.08f : 0f), -0.05f);
         GL11.glScalef(0.75f, 0.75f, 0.75f);
         GL11.glRotatef(90f, 0f, 1f, 0f);
-        if(tileEntityToaster.getStackInSlot(0) != null) {
-            RenderManager.instance.renderEntityWithPosYaw(tileEntityToaster.getRenderItem(0), 0d, 0d, 0d, 0f, 0f);
+        if(tileToaster.getStackInSlot(0) != null) {
+            RenderManager.instance.renderEntityWithPosYaw(tileToaster.getRenderItem(0), 0d, 0d, 0d, 0f, 0f);
         }
         GL11.glPopMatrix();
 
         GL11.glPushMatrix();
-        GL11.glTranslatef(-0.0625f, 0.025f - (tileEntityToaster.isActive() ? 0.08f : 0f), -0.05f);
+        GL11.glTranslatef(-0.0625f, 0.025f - (tileToaster.isActive() ? 0.08f : 0f), -0.05f);
         GL11.glScalef(0.75f, 0.75f, 0.75f);
         GL11.glRotatef(90f, 0f, 1f, 0f);
-        if(tileEntityToaster.getStackInSlot(1) != null) {
-            RenderManager.instance.renderEntityWithPosYaw(tileEntityToaster.getRenderItem(1), 0, 0, 0, 0f, 0f);
+        if(tileToaster.getStackInSlot(1) != null) {
+            RenderManager.instance.renderEntityWithPosYaw(tileToaster.getRenderItem(1), 0, 0, 0, 0f, 0f);
         }
         GL11.glPopMatrix();
         if(!oldRescaleNormal) {

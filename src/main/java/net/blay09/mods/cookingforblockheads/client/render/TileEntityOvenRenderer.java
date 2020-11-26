@@ -1,7 +1,7 @@
 package net.blay09.mods.cookingforblockheads.client.render;
 
 import net.blay09.mods.cookingforblockheads.CookingConfig;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityCookingOven;
+import net.blay09.mods.cookingforblockheads.tile.TileOven;
 import net.blay09.mods.cookingforblockheads.client.model.ModelOven;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -22,7 +22,7 @@ public class TileEntityOvenRenderer extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float delta) {
-        TileEntityCookingOven tileEntityOven = (TileEntityCookingOven) tileEntity;
+        TileOven tileEntityOven = (TileOven) tileEntity;
         int metadata = 0;
         if(tileEntity.hasWorldObj()) {
             metadata = tileEntity.getBlockMetadata();

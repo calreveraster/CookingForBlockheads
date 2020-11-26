@@ -2,7 +2,7 @@ package net.blay09.mods.cookingforblockheads.client.render;
 
 import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
-import net.blay09.mods.cookingforblockheads.tile.TileEntityFridge;
+import net.blay09.mods.cookingforblockheads.tile.TileFridge;
 import net.blay09.mods.cookingforblockheads.client.model.ModelFridge;
 import net.blay09.mods.cookingforblockheads.client.model.ModelSmallFridge;
 import net.minecraft.block.Block;
@@ -30,9 +30,9 @@ public class TileEntityFridgeRenderer extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float delta) {
         int metadata = 0;
         boolean isLargeFridge = false;
-        TileEntityFridge tileEntityFridge = (TileEntityFridge) tileEntity;
-        boolean isDoorFlipped = tileEntityFridge.isFlipped();
-        int dye = tileEntityFridge.getFridgeColor();
+        TileFridge tileFridge = (TileFridge) tileEntity;
+        boolean isDoorFlipped = tileFridge.isFlipped();
+        int dye = tileFridge.getFridgeColor();
         if(tileEntity.hasWorldObj()) {
             metadata = tileEntity.getBlockMetadata();
             Block above = tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord + 1, tileEntity.zCoord);
@@ -72,11 +72,11 @@ public class TileEntityFridgeRenderer extends TileEntitySpecialRenderer {
         GL11.glColor4f(1f, 1f, 1f, 1f);
         GL11.glRotatef(angle, 0f, 1f, 0f);
         GL11.glRotatef(180f, 0f, 0f, 1f);
-        float doorAngle = tileEntityFridge.getPrevDoorAngle() + (tileEntityFridge.getDoorAngle() - tileEntityFridge.getPrevDoorAngle()) * delta;
+        float doorAngle = tileFridge.getPrevDoorAngle() + (tileFridge.getDoorAngle() - tileFridge.getPrevDoorAngle()) * delta;
         doorAngle = 1.0f - doorAngle;
         doorAngle = 1.0f - doorAngle * doorAngle * doorAngle;
         if(isLargeFridge) {
-            TileEntityFridge upperFridge = tileEntityFridge.findNeighbourFridge();
+            TileFridge upperFridge = tileFridge.findNeighbourFridge();
             if(upperFridge != null) {
                 float neighbourDoorAngle = upperFridge.getPrevDoorAngle() + (upperFridge.getDoorAngle() - upperFridge.getPrevDoorAngle()) * delta;
                 if(neighbourDoorAngle > doorAngle) {
@@ -101,10 +101,10 @@ public class TileEntityFridgeRenderer extends TileEntitySpecialRenderer {
                 GL11.glRotatef(180f, 0f, 0f, -1f);
                 GL11.glScalef(0.5f, 0.5f, 0.5f);
                 if(!CookingConfig.disableItemRender && Minecraft.getMinecraft().gameSettings.fancyGraphics) {
-                    int largeFridgeSize = tileEntityFridge.getSizeInventory() + (upperFridge != null ? upperFridge.getSizeInventory() : 0);
+                    int largeFridgeSize = tileFridge.getSizeInventory() + (upperFridge != null ? upperFridge.getSizeInventory() : 0);
                     RenderItem.renderInFrame = true;
                     for (int i = 0; i < largeFridgeSize; i++) {
-                        ItemStack itemStack = (i >= tileEntityFridge.getSizeInventory() && upperFridge != null) ? upperFridge.getStackInSlot(i - tileEntityFridge.getSizeInventory()) : tileEntityFridge.getStackInSlot(i);
+                        ItemStack itemStack = (i >= tileFridge.getSizeInventory() && upperFridge != null) ? upperFridge.getStackInSlot(i - tileFridge.getSizeInventory()) : tileFridge.getStackInSlot(i);
                         if (itemStack != null) {
                             int shelfCapacity = largeFridgeSize / 3;
                             int relSlot = i % shelfCapacity;
@@ -121,8 +121,8 @@ public class TileEntityFridgeRenderer extends TileEntitySpecialRenderer {
                             if (relSlot % 2 == 0) {
                                 itemZ -= 0.1f;
                             }
-                            tileEntityFridge.getRenderItem().setEntityItemStack(itemStack);
-                            RenderManager.instance.renderEntityWithPosYaw(tileEntityFridge.getRenderItem(), 0.45f - itemX, itemY, 0.5f + itemZ, 0f, 5f);
+                            tileFridge.getRenderItem().setEntityItemStack(itemStack);
+                            RenderManager.instance.renderEntityWithPosYaw(tileFridge.getRenderItem(), 0.45f - itemX, itemY, 0.5f + itemZ, 0f, 5f);
                         }
                     }
                     RenderItem.renderInFrame = false;
@@ -148,21 +148,21 @@ public class TileEntityFridgeRenderer extends TileEntitySpecialRenderer {
                 GL11.glScalef(0.5f, 0.5f, 0.5f);
                 if(!CookingConfig.disableItemRender && Minecraft.getMinecraft().gameSettings.fancyGraphics) {
                     RenderItem.renderInFrame = true;
-                    for (int i = 0; i < tileEntityFridge.getSizeInventory(); i++) {
-                        ItemStack itemStack = tileEntityFridge.getStackInSlot(i);
+                    for (int i = 0; i < tileFridge.getSizeInventory(); i++) {
+                        ItemStack itemStack = tileFridge.getStackInSlot(i);
                         if (itemStack != null) {
                             int relSlot = i;
-                            if (i > tileEntityFridge.getSizeInventory() / 2) {
-                                relSlot -= tileEntityFridge.getSizeInventory() / 2;
+                            if (i > tileFridge.getSizeInventory() / 2) {
+                                relSlot -= tileFridge.getSizeInventory() / 2;
                             }
                             float itemX = (relSlot > 8) ? Math.min(4f / 5f, (relSlot - 9) / 5f) : Math.min(8f / 9f, (float) relSlot / 9f);
-                            float itemY = (i > tileEntityFridge.getSizeInventory() / 2) ? -0.7f : 0.01f;
+                            float itemY = (i > tileFridge.getSizeInventory() / 2) ? -0.7f : 0.01f;
                             float itemZ = (relSlot > 8) ? -0.8f : -0.1f;
                             if (relSlot % 2 == 0) {
                                 itemZ -= 0.1f;
                             }
-                            tileEntityFridge.getRenderItem().setEntityItemStack(itemStack);
-                            RenderManager.instance.renderEntityWithPosYaw(tileEntityFridge.getRenderItem(), 0.45f - itemX, -2f + itemY, 0.5f + itemZ, 0f, 0f);
+                            tileFridge.getRenderItem().setEntityItemStack(itemStack);
+                            RenderManager.instance.renderEntityWithPosYaw(tileFridge.getRenderItem(), 0.45f - itemX, -2f + itemY, 0.5f + itemZ, 0f, 0f);
                         }
                     }
                     RenderItem.renderInFrame = false;

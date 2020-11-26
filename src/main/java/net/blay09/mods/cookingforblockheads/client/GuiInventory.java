@@ -1,28 +1,27 @@
 package net.blay09.mods.cookingforblockheads.client;
 
-import net.blay09.mods.cookingforblockheads.container.ContainerFridge;
+import net.blay09.mods.cookingforblockheads.container.ContainerWithInventory;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class GuiFridge extends GuiContainer {
+public class GuiInventory extends GuiContainer {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/gui/container/generic_54.png");
-    private final IInventory fridgeInventory;
+    private final IInventory inventory;
     private int inventoryRows;
 
-    public GuiFridge(InventoryPlayer inventory, IInventory fridgeInventory) {
-        super(new ContainerFridge(inventory, fridgeInventory));
-        this.fridgeInventory = fridgeInventory;
-        this.inventoryRows = fridgeInventory.getSizeInventory() / 9;
+    public GuiInventory(ContainerWithInventory container) {
+        super(container);
+        this.inventory = container.getContainerInventory();
+        this.inventoryRows = inventory.getSizeInventory() / 9;
         this.ySize = 114 + this.inventoryRows * 18;
     }
 
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
-        this.fontRendererObj.drawString(I18n.format(fridgeInventory.getInventoryName()), 8, 6, 4210752);
+        this.fontRendererObj.drawString(I18n.format(inventory.getInventoryName()), 8, 6, 4210752);
         this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 

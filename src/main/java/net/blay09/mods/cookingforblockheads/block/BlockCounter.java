@@ -2,9 +2,8 @@ package net.blay09.mods.cookingforblockheads.block;
 
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
-import net.blay09.mods.cookingforblockheads.client.render.block.FridgeBlockRenderer;
-import net.blay09.mods.cookingforblockheads.item.ItemBlockFridge;
-import net.blay09.mods.cookingforblockheads.tile.TileFridge;
+import net.blay09.mods.cookingforblockheads.client.render.block.CounterBlockRenderer;
+import net.blay09.mods.cookingforblockheads.tile.TileCounter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;
@@ -20,21 +19,20 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockFridge extends BlockKitchen {
+public class BlockCounter extends BlockKitchen {
 
-    public BlockFridge() {
+    public BlockCounter() {
         super(Material.iron);
-
-        setBlockName("cookingforblockheads:fridge");
-        setStepSound(soundTypeMetal);
+        setBlockName("cookingforblockheads:counter");
+        setStepSound(soundTypeStone);
         setHardness(5f);
         setResistance(10f);
-        setBlockBounds(0.0625f, 0f, 0.0625f, 0.9375f, 0.975f, 0.9375f);
+//        setBlockBounds(0.0625f, 0f, 0.0625f, 0.9375f, 0.975f, 0.9375f);
     }
 
     @Override
     public IIcon getIcon(int side, int metadata) {
-        return Blocks.iron_block.getIcon(side, 0);
+        return Blocks.stone.getIcon(side, 0);
     }
 
     @Override
@@ -73,26 +71,23 @@ public class BlockFridge extends BlockKitchen {
     @Override
     public boolean renderAsNormalBlock()
     {
-        return false;
+        return true;
     }
 
     @Override
     public int getRenderType() {
-        return FridgeBlockRenderer.RENDER_ID;
+        return CounterBlockRenderer.RENDER_ID;
     }
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TileFridge();
+        return new TileCounter();
     }
 
     @Override
     public boolean recolourBlock(World world, int x, int y, int z, ForgeDirection side, int colour) {
-        TileFridge fridge = (TileFridge) world.getTileEntity(x, y, z);
-        fridge.setFridgeColor(colour);
-        if(fridge.findNeighbourFridge() != null) {
-            fridge.findNeighbourFridge().setFridgeColor(colour);
-        }
+        TileCounter counter = (TileCounter) world.getTileEntity(x, y, z);
+        counter.setColor(colour);
         return true;
     }
 
@@ -100,36 +95,20 @@ public class BlockFridge extends BlockKitchen {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         if(player.getHeldItem() != null && player.getHeldItem().getItem() == Items.dye) {
             int dye = BlockColored.func_150032_b(player.getHeldItem().getItemDamage());
-            TileFridge fridge = (TileFridge) world.getTileEntity(x, y, z);
-            fridge.setFridgeColor(dye);
-            if(fridge.findNeighbourFridge() != null) {
-                fridge.findNeighbourFridge().setFridgeColor(dye);
-            }
+            TileCounter counter = (TileCounter) world.getTileEntity(x, y, z);
+            counter.setColor(dye);
             player.getHeldItem().stackSize--;
             return true;
         }
         if(!world.isRemote) {
-            if(player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemBlockFridge) {
-                return false;
-            }
-            player.openGui(CookingForBlockheads.instance, GuiHandler.FRIDGE, world, x, y, z);
+            System.out.println("Trying to open stuff");
+            player.openGui(CookingForBlockheads.instance, GuiHandler.COUNTER, world, x, y, z);
         }
         return true;
     }
 
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-        boolean below = world.getBlock(x, y - 1, z) == CookingForBlockheads.blockFridge;
-        boolean above = world.getBlock(x, y + 1, z) == CookingForBlockheads.blockFridge;
-        if(below && above) {
-            return false;
-        }
-        if(below && world.getBlock(x, y - 2, z) == CookingForBlockheads.blockFridge) {
-            return false;
-        }
-        if(above && world.getBlock(x, y + 2, z) == CookingForBlockheads.blockFridge) {
-            return false;
-        }
         return super.canPlaceBlockAt(world, x, y, z);
     }
 
@@ -155,15 +134,15 @@ public class BlockFridge extends BlockKitchen {
         if (orientation == 3) {
             world.setBlockMetadataWithNotify(x, y, z, 4, 2);
         }
-        TileFridge tileEntity = (TileFridge) world.getTileEntity(x, y, z);
+        TileCounter tileEntity = (TileCounter) world.getTileEntity(x, y, z);
         tileEntity.setFlipped(flipped);
     }
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
-        TileFridge tileFridge = (TileFridge) world.getTileEntity(x, y, z);
-        if(tileFridge != null) {
-            tileFridge.breakBlock();
+        TileCounter tileCounter = (TileCounter) world.getTileEntity(x, y, z);
+        if(tileCounter != null) {
+            tileCounter.breakBlock();
         }
         super.breakBlock(world, x, y, z, block, metadata);
     }
@@ -171,8 +150,5 @@ public class BlockFridge extends BlockKitchen {
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
         super.onNeighborBlockChange(world, x, y, z, block);
-        if(block == CookingForBlockheads.blockFridge) {
-            ((TileFridge) world.getTileEntity(x, y, z)).updateMultiblock();
-        }
     }
 }

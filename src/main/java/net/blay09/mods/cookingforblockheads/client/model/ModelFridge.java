@@ -1,6 +1,5 @@
 package net.blay09.mods.cookingforblockheads.client.model;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
@@ -9,23 +8,16 @@ import org.lwjgl.opengl.GL11;
  * ModelFridge - BlayTheNinth & Zero9o1o
  * Created using Tabula 5.1.0
  */
-public class ModelFridge extends ModelBase {
-    public ModelRenderer BottomWall;
-    public ModelRenderer RightWall;
-    public ModelRenderer LeftWall;
-    public ModelRenderer TopWall;
-    public ModelRenderer BackWall;
-    public ModelRenderer Door;
-    public ModelRenderer DoorFlipped;
+public class ModelFridge extends ModelWithDoor {
     public ModelRenderer FrontRightFoot;
     public ModelRenderer FrontLeftFoot;
     public ModelRenderer BackRightFoot;
     public ModelRenderer BackLeftFoot;
     public ModelRenderer PlugThingy;
-    public ModelRenderer DoorHandle;
-    public ModelRenderer DoorHandleFlipped;
-    public ModelRenderer DoorShelfBottem;
-    public ModelRenderer DoorShelfBottemFlipped;
+
+    
+    public ModelRenderer DoorShelfBottom;
+    public ModelRenderer DoorShelfBottomFlipped;
     public ModelRenderer DoorShelfLeft;
     public ModelRenderer DoorShelfLeftFlipped;
     public ModelRenderer DoorShelfRight;
@@ -34,12 +26,12 @@ public class ModelFridge extends ModelBase {
     public ModelRenderer DoorShelfFrontFlipped;
     public ModelRenderer TopHinge;
     public ModelRenderer TopHingeFlipped;
-    public ModelRenderer BottemHinge;
-    public ModelRenderer BottemHingeFlipped;
+    public ModelRenderer BottomHinge;
+    public ModelRenderer BottomHingeFlipped;
     public ModelRenderer LeftSeal;
     public ModelRenderer RightSeal;
     public ModelRenderer TopSeal;
-    public ModelRenderer BottemSeal;
+    public ModelRenderer BottomSeal;
     public ModelRenderer FreezerTop;
     public ModelRenderer TopShelf;
     public ModelRenderer MiddleShelf;
@@ -48,7 +40,6 @@ public class ModelFridge extends ModelBase {
     public ModelRenderer FreezerLeftDoor;
     public ModelRenderer FreezerRightDoorHandle;
     public ModelRenderer FreezerLeftDoorHandle;
-    private boolean isFlipped;
 
     public ModelFridge() {
         this.textureWidth = 128;
@@ -86,18 +77,18 @@ public class ModelFridge extends ModelBase {
         this.FreezerTop = new ModelRenderer(this, 69, 42);
         this.FreezerTop.setRotationPoint(-5.0F, 12.9F, -4.0F);
         this.FreezerTop.addBox(0.0F, 0.1F, 0.0F, 10, 1, 9, 0.0F);
-        this.BottemSeal = new ModelRenderer(this, 54, 42);
-        this.BottemSeal.setRotationPoint(-5.5F, 22.2F, -6.0F);
-        this.BottemSeal.addBox(0.0F, 0.0F, 0.0F, 11, 1, 1, 0.0F);
+        this.BottomSeal = new ModelRenderer(this, 54, 42);
+        this.BottomSeal.setRotationPoint(-5.5F, 22.2F, -6.0F);
+        this.BottomSeal.addBox(0.0F, 0.0F, 0.0F, 11, 1, 1, 0.0F);
         this.MiddleShelf = new ModelRenderer(this, 22, 52);
         this.MiddleShelf.setRotationPoint(-5.0F, 6.0F, -3.0F);
         this.MiddleShelf.addBox(0.0F, 0.0F, 0.0F, 10, 1, 8, 0.0F);
-        this.BottemHinge = new ModelRenderer(this, 120, 0);
-        this.BottemHinge.setRotationPoint(-6.7F, 22.4F, -6.9F);
-        this.BottemHinge.addBox(0.0F, 0.0F, 0.0F, 1, 1, 2, 0.0F);
-        this.BottemHingeFlipped = new ModelRenderer(this, 120, 0);
-        this.BottemHingeFlipped.setRotationPoint(6.7F, 22.4F, -6.9F);
-        this.BottemHingeFlipped.addBox(-1.0F, 0.0F, 0.0F, 1, 1, 2, 0.0F);
+        this.BottomHinge = new ModelRenderer(this, 120, 0);
+        this.BottomHinge.setRotationPoint(-6.7F, 22.4F, -6.9F);
+        this.BottomHinge.addBox(0.0F, 0.0F, 0.0F, 1, 1, 2, 0.0F);
+        this.BottomHingeFlipped = new ModelRenderer(this, 120, 0);
+        this.BottomHingeFlipped.setRotationPoint(6.7F, 22.4F, -6.9F);
+        this.BottomHingeFlipped.addBox(-1.0F, 0.0F, 0.0F, 1, 1, 2, 0.0F);
         this.FreezerLeftDoor = new ModelRenderer(this, 94, 28);
         this.FreezerLeftDoor.setRotationPoint(0.9F, 0.0F, 0.2F);
         this.FreezerLeftDoor.addBox(0.0F, 0.0F, 0.0F, 5, 8, 1, 0.0F);
@@ -140,12 +131,12 @@ public class ModelFridge extends ModelBase {
         this.PlugThingy = new ModelRenderer(this, 45, 0);
         this.PlugThingy.setRotationPoint(0.0F, 26.0F, 0.2F);
         this.PlugThingy.addBox(0.0F, 0.0F, 0.0F, 2, 1, 1, 0.0F);
-        this.DoorShelfBottem = new ModelRenderer(this, 31, 3);
-        this.DoorShelfBottem.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.DoorShelfBottem.addBox(3.0F, 7.0F, 0.3F, 8, 1, 2, 0.0F);
-        this.DoorShelfBottemFlipped = new ModelRenderer(this, 31, 3);
-        this.DoorShelfBottemFlipped.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.DoorShelfBottemFlipped.addBox(-11.0F, 7.0F, 0.3F, 8, 1, 2, 0.0F);
+        this.DoorShelfBottom = new ModelRenderer(this, 31, 3);
+        this.DoorShelfBottom.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.DoorShelfBottom.addBox(3.0F, 7.0F, 0.3F, 8, 1, 2, 0.0F);
+        this.DoorShelfBottomFlipped = new ModelRenderer(this, 31, 3);
+        this.DoorShelfBottomFlipped.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.DoorShelfBottomFlipped.addBox(-11.0F, 7.0F, 0.3F, 8, 1, 2, 0.0F);
         this.FrontRightFoot = new ModelRenderer(this, 0, 0);
         this.FrontRightFoot.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.FrontRightFoot.addBox(-1.0F, 1.3F, 1.0F, 2, 1, 2, 0.0F);
@@ -174,11 +165,11 @@ public class ModelFridge extends ModelBase {
         this.DoorShelfLeft.addChild(this.DoorShelfRight);
         this.DoorShelfLeftFlipped.addChild(this.DoorShelfRightFlipped);
         this.FreezerMiddle.addChild(this.FreezerLeftDoor);
-        this.DoorShelfBottem.addChild(this.DoorShelfLeft);
-        this.DoorShelfBottemFlipped.addChild(this.DoorShelfLeftFlipped);
+        this.DoorShelfBottom.addChild(this.DoorShelfLeft);
+        this.DoorShelfBottomFlipped.addChild(this.DoorShelfLeftFlipped);
         this.BackWall.addChild(this.PlugThingy);
-        this.DoorHandle.addChild(this.DoorShelfBottem);
-        this.DoorHandleFlipped.addChild(this.DoorShelfBottemFlipped);
+        this.DoorHandle.addChild(this.DoorShelfBottom);
+        this.DoorHandleFlipped.addChild(this.DoorShelfBottomFlipped);
         this.BottomWall.addChild(this.FrontRightFoot);
         this.FreezerRightDoor.addChild(this.FreezerRightDoorHandle);
         this.FreezerMiddle.addChild(this.FreezerRightDoor);
@@ -188,33 +179,25 @@ public class ModelFridge extends ModelBase {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        this.RightWall.render(f5);
-        this.LeftWall.render(f5);
-        this.LeftSeal.render(f5);
-        this.TopShelf.render(f5);
-        this.FreezerTop.render(f5);
-        this.BottemSeal.render(f5);
-        this.MiddleShelf.render(f5);
-        this.BottemHinge.render(f5);
-        this.DoorHandle.render(f5);
-        this.TopHinge.render(f5);
-        this.Door.render(f5);
-        this.FreezerMiddle.render(f5);
-        this.BottomWall.render(f5);
-        this.TopSeal.render(f5);
         this.BackWall.render(f5);
-        this.TopWall.render(f5);
+        this.BottomHinge.render(f5);
+        this.BottomSeal.render(f5);
+        this.BottomWall.render(f5);
+        this.Door.render(f5);
+        this.DoorHandle.render(f5);
+        this.FreezerMiddle.render(f5);
+        this.FreezerTop.render(f5);
+        this.LeftSeal.render(f5);
+        this.LeftWall.render(f5);
+        this.MiddleShelf.render(f5);
         this.RightSeal.render(f5);
+        this.RightWall.render(f5);
+        this.TopHinge.render(f5);
+        this.TopSeal.render(f5);
+        this.TopShelf.render(f5);
+        this.TopWall.render(f5);
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
 
     public void renderInterior() {
         float f5 = 0.0625f;
@@ -231,35 +214,18 @@ public class ModelFridge extends ModelBase {
     public void renderUncolored() {
         float f5 = 0.0625f;
         if(isFlipped) {
-            this.BottemHingeFlipped.render(f5);
+            this.BottomHingeFlipped.render(f5);
             this.TopHingeFlipped.render(f5);
             this.DoorHandleFlipped.render(f5);
         } else {
-            this.BottemHinge.render(f5);
+            this.BottomHinge.render(f5);
             this.TopHinge.render(f5);
             this.DoorHandle.render(f5);
         }
         this.LeftSeal.render(f5);
-        this.BottemSeal.render(f5);
+        this.BottomSeal.render(f5);
         this.RightSeal.render(f5);
         this.TopSeal.render(f5);
     }
 
-    public void renderColored() {
-        float f5 = 0.0625f;
-        if(isFlipped) {
-            this.DoorFlipped.render(f5);
-        } else {
-            this.Door.render(f5);
-        }
-        this.RightWall.render(f5);
-        this.LeftWall.render(f5);
-        this.TopWall.render(f5);
-        this.BackWall.render(f5);
-        this.BottomWall.render(f5);
-    }
-
-    public void setFlipped(boolean flipped) {
-        this.isFlipped = flipped;
-    }
 }

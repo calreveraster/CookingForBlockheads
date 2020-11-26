@@ -4,8 +4,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public class InventoryFridge implements IInventory {
-
+public class InventoryNormal implements IInventory {
+    private final String inventoryName;
+    
+    public InventoryNormal(String inventoryName) {
+        this.inventoryName = inventoryName;
+    }
+    
     private ItemStack[] inventory = new ItemStack[27];
 
     @Override
@@ -55,7 +60,7 @@ public class InventoryFridge implements IInventory {
 
     @Override
     public String getInventoryName() {
-        return "container.cookingforblockheads:fridge";
+        return "container.cookingforblockheads:" + this.inventoryName;
     }
 
     @Override

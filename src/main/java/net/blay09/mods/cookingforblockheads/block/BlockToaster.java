@@ -1,7 +1,7 @@
 package net.blay09.mods.cookingforblockheads.block;
 
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
-import net.blay09.mods.cookingforblockheads.client.render.ToasterBlockRenderer;
+import net.blay09.mods.cookingforblockheads.client.render.block.ToasterBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
 import net.blay09.mods.cookingforblockheads.tile.TileToaster;
 import net.minecraft.block.Block;

@@ -67,6 +67,7 @@ public class KitchenMultiBlock {
         findNeighbourKitchenBlocks(world, x, y, z);
     }
 
+    // TODO: Check floor etc
     private void findNeighbourKitchenBlocks(World world, int x, int y, int z) {
         for (int i = 0; i <= 5; i++) {
             ForgeDirection dir = ForgeDirection.getOrientation(i);

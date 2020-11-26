@@ -6,12 +6,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 
 @ChestContainer
-public class ContainerFridge extends ContainerWithInventory {
+public class ContainerCounter extends ContainerWithInventory {
 
-    public ContainerFridge(InventoryPlayer inventoryPlayer, IInventory fridgeInventory) {
-        super(inventoryPlayer, fridgeInventory);
-
-        fridgeInventory.openInventory();
+    public ContainerCounter(InventoryPlayer inventoryPlayer, IInventory counterInventory) {
+        super(inventoryPlayer, counterInventory);
+        counterInventory.openInventory();
     }
 
     @Override

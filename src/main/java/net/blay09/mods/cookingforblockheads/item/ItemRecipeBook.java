@@ -62,18 +62,8 @@ public class ItemRecipeBook extends Item {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-		int guiId = GuiHandler.GUI_ID_RECIPEBOOK;
-		switch(itemStack.getItemDamage()) {
-			case 0:
-				guiId = GuiHandler.GUI_ID_RECIPEBOOK;
-				break;
-			case 1:
-				guiId = GuiHandler.GUI_ID_CRAFTBOOK;
-				break;
-			case 3:
-				guiId = GuiHandler.GUI_ID_NOFILTERBOOK;
-				break;
-		}
+		int guiId = GuiHandler.ITEM_RECIPE_BOOK;
+
 		player.openGui(CookingForBlockheads.instance, guiId, world, (int) player.posX, (int) player.posY, (int) player.posZ);
 		return itemStack;
 	}

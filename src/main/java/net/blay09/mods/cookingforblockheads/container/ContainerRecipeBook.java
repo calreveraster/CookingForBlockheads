@@ -12,12 +12,12 @@ import net.blay09.mods.cookingforblockheads.container.inventory.InventoryRecipeB
 import net.blay09.mods.cookingforblockheads.container.inventory.InventoryRecipeBookMatrix;
 import net.blay09.mods.cookingforblockheads.container.slot.SlotCraftMatrix;
 import net.blay09.mods.cookingforblockheads.container.slot.SlotRecipe;
-import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
-import net.blay09.mods.cookingforblockheads.registry.food.FoodRecipe;
 import net.blay09.mods.cookingforblockheads.network.MessageClickRecipe;
 import net.blay09.mods.cookingforblockheads.network.MessageRecipeInfo;
 import net.blay09.mods.cookingforblockheads.network.MessageSyncList;
 import net.blay09.mods.cookingforblockheads.network.NetworkHandler;
+import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
+import net.blay09.mods.cookingforblockheads.registry.food.FoodRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
@@ -27,7 +27,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S2FPacketSetSlot;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -35,8 +34,8 @@ import java.util.List;
 public class ContainerRecipeBook extends Container {
 
 	private final EntityPlayer player;
-	private final boolean allowCrafting;
-	private final boolean allowSmelting;
+	private boolean allowCrafting;
+	private boolean allowSmelting;
 	private final boolean isClientSide;
 
 	private final InventoryRecipeBook recipeBook;
@@ -72,11 +71,11 @@ public class ContainerRecipeBook extends Container {
 	private final List<IInventory> playerInventoryList = new ArrayList<>();
 	private KitchenMultiBlock kitchenMultiBlock;
 
-	public ContainerRecipeBook(EntityPlayer player, boolean allowCrafting, boolean allowSmelting, boolean isClientSide) {
+	public ContainerRecipeBook(EntityPlayer player, boolean isClientSide) {
 		this.player = player;
 		this.playerInventoryList.add(player.inventory);
-		this.allowCrafting = allowCrafting;
-		this.allowSmelting = allowSmelting;
+		this.allowCrafting = false;
+		this.allowSmelting = false;
 		this.isClientSide = isClientSide;
 
 		craftMatrix = new InventoryRecipeBookMatrix();
@@ -430,7 +429,7 @@ public class ContainerRecipeBook extends Container {
 			sortingChanged();
 		}
 		currentSort = comparator;
-		Collections.sort(sortedRecipes, comparator);
+		sortedRecipes.sort(comparator);
 		updateRecipeList();
 		isRecipeListDirty = true;
 	}
@@ -503,6 +502,16 @@ public class ContainerRecipeBook extends Container {
 		}
 	}
 
+	public ContainerRecipeBook allowCrafting() {
+		this.allowCrafting = true;
+		return this;
+	}
+
+	public ContainerRecipeBook allowSmelting() {
+		this.allowSmelting = true;
+		return this;
+	}
+
 	/**
 	 * SERVER ONLY
 	 * @return
@@ -526,9 +535,9 @@ public class ContainerRecipeBook extends Container {
 		findAvailableRecipes();
 		sortRecipes(currentSort);
 		List<IInventory> sourceInventories = kitchenMultiBlock.getSourceInventories(player.inventory);
-		for(int i = 0; i < craftMatrixSlots.length; i++) {
-			craftMatrixSlots[i].setSourceInventories(sourceInventories);
-			craftMatrixSlots[i].setItemProviders(kitchenMultiBlock.getItemProviders());
+		for (SlotCraftMatrix craftMatrixSlot : craftMatrixSlots) {
+			craftMatrixSlot.setSourceInventories(sourceInventories);
+			craftMatrixSlot.setItemProviders(kitchenMultiBlock.getItemProviders());
 		}
 		craftBook.setInventories(sourceInventories);
 		craftBook.setItemProviders(kitchenMultiBlock.getItemProviders());

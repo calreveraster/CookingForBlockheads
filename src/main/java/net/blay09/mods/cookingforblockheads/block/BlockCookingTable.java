@@ -2,7 +2,7 @@ package net.blay09.mods.cookingforblockheads.block;
 
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
-import net.blay09.mods.cookingforblockheads.client.render.CookingTableBlockRenderer;
+import net.blay09.mods.cookingforblockheads.client.render.block.CookingTableBlockRenderer;
 import net.blay09.mods.cookingforblockheads.tile.TileCookingTable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -120,7 +120,7 @@ public class BlockCookingTable extends BlockKitchen {
             }
         }
         if(!world.isRemote) {
-            player.openGui(CookingForBlockheads.instance, GuiHandler.GUI_ID_COOKINGTABLE, world, x, y, z);
+            player.openGui(CookingForBlockheads.instance, GuiHandler.COOKING_TABLE, world, x, y, z);
         }
         return true;
     }

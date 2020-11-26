@@ -5,12 +5,14 @@ item.cookingforblockheads:recipebook_tier2.name=Cooking for Blockheads II
 tile.cookingforblockheads:cookingtable.name=Cooking Table
 tile.cookingforblockheads:cookingoven.name=Cooking Oven
 tile.cookingforblockheads:fridge.name=Fridge
+tile.cookingforblockheads:counter.name=Counter
 tile.cookingforblockheads:kitchen_floor.name=Kitchen Floor
 tile.cookingforblockheads:sink.name=Sink
 tile.cookingforblockheads:toolrack.name=Tool Rack
 
 container.cookingforblockheads:cookingoven=Cooking Oven
 container.cookingforblockheads:fridge=Fridge
+container.cookingforblockheads:counter=Counter
 
 itemGroup.cookingforblockheads=Cooking for Blockheads
 
@@ -29,6 +31,7 @@ cookingforblockheads:cookingtable.tooltipDesc=Enables crafting abilities.
 cookingforblockheads:cookingoven.tooltipDesc=Enables smelting abilities.
 cookingforblockheads:sink.tooltipDesc=Provides water to recipes.
 cookingforblockheads:fridge.tooltipDesc=Provides contained ingredients to recipes.
+cookingforblockheads:counter.tooltipDesc=Stores ingredients for recipes.
 cookingforblockheads:kitchen_floor.tooltipDesc=No use in particular.
 cookingforblockheads:toolrack.tooltipDesc=Provides contained tools to recipes.
 

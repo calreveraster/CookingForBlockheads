@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
-import net.blay09.mods.cookingforblockheads.client.render.OvenBlockRenderer;
+import net.blay09.mods.cookingforblockheads.client.render.block.OvenBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
 import net.blay09.mods.cookingforblockheads.tile.TileOven;
 import net.minecraft.block.Block;
@@ -26,11 +26,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
-public class BlockCookingOven extends BlockKitchen {
+public class BlockOven extends BlockKitchen {
 
     private final Random random = new Random();
 
-    public BlockCookingOven() {
+    public BlockOven() {
         super(Material.iron);
 
         setBlockName("cookingforblockheads:cookingoven");
@@ -127,7 +127,7 @@ public class BlockCookingOven extends BlockKitchen {
             }
         }
         if(!world.isRemote) {
-            player.openGui(CookingForBlockheads.instance, GuiHandler.GUI_ID_COOKINGOVEN, world, x, y, z);
+            player.openGui(CookingForBlockheads.instance, GuiHandler.COOKING_OVEN, world, x, y, z);
         }
         return true;
     }

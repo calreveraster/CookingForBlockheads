@@ -1,4 +1,4 @@
-package net.blay09.mods.cookingforblockheads.client.render;
+package net.blay09.mods.cookingforblockheads.client.render.block;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;

@@ -99,7 +99,8 @@ repositories {
 
 dependencies {
     compile "applecore:AppleCore:1.7.10-1.2.1+107.59407:api"
-    compile "gregtech:gregtech:5.09.33.52:dev"
+//    compile "gregtech:gregtech:5.09.33.53:dev"
+    compileOnly files("gregtech-5.09.33.57-dev.jar")
     compileOnly files("NotEnoughItems-1.7.10-2.0.2-GTNH-dev.jar") 
     compileOnly files("CraftTweaker2-1.7.10-3.2.0-GTNH-legacy-Dev.jar")
     compileOnly files("InventoryTweaks-147-deobf.jar")

@@ -3,7 +3,7 @@ package net.blay09.mods.cookingforblockheads.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
-import net.blay09.mods.cookingforblockheads.client.render.ToolRackBlockRenderer;
+import net.blay09.mods.cookingforblockheads.client.render.block.ToolRackBlockRenderer;
 import net.blay09.mods.cookingforblockheads.tile.TileToolRack;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

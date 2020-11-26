@@ -1,7 +1,7 @@
 package net.blay09.mods.cookingforblockheads.block;
 
 import net.blay09.mods.cookingforblockheads.CookingConfig;
-import net.blay09.mods.cookingforblockheads.client.render.SinkBlockRenderer;
+import net.blay09.mods.cookingforblockheads.client.render.block.SinkBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
 import net.blay09.mods.cookingforblockheads.tile.TileSink;
 import net.minecraft.block.Block;

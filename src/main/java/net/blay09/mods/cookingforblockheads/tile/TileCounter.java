@@ -1,10 +1,9 @@
 package net.blay09.mods.cookingforblockheads.tile;
 
-import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenStorageProvider;
-import net.blay09.mods.cookingforblockheads.container.ContainerFridge;
-import net.blay09.mods.cookingforblockheads.container.inventory.InventoryNormal;
+import net.blay09.mods.cookingforblockheads.container.ContainerCounter;
 import net.blay09.mods.cookingforblockheads.container.inventory.InventoryLarge;
+import net.blay09.mods.cookingforblockheads.container.inventory.InventoryNormal;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -22,23 +21,21 @@ import net.minecraftforge.common.util.Constants;
 import java.util.List;
 import java.util.Random;
 
-public class TileFridge extends TileEntity implements IInventory, IKitchenStorageProvider {
+public class TileCounter extends TileEntity implements IInventory, IKitchenStorageProvider {
 
     private static final Random random = new Random();
 
     private InventoryNormal internalInventory;
-    private IInventory sharedInventory;
     private EntityItem renderItem;
-    private int fridgeColor;
+    private int color;
     private boolean isFlipped;
     private float prevDoorAngle;
     private float doorAngle;
     private int numPlayersUsing;
     private int tickCounter;
 
-    public TileFridge() {
-        internalInventory = new InventoryNormal("fridge");
-        sharedInventory = internalInventory;
+    public TileCounter() {
+        internalInventory = new InventoryNormal("counter");
     }
 
     @Override
@@ -54,10 +51,6 @@ public class TileFridge extends TileEntity implements IInventory, IKitchenStorag
         super.updateEntity();
 
         tickCounter++;
-
-        if (tickCounter == 1) {
-            updateMultiblock();
-        }
 
         fixBrokenContainerClosedCall();
 
@@ -78,8 +71,8 @@ public class TileFridge extends TileEntity implements IInventory, IKitchenStorag
             float range = 5.0F;
             List list = worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox((float) xCoord - range, (float) yCoord - range, (float) zCoord - range, (float) xCoord + 1 + range, (float) yCoord + 1 + range, (float) zCoord + 1 + range));
             for (EntityPlayer entityPlayer : (List<EntityPlayer>) list) {
-                if (entityPlayer.openContainer instanceof ContainerFridge) {
-                    IInventory inventory = ((ContainerFridge) entityPlayer.openContainer).getContainerInventory();
+                if (entityPlayer.openContainer instanceof ContainerCounter) {
+                    IInventory inventory = ((ContainerCounter) entityPlayer.openContainer).getContainerInventory();
                     if (inventory == this || (inventory instanceof InventoryLarge && ((InventoryLarge) inventory).containsInventory(this))) {
                         numPlayersUsing++;
                     }
@@ -94,7 +87,7 @@ public class TileFridge extends TileEntity implements IInventory, IKitchenStorag
             numPlayersUsing = value;
             return true;
         } else if (id == 2) {
-            fridgeColor = value;
+            color = value;
             return true;
         }
         return super.receiveClientEvent(id, value);
@@ -122,27 +115,27 @@ public class TileFridge extends TileEntity implements IInventory, IKitchenStorag
         return AxisAlignedBB.getBoundingBox(xCoord - 1, yCoord, zCoord - 1, xCoord + 2, yCoord + 2, zCoord + 2);
     }
 
-    public void setFridgeColor(int fridgeColor) {
-        this.fridgeColor = fridgeColor;
+    public void setColor(int color) {
+        this.color = color;
         markDirty();
-        worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType(), 2, fridgeColor);
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType(), 2, color);
     }
 
-    public int getFridgeColor() {
-        return fridgeColor;
+    public int getColor() {
+        return color;
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
 
-        internalInventory = new InventoryNormal("fridge");
+        internalInventory = new InventoryNormal("counter");
         NBTTagList tagList = tagCompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
         for (int i = 0; i < tagList.tagCount(); i++) {
             NBTTagCompound itemCompound = tagList.getCompoundTagAt(i);
             internalInventory.setInventorySlotContents(itemCompound.getByte("Slot"), ItemStack.loadItemStackFromNBT(itemCompound));
         }
-        fridgeColor = tagCompound.getByte("FridgeColor");
+        color = tagCompound.getByte("Color");
         isFlipped = tagCompound.getBoolean("IsFlipped");
     }
 
@@ -161,7 +154,7 @@ public class TileFridge extends TileEntity implements IInventory, IKitchenStorag
             }
         }
         tagCompound.setTag("Items", tagList);
-        tagCompound.setByte("FridgeColor", (byte) fridgeColor);
+        tagCompound.setByte("Color", (byte) color);
         tagCompound.setBoolean("IsFlipped", isFlipped);
     }
 
@@ -179,53 +172,44 @@ public class TileFridge extends TileEntity implements IInventory, IKitchenStorag
         return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tagCompound);
     }
 
-    public TileFridge findNeighbourFridge() {
-        if (worldObj.getBlock(xCoord, yCoord + 1, zCoord) == CookingForBlockheads.blockFridge) {
-            return (TileFridge) worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
-        } else if (worldObj.getBlock(xCoord, yCoord - 1, zCoord) == CookingForBlockheads.blockFridge) {
-            return (TileFridge) worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
-        }
-        return null;
-    }
-
     @Override
     public int getSizeInventory() {
-        return sharedInventory.getSizeInventory();
+        return internalInventory.getSizeInventory();
     }
 
     @Override
     public ItemStack getStackInSlot(int i) {
-        return sharedInventory.getStackInSlot(i);
+        return internalInventory.getStackInSlot(i);
     }
 
     @Override
     public ItemStack decrStackSize(int i, int amount) {
-        return sharedInventory.decrStackSize(i, amount);
+        return internalInventory.decrStackSize(i, amount);
     }
 
     @Override
     public ItemStack getStackInSlotOnClosing(int i) {
-        return sharedInventory.getStackInSlotOnClosing(i);
+        return internalInventory.getStackInSlotOnClosing(i);
     }
 
     @Override
     public void setInventorySlotContents(int i, ItemStack itemStack) {
-        sharedInventory.setInventorySlotContents(i, itemStack);
+        internalInventory.setInventorySlotContents(i, itemStack);
     }
 
     @Override
     public String getInventoryName() {
-        return sharedInventory.getInventoryName();
+        return internalInventory.getInventoryName();
     }
 
     @Override
     public boolean hasCustomInventoryName() {
-        return sharedInventory.hasCustomInventoryName();
+        return internalInventory.hasCustomInventoryName();
     }
 
     @Override
     public int getInventoryStackLimit() {
-        return sharedInventory.getInventoryStackLimit();
+        return internalInventory.getInventoryStackLimit();
     }
 
     @Override
@@ -296,23 +280,4 @@ public class TileFridge extends TileEntity implements IInventory, IKitchenStorag
         this.isFlipped = isFlipped;
     }
 
-    public void updateMultiblock() {
-        TileFridge bottomFridge;
-        TileFridge upperFridge;
-        if (worldObj.getBlock(xCoord, yCoord + 1, zCoord) == CookingForBlockheads.blockFridge) {
-            bottomFridge = this;
-            upperFridge = (TileFridge) worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
-        } else if (worldObj.getBlock(xCoord, yCoord - 1, zCoord) == CookingForBlockheads.blockFridge) {
-            bottomFridge = (TileFridge) worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
-            upperFridge = this;
-        } else {
-            sharedInventory = internalInventory;
-            return;
-        }
-        sharedInventory = new InventoryLarge(bottomFridge.getInternalInventory(), upperFridge.getInternalInventory());
-    }
-
-    public InventoryNormal getInternalInventory() {
-        return internalInventory;
-    }
 }

@@ -1,17 +1,17 @@
-package net.blay09.mods.cookingforblockheads.client.render;
+package net.blay09.mods.cookingforblockheads.client.render.block;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.blay09.mods.cookingforblockheads.tile.TileOven;
+import net.blay09.mods.cookingforblockheads.tile.TileToaster;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.world.IBlockAccess;
 
-public class OvenBlockRenderer implements ISimpleBlockRenderingHandler {
+public class ToasterBlockRenderer implements ISimpleBlockRenderingHandler {
 
     public static final int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
-    private static final TileOven tileEntity = new TileOven();
+    private static final TileToaster tileEntity = new TileToaster();
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {

@@ -8,7 +8,7 @@ import net.blay09.mods.cookingforblockheads.api.SinkHandler;
 import net.blay09.mods.cookingforblockheads.api.ToastHandler;
 import net.blay09.mods.cookingforblockheads.api.event.FoodRegistryInitEvent;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;
-import net.blay09.mods.cookingforblockheads.container.InventoryCraftBook;
+import net.blay09.mods.cookingforblockheads.container.inventory.InventoryCraftBook;
 import net.blay09.mods.cookingforblockheads.registry.food.FoodIngredient;
 import net.blay09.mods.cookingforblockheads.registry.food.FoodRecipe;
 import net.blay09.mods.cookingforblockheads.registry.food.recipe.ShapedCraftingFood;

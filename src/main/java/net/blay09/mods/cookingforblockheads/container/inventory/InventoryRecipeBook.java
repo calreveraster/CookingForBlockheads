@@ -1,4 +1,4 @@
-package net.blay09.mods.cookingforblockheads.container;
+package net.blay09.mods.cookingforblockheads.container.inventory;
 
 import net.blay09.mods.cookingforblockheads.registry.food.FoodRecipe;
 import net.minecraft.entity.player.EntityPlayer;

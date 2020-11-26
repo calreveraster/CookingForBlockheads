@@ -1,4 +1,4 @@
-package net.blay09.mods.cookingforblockheads.container;
+package net.blay09.mods.cookingforblockheads.container.comparator;
 
 import net.minecraft.item.ItemStack;
 

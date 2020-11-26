@@ -1,4 +1,4 @@
-package net.blay09.mods.cookingforblockheads.container;
+package net.blay09.mods.cookingforblockheads.container.comparator;
 
 import net.blay09.mods.cookingforblockheads.api.CookingForBlockheadsAPI;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,12 +7,12 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Comparator;
 
-public class ComparatorSaturation implements Comparator<ItemStack> {
+public class ComparatorHunger implements Comparator<ItemStack> {
 
     private final ComparatorName fallback = new ComparatorName();
     private final EntityPlayer entityPlayer;
 
-    public ComparatorSaturation(EntityPlayer entityPlayer) {
+    public ComparatorHunger(EntityPlayer entityPlayer) {
         this.entityPlayer = entityPlayer;
     }
 
@@ -27,7 +27,7 @@ public class ComparatorSaturation implements Comparator<ItemStack> {
         } else if(!isSecondFood) {
             return -1;
         }
-        int result = (int) (CookingForBlockheadsAPI.getFoodStatsProvider().getSaturation(o2, entityPlayer) * 100 - CookingForBlockheadsAPI.getFoodStatsProvider().getSaturation(o1, entityPlayer) * 100);
+        int result = CookingForBlockheadsAPI.getFoodStatsProvider().getFoodLevel(o2, entityPlayer) - CookingForBlockheadsAPI.getFoodStatsProvider().getFoodLevel(o1, entityPlayer);
         if(result == 0) {
             return fallback.compare(o1, o2);
         }

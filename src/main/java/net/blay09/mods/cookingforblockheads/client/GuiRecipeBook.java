@@ -2,9 +2,8 @@ package net.blay09.mods.cookingforblockheads.client;
 
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.blay09.mods.cookingforblockheads.container.*;
 import net.blay09.mods.cookingforblockheads.container.ContainerRecipeBook;
-import net.blay09.mods.cookingforblockheads.container.SlotRecipe;
+import net.blay09.mods.cookingforblockheads.container.slot.SlotRecipe;
 import net.blay09.mods.cookingforblockheads.network.MessageSort;
 import net.blay09.mods.cookingforblockheads.network.MessageSwitchRecipe;
 import net.blay09.mods.cookingforblockheads.network.NetworkHandler;

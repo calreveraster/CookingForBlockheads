@@ -1,4 +1,4 @@
-package net.blay09.mods.cookingforblockheads.container;
+package net.blay09.mods.cookingforblockheads.container.slot;
 
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;

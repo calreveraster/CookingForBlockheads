@@ -1,4 +1,4 @@
-package net.blay09.mods.cookingforblockheads.container;
+package net.blay09.mods.cookingforblockheads.container.inventory;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;

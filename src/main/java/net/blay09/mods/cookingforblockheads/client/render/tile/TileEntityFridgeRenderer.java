@@ -33,7 +33,7 @@ public class TileEntityFridgeRenderer extends TileEntitySpecialRenderer {
         boolean isLargeFridge = false;
         TileFridge tileFridge = (TileFridge) tileEntity;
         final boolean isDoorFlipped = tileFridge.isFlipped();
-        final int dye = tileFridge.getFridgeColor();
+        final int dye = tileFridge.getColor();
         if(tileEntity.hasWorldObj()) {
             metadata = tileEntity.getBlockMetadata();
             final Block above = tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord + 1, tileEntity.zCoord);

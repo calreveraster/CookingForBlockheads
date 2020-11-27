@@ -27,7 +27,7 @@ import static net.minecraftforge.common.util.ForgeDirection.NORTH;
 import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
 import static net.minecraftforge.common.util.ForgeDirection.WEST;
 
-public class BlockToolRack extends BlockKitchen {
+public class BlockToolRack extends BlockBaseKitchen {
 
     private static final Random random = new Random();
 

@@ -59,6 +59,7 @@ public class CookingForBlockheads {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+		KitchenMultiBlock.registerConnectorBlock(CookingForBlockheads.blockKitchenFloor);
 		proxy.init(event);
     }
 

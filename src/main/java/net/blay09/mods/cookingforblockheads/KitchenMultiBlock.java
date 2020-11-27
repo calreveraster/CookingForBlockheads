@@ -1,15 +1,17 @@
 package net.blay09.mods.cookingforblockheads;
 
+import com.google.common.collect.Sets;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenSmeltingProvider;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenStorageProvider;
-import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IMultiblockKitchen;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -18,72 +20,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class KitchenMultiBlock {
 
+    private final static List<Block> blockConnectors = new ArrayList<>();
     public static final Map<String, Class<? extends IMultiblockKitchen>> tileEntityWrappers = new HashMap<>();
     public static final Map<String, Class<? extends IMultiblockKitchen>> blockWrappers = new HashMap<>();
 
-    private class BlockPosition {
 
-        public final int x;
-        public final int y;
-        public final int z;
-
-        public BlockPosition(int x, int y, int z) {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            BlockPosition that = (BlockPosition) o;
-
-            if (x != that.x) return false;
-            if (y != that.y) return false;
-            return z == that.z;
-
-        }
-
-        @Override
-        public int hashCode() {
-            int result = x;
-            result = 31 * result + y;
-            result = 31 * result + z;
-            return result;
-        }
-    }
-
-    private final Map<BlockPosition, IMultiblockKitchen> kitchenParts = new HashMap<>();
+    private final Set<ChunkPosition> checkedPos = Sets.newHashSet();
     private final List<IKitchenStorageProvider> storageProviderList = new ArrayList<>();
     private final List<IKitchenItemProvider> itemProviderList = new ArrayList<>();
     private final List<IKitchenSmeltingProvider> smeltingProviderList = new ArrayList<>();
 
     public KitchenMultiBlock(World world, int x, int y, int z) {
-        findNeighbourKitchenBlocks(world, x, y, z);
+        findNeighbourKitchenBlocks(world, x, y, z, true);
     }
 
-    // TODO: Check floor etc
-    private void findNeighbourKitchenBlocks(World world, int x, int y, int z) {
+    private void findNeighbourKitchenBlocks(World world, int x, int y, int z, boolean extendedUpSearch) {
         for (int i = 0; i <= 5; i++) {
             ForgeDirection dir = ForgeDirection.getOrientation(i);
-            BlockPosition position = new BlockPosition(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
-            if (!kitchenParts.containsKey(position)) {
-                TileEntity tileEntity = world.getTileEntity(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
-                IMultiblockKitchen kitchenPart;
+            ChunkPosition pos = new ChunkPosition(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
+            // TODO: Add extended up search for cabinets
+            if (checkedPos.add(pos)) {
+                final TileEntity tileEntity = world.getTileEntity(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
+                final Block block = world.getBlock(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
+                final IMultiblockKitchen kitchenPart;
                 if (tileEntity instanceof IMultiblockKitchen) {
                     kitchenPart = (IMultiblockKitchen) tileEntity;
                 } else if (tileEntity != null) {
                     kitchenPart = getWrapper(tileEntity);
                 } else {
-                    kitchenPart = getWrapper(world.getBlock(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ));
+                    kitchenPart = getWrapper(block);
                 }
                 if (kitchenPart != null) {
-                    kitchenParts.put(position, kitchenPart);
                     if (kitchenPart instanceof IKitchenStorageProvider) {
                         storageProviderList.add((IKitchenStorageProvider) kitchenPart);
                     }
@@ -93,8 +64,13 @@ public class KitchenMultiBlock {
                     if (kitchenPart instanceof IKitchenItemProvider) {
                         itemProviderList.add((IKitchenItemProvider) kitchenPart);
                     }
-                    findNeighbourKitchenBlocks(world, position.x, position.y, position.z);
+                    findNeighbourKitchenBlocks(world, pos.chunkPosX, pos.chunkPosY, pos.chunkPosZ, true);
+                } else {
+                    if (blockConnectors.contains(block)) {
+                        findNeighbourKitchenBlocks(world, pos.chunkPosX, pos.chunkPosY, pos.chunkPosZ, false);
+                    }
                 }
+                
             }
         }
     }
@@ -124,6 +100,11 @@ public class KitchenMultiBlock {
         }
         return itemStack;
     }
+    
+    public static void registerConnectorBlock(final Block block) {
+        blockConnectors.add(block);
+    }
+
 
     public boolean hasSmeltingProvider() {
         return smeltingProviderList.size() > 0;

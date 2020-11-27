@@ -4,8 +4,6 @@ import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.client.render.block.SinkBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
 import net.blay09.mods.cookingforblockheads.tile.TileSink;
-import net.minecraft.block.Block;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,7 +20,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-public class BlockSink extends BlockKitchen {
+public class BlockSink extends BlockBaseKitchen {
 
     public BlockSink() {
         super(Material.wood);
@@ -38,29 +36,6 @@ public class BlockSink extends BlockKitchen {
     public void onBlockAdded(World worldIn, int x, int y, int z) {
         super.onBlockAdded(worldIn, x, y, z);
         findOrientation(worldIn, x, y, z);
-    }
-
-    private void findOrientation(World world, int x, int y, int z) {
-        if (!world.isRemote) {
-            Block block = world.getBlock(x, y, z - 1);
-            Block block1 = world.getBlock(x, y, z + 1);
-            Block block2 = world.getBlock(x - 1, y, z);
-            Block block3 = world.getBlock(x + 1, y, z);
-            byte side = 3;
-            if (block.isOpaqueCube() && !block1.isOpaqueCube()) {
-                side = 3;
-            }
-            if (block1.isOpaqueCube() && !block.isOpaqueCube()) {
-                side = 2;
-            }
-            if (block2.isOpaqueCube() && !block3.isOpaqueCube()) {
-                side = 5;
-            }
-            if (block3.isOpaqueCube() && !block2.isOpaqueCube()) {
-                side = 4;
-            }
-            world.setBlockMetadataWithNotify(x, y, z, side, 2);
-        }
     }
 
     @Override

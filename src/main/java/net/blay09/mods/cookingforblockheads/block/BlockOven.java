@@ -26,7 +26,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
-public class BlockOven extends BlockKitchen {
+public class BlockOven extends BlockBaseKitchen {
 
     private final Random random = new Random();
 
@@ -46,28 +46,7 @@ public class BlockOven extends BlockKitchen {
         findOrientation(worldIn, x, y, z);
     }
 
-    private void findOrientation(World world, int x, int y, int z) {
-        if (!world.isRemote) {
-            Block block = world.getBlock(x, y, z - 1);
-            Block block1 = world.getBlock(x, y, z + 1);
-            Block block2 = world.getBlock(x - 1, y, z);
-            Block block3 = world.getBlock(x + 1, y, z);
-            byte side = 3;
-            if (block.isOpaqueCube() && !block1.isOpaqueCube()) {
-                side = 3;
-            }
-            if (block1.isOpaqueCube() && !block.isOpaqueCube()) {
-                side = 2;
-            }
-            if (block2.isOpaqueCube() && !block3.isOpaqueCube()) {
-                side = 5;
-            }
-            if (block3.isOpaqueCube() && !block2.isOpaqueCube()) {
-                side = 4;
-            }
-            world.setBlockMetadataWithNotify(x, y, z, side, 2);
-        }
-    }
+
 
     @Override
     public boolean isOpaqueCube()

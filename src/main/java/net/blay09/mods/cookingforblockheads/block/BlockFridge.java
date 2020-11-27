@@ -20,7 +20,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockFridge extends BlockKitchen {
+public class BlockFridge extends BlockBaseKitchen {
 
     public BlockFridge() {
         super(Material.iron);
@@ -41,7 +41,7 @@ public class BlockFridge extends BlockKitchen {
     public void registerBlockIcons(IIconRegister iconRegister) {
     }
 
-    private void findOrientation(World world, int x, int y, int z) {
+    protected void findOrientation(World world, int x, int y, int z) {
         if (!world.isRemote) {
             Block block = world.getBlock(x, y, z - 1);
             Block block1 = world.getBlock(x, y, z + 1);
@@ -89,21 +89,22 @@ public class BlockFridge extends BlockKitchen {
     @Override
     public boolean recolourBlock(World world, int x, int y, int z, ForgeDirection side, int colour) {
         TileFridge fridge = (TileFridge) world.getTileEntity(x, y, z);
-        fridge.setFridgeColor(colour);
+        fridge.setColor(colour);
         if(fridge.findNeighbourFridge() != null) {
-            fridge.findNeighbourFridge().setFridgeColor(colour);
+            fridge.findNeighbourFridge().setColor(colour);
         }
         return true;
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        // TODO: GT Dye compat
         if(player.getHeldItem() != null && player.getHeldItem().getItem() == Items.dye) {
             int dye = BlockColored.func_150032_b(player.getHeldItem().getItemDamage());
             TileFridge fridge = (TileFridge) world.getTileEntity(x, y, z);
-            fridge.setFridgeColor(dye);
+            fridge.setColor(dye);
             if(fridge.findNeighbourFridge() != null) {
-                fridge.findNeighbourFridge().setFridgeColor(dye);
+                fridge.findNeighbourFridge().setColor(dye);
             }
             player.getHeldItem().stackSize--;
             return true;

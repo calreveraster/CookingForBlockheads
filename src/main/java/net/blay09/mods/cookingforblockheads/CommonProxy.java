@@ -103,7 +103,7 @@ public class CommonProxy {
 		}
 
 		try {
-			Class mtClass = Class.forName("minetweaker.MineTweakerImplementationAPI");
+			Class<?> mtClass = Class.forName("minetweaker.MineTweakerImplementationAPI");
 			mtClass.getMethod("onPostReload", Class.forName("minetweaker.util.IEventHandler"));
 			event.buildSoftDependProxy("MineTweaker3", "net.blay09.mods.cookingforblockheads.compat.MineTweakerAddon");
 			mineTweakerHasPostReload = true;
@@ -115,7 +115,10 @@ public class CommonProxy {
 		if(CookingConfig.moduleAppleCore) {
 			event.buildSoftDependProxy("AppleCore", "net.blay09.mods.cookingforblockheads.compat.AppleCoreAddon");
 		}
-
+		if(CookingConfig.moduleStorageDrawers) {
+			event.buildSoftDependProxy("StorageDrawers", "net.blay09.mods.cookingforblockheads.compat.StorageDrawersAddon");
+		}
+ 
 		CookingRegistry.initFoodRegistry();
 	}
 

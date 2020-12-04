@@ -11,21 +11,20 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileEntityFridgeRenderer extends TileEntitySpecialRenderer {
+public class TileEntityFridgeRenderer extends TileEntityRendererBase {
 
     private static final ResourceLocation textureSmall = new ResourceLocation("cookingforblockheads", "textures/entity/ModelSmallFridge.png");
     private static final ResourceLocation textureBig = new ResourceLocation("cookingforblockheads", "textures/entity/ModelFridge.png");
 
     private ModelFridge modelBig = new ModelFridge();
     private ModelSmallFridge modelSmall = new ModelSmallFridge();
-    public static final float[][] fridgeColorTable = new float[][] {{1.0F, 1.0F, 1.0F}, {0.85F, 0.5F, 0.2F}, {0.7F, 0.3F, 0.85F}, {0.4F, 0.6F, 0.85F}, {0.9F, 0.9F, 0.2F}, {0.5F, 0.8F, 0.1F}, {0.95F, 0.5F, 0.65F}, {0.3F, 0.3F, 0.3F}, {0.6F, 0.6F, 0.6F}, {0.3F, 0.5F, 0.6F}, {0.5F, 0.25F, 0.7F}, {0.2F, 0.3F, 0.7F}, {0.4F, 0.3F, 0.2F}, {0.4F, 0.5F, 0.2F}, {0.6F, 0.2F, 0.2F}, {0.1F, 0.1F, 0.1F}};
+
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float delta) {
@@ -89,7 +88,7 @@ public class TileEntityFridgeRenderer extends TileEntitySpecialRenderer {
         }
         
         model.renderUncolored();
-        GL11.glColor4f(fridgeColorTable[dye][0], fridgeColorTable[dye][1], fridgeColorTable[dye][2], 1f);
+        GL11.glColor4f(colorTable[dye][0], colorTable[dye][1], colorTable[dye][2], 1f);
         model.renderColored();
         
         if(doorAngle > 0f) {

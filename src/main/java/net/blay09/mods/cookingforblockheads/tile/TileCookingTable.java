@@ -14,7 +14,12 @@ public class TileCookingTable extends TileEntity implements IMultiblockKitchen {
 
     private EntityItem renderItem;
     private ItemStack noFilterBook;
+    protected int color;
 
+    public TileCookingTable() {
+        super();
+        this.color = 3;
+    }
     @Override
     public void setWorldObj(World world) {
         super.setWorldObj(world);
@@ -49,6 +54,7 @@ public class TileCookingTable extends TileEntity implements IMultiblockKitchen {
     public void writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
         NBTTagCompound itemCompound = new NBTTagCompound();
+        tagCompound.setByte("Color", (byte) color);
         if(noFilterBook != null) {
             noFilterBook.writeToNBT(itemCompound);
         }
@@ -58,6 +64,7 @@ public class TileCookingTable extends TileEntity implements IMultiblockKitchen {
     @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
+        color = tagCompound.getByte("Color");
         if(tagCompound.hasKey("NoFilterBook")) {
             setNoFilterBook(ItemStack.loadItemStackFromNBT(tagCompound.getCompoundTag("NoFilterBook")));
         }
@@ -77,4 +84,15 @@ public class TileCookingTable extends TileEntity implements IMultiblockKitchen {
 
         readFromNBT(pkt.func_148857_g());
     }
+
+    public void setColor(int color) {
+        this.color = color;
+        markDirty();
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType(), 2, color);
+    }
+
+    public int getColor() {
+        return color;
+    }
+    
 }

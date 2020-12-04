@@ -1,94 +1,109 @@
-package net.blay09.mods.cookingforblockheads.client.model;
+package net.blay09.mods.cookingforblockheads.client.model;// Cubik Studio 2.9.482 Beta JAVA exporter
+// Designed by Blay09 with Cubik Studio - https://cubik.studio
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-/**
- * ModelCookingTable - Either Mojang or a mod author
- * Created using Tabula 4.1.1
- */
 public class ModelCookingTable extends ModelBase {
-    public ModelRenderer BottomWall;
-    public ModelRenderer RightWall;
-    public ModelRenderer LeftWall;
-    public ModelRenderer TopFrontPart;
-    public ModelRenderer BackWall;
-    public ModelRenderer FrontWall;
-    public ModelRenderer DoorTopHandle;
-    public ModelRenderer DoorBottomHandle;
+
+    //fields
+    public ModelRenderer Backsplash;
+    public ModelRenderer Top;
+    public ModelRenderer Bottom;
+    public ModelRenderer Body;
+    public ModelRenderer CraftingPlate;
     public ModelRenderer DoorTop;
     public ModelRenderer DoorBottom;
+    public ModelRenderer HandleTop;
+    public ModelRenderer HandleBottom;
 
-    public ModelCookingTable() {
-        this.textureWidth = 64;
-        this.textureHeight = 128;
-        this.RightWall = new ModelRenderer(this, 0, 51);
-        this.RightWall.setRotationPoint(-7.0F, 11.0F, -6.0F);
-        this.RightWall.addBox(0.0F, 0.0F, 0.0F, 1, 13, 12, 0.0F);
-        this.DoorTopHandle = new ModelRenderer(this, 0, 124);
-        this.DoorTopHandle.setRotationPoint(-2.0F, 13.0F, -8.0F);
-        this.DoorTopHandle.addBox(0.0F, 0.0F, 0.0F, 4, 1, 1, 0.0F);
-        this.DoorTop = new ModelRenderer(this, 26, 35);
-        this.DoorTop.setRotationPoint(-5.0F, 12.0F, -7.0F);
-        this.DoorTop.addBox(0.0F, 0.0F, 0.0F, 10, 4, 1, 0.0F);
-        this.LeftWall = new ModelRenderer(this, 0, 26);
-        this.LeftWall.setRotationPoint(6.0F, 11.0F, -6.0F);
-        this.LeftWall.addBox(0.0F, 0.0F, 0.0F, 1, 13, 12, 0.0F);
-        this.TopFrontPart = new ModelRenderer(this, 0, 0);
-        this.TopFrontPart.setRotationPoint(-7.0F, 10.0F, -7.0F);
-        this.TopFrontPart.addBox(0.0F, 0.0F, 0.0F, 14, 1, 14, 0.0F);
-        this.DoorBottomHandle = new ModelRenderer(this, 0, 124);
-        this.DoorBottomHandle.setRotationPoint(-2.0F, 19.0F, -8.0F);
-        this.DoorBottomHandle.addBox(0.0F, 0.0F, 0.0F, 4, 1, 1, 0.0F);
-        this.BottomWall = new ModelRenderer(this, 0, 15);
-        this.BottomWall.setRotationPoint(-5.0F, 21.0F, -4.0F);
-        this.BottomWall.addBox(0.0F, 0.0F, 0.0F, 10, 1, 9, 0.0F);
-        this.DoorBottom = new ModelRenderer(this, 26, 35);
-        this.DoorBottom.setRotationPoint(-5.0F, 18.0F, -7.0F);
-        this.DoorBottom.addBox(0.0F, 0.0F, 0.0F, 10, 4, 1, 0.0F);
-        this.FrontWall = new ModelRenderer(this, 0, 110);
-        this.FrontWall.setRotationPoint(-6.0F, 11.0F, -6.0F);
-        this.FrontWall.addBox(0.0F, 0.0F, 0.0F, 12, 13, 1, 0.0F);
-        this.BackWall = new ModelRenderer(this, 0, 96);
-        this.BackWall.setRotationPoint(-6.0F, 11.0F, 6.0F);
-        this.BackWall.addBox(0.0F, 0.0F, 0.0F, 12, 13, 1, 0.0F);
+    public ModelCookingTable()
+    {
+        textureWidth = 64;
+        textureHeight = 128;
+        this.Bottom = new ModelRenderer(this, 0, 71);
+        this.Bottom.setRotationPoint(-8.0F, 24.0F, -5.5F);
+        this.Bottom.addBox(0.0F, -1.0F, 0.0F, 16, 1, 13, 0.0F);
+        this.Backsplash = new ModelRenderer(this, 0, 58);
+        this.Backsplash.setRotationPoint(8.0F, 7.0F, 6.5F);
+        this.Backsplash.addBox(-16.0F, 0.0F, 0.0F, 16, 2, 1, 0.0F);
+        this.Top = new ModelRenderer(this, 0, 85);
+        this.Top.setRotationPoint(8.0F, 9.0F, -7.5F);
+        this.Top.addBox(-16.0F, 0.0F, 0.0F, 16, 1, 15, 0.0F);
+        this.HandleTop = new ModelRenderer(this, 36, 61);
+        this.HandleTop.setRotationPoint(-1.5F, 13.0F, -8.0F);
+        this.HandleTop.addBox(0.0F, 0.0F, 0.0F, 3, 1, 1, 0.0F);
+        this.HandleBottom = new ModelRenderer(this, 44, 61);
+        this.HandleBottom.setRotationPoint(-1.5F, 19.0F, -8.0F);
+        this.HandleBottom.addBox(0.0F, 0.0F, 0.0F, 3, 1, 1, 0.0F);
+        this.Body = new ModelRenderer(this, 0, 101);
+        this.Body.setRotationPoint(8.0F, 10.0F, -6.5F);
+        this.Body.addBox(-16.0F, 0.0F, 0.0F, 16, 13, 14, 0.0F);
+        this.CraftingPlate = new ModelRenderer(this, 0, 61);
+        this.CraftingPlate.setRotationPoint(-4.5F, 8.0F, -5.0F);
+        this.CraftingPlate.addBox(0.0F, 0.0F, 0.0F, 9, 1, 9, 0.0F);
+        this.DoorBottom = new ModelRenderer(this, 36, 63);
+        this.DoorBottom.setRotationPoint(-5.5F, 18.0F, -7.5F);
+        this.DoorBottom.addBox(0.0F, 0.0F, 0.0F, 11, 3, 1, 0.0F);
+        this.DoorTop = new ModelRenderer(this, 36, 67);
+        this.DoorTop.setRotationPoint(-5.5F, 12.0F, -7.5F);
+        this.DoorTop.addBox(0.0F, 0.0F, 0.0F, 11, 3, 1, 0.0F);
     }
 
-    @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        this.DoorBottomHandle.render(f5);
-        this.BottomWall.render(f5);
-        this.TopFrontPart.render(f5);
-        this.DoorBottom.render(f5);
-        this.DoorTop.render(f5);
-        this.RightWall.render(f5);
-        this.LeftWall.render(f5);
-        this.BackWall.render(f5);
-        this.FrontWall.render(f5);
-        this.DoorTopHandle.render(f5);
-    }
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        super.render(entity, f, f1, f2, f3, f4, f5);
+        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
+        Backsplash.render(f5);
+        Top.render(f5);
+        Bottom.render(f5);
+        Body.render(f5);
+        CraftingPlate.render(f5);
+        DoorTop.render(f5);
+        DoorBottom.render(f5);
+        HandleTop.render(f5);
+        HandleBottom.render(f5);
     }
 
     public void renderAll() {
         float f5 = 0.0625f;
-        this.DoorBottomHandle.render(f5);
-        this.BottomWall.render(f5);
-        this.TopFrontPart.render(f5);
-        this.DoorBottom.render(f5);
-        this.DoorTop.render(f5);
-        this.RightWall.render(f5);
-        this.LeftWall.render(f5);
-        this.BackWall.render(f5);
-        this.FrontWall.render(f5);
-        this.DoorTopHandle.render(f5);
+        Backsplash.render(f5);
+        Top.render(f5);
+        Bottom.render(f5);
+        Body.render(f5);
+        CraftingPlate.render(f5);
+        DoorTop.render(f5);
+        DoorBottom.render(f5);
+        HandleTop.render(f5);
+        HandleBottom.render(f5);
     }
+    public void renderUncolored() {
+        float f5 = 0.0625f;
+        Backsplash.render(f5);
+        HandleTop.render(f5);
+        HandleBottom.render(f5);
+        Top.render(f5);
+        CraftingPlate.render(f5);
+    }
+    public void renderColored() {
+        float f5 = 0.0625f;
+        Bottom.render(f5);
+        Body.render(f5);
+        DoorTop.render(f5);
+        DoorBottom.render(f5);
+    }
+    private void setRotation(ModelRenderer model, float x, float y, float z)
+    {
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
+     
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+    {
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    }
+ 
 }

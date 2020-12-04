@@ -1,190 +1,148 @@
-package net.blay09.mods.cookingforblockheads.client.model;
+package net.blay09.mods.cookingforblockheads.client.model;// Cubik Studio 2.9.482 Beta JAVA exporter
+// Designed by Blay09 with Cubik Studio - https://cubik.studio
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-/**
- * sink - BlayTheNineth & Zero9o1o
- * Created using Tabula 5.1.0
- */
 public class ModelSink extends ModelBase {
-    public ModelRenderer BasinTopFront;
-    public ModelRenderer BasinTopRight;
-    public ModelRenderer BasinTopBack;
-    public ModelRenderer BasinTopLeft;
-    public ModelRenderer BasinFront;
-    public ModelRenderer BasinBack;
-    public ModelRenderer BasinRight;
-    public ModelRenderer BasinLeft;
-    public ModelRenderer BasinBottem;
-    public ModelRenderer BasinMiddleWall;
-    public ModelRenderer RightWall;
-    public ModelRenderer LeftWall;
-    public ModelRenderer BackWall;
-    public ModelRenderer BottemWall;
-    public ModelRenderer FrontRightWall;
-    public ModelRenderer FrontLeftWall;
-    public ModelRenderer FrontTopWall;
-    public ModelRenderer FrontBottemWall;
+
+    //fields
+    public ModelRenderer Backsplash;
+    public ModelRenderer TopRight;
+    public ModelRenderer Bottom;
+    public ModelRenderer WallBottom;
     public ModelRenderer Door;
-    public ModelRenderer DoorHandle;
-    public ModelRenderer FaucetFront;
-    public ModelRenderer FaucetBack;
-    public ModelRenderer TopFrontPart;
-    public ModelRenderer TopBackPart;
-    public ModelRenderer TopRightPart;
-    public ModelRenderer TopRightPart_1;
+    public ModelRenderer Handle;
+    public ModelRenderer TopFront;
+    public ModelRenderer TopLeft;
+    public ModelRenderer TopBack;
+    public ModelRenderer WallLeft;
+    public ModelRenderer WallRight;
+    public ModelRenderer WallBack;
+    public ModelRenderer WallFront;
+    public ModelRenderer MetalMiddle;
+    public ModelRenderer FaucetBase;
+    public ModelRenderer FaucetEnd;
 
-    public ModelSink() {
-        this.textureWidth = 122;
-        this.textureHeight = 37;
-        this.BasinTopLeft = new ModelRenderer(this, 48, 14);
-        this.BasinTopLeft.setRotationPoint(4.5F, 9.8F, -3.0F);
-        this.BasinTopLeft.addBox(0.0F, 0.0F, 0.0F, 1, 1, 7, 0.0F);
-        this.LeftWall = new ModelRenderer(this, 24, 0);
-        this.LeftWall.setRotationPoint(5.0F, 11.0F, -5.0F);
-        this.LeftWall.addBox(0.0F, 0.0F, 0.0F, 1, 13, 11, 0.0F);
-        this.BasinMiddleWall = new ModelRenderer(this, 108, 21);
-        this.BasinMiddleWall.setRotationPoint(-0.7F, 9.7F, -2.5F);
-        this.BasinMiddleWall.addBox(0.0F, 0.0F, 0.0F, 1, 3, 6, 0.0F);
-        this.DoorHandle = new ModelRenderer(this, 27, 0);
-        this.DoorHandle.setRotationPoint(-4.0F, 12.0F, -5.0F);
-        this.DoorHandle.addBox(6.0F, 1.0F, -1.6F, 1, 2, 1, 0.0F);
-        this.BasinBack = new ModelRenderer(this, 64, 20);
-        this.BasinBack.setRotationPoint(-5.0F, 9.7F, 3.5F);
-        this.BasinBack.addBox(0.0F, 0.0F, 0.0F, 10, 3, 1, 0.0F);
-        this.TopRightPart_1 = new ModelRenderer(this, 25, 29);
-        this.TopRightPart_1.setRotationPoint(5.0F, 10.0F, -3.0F);
-        this.TopRightPart_1.addBox(0.0F, 0.0F, 0.0F, 2, 1, 7, 0.0F);
-        this.FaucetFront = new ModelRenderer(this, 0, 0);
-        this.FaucetFront.setRotationPoint(2.0F, 9.1F, 2.0F);
-        this.FaucetFront.addBox(0.0F, -1.1F, 0.0F, 1, 1, 1, 0.0F);
-        this.FrontTopWall = new ModelRenderer(this, 13, 0);
-        this.FrontTopWall.setRotationPoint(-3.0F, 11.0F, -5.0F);
-        this.FrontTopWall.addBox(0.0F, 0.0F, 0.0F, 6, 2, 1, 0.0F);
-        this.TopRightPart = new ModelRenderer(this, 83, 26);
-        this.TopRightPart.setRotationPoint(-7.0F, 10.0F, -3.0F);
-        this.TopRightPart.addBox(0.0F, 0.0F, 0.0F, 2, 1, 7, 0.0F);
-        this.FrontRightWall = new ModelRenderer(this, 108, 0);
-        this.FrontRightWall.setRotationPoint(-5.0F, 11.0F, -5.0F);
-        this.FrontRightWall.addBox(0.0F, 0.0F, 0.0F, 2, 12, 1, 0.0F);
-        this.TopBackPart = new ModelRenderer(this, 56, 29);
-        this.TopBackPart.setRotationPoint(-7.0F, 10.0F, 4.0F);
-        this.TopBackPart.addBox(0.0F, 0.0F, 0.0F, 14, 1, 3, 0.0F);
-        this.BasinBottem = new ModelRenderer(this, 0, 24);
-        this.BasinBottem.setRotationPoint(-4.5F, 12.0F, -3.0F);
-        this.BasinBottem.addBox(0.0F, 0.0F, 0.0F, 9, 1, 7, 0.0F);
-        this.BackWall = new ModelRenderer(this, 48, 0);
-        this.BackWall.setRotationPoint(-5.0F, 11.0F, 5.0F);
-        this.BackWall.addBox(0.0F, 0.0F, 0.0F, 10, 13, 1, 0.0F);
-        this.BasinLeft = new ModelRenderer(this, 94, 20);
-        this.BasinLeft.setRotationPoint(4.0F, 9.7F, -2.5F);
-        this.BasinLeft.addBox(0.0F, 0.0F, 0.0F, 1, 3, 6, 0.0F);
-        this.BasinRight = new ModelRenderer(this, 86, 17);
-        this.BasinRight.setRotationPoint(-5.0F, 9.7F, -2.5F);
-        this.BasinRight.addBox(0.0F, 0.0F, 0.0F, 1, 3, 6, 0.0F);
-        this.TopFrontPart = new ModelRenderer(this, 25, 24);
-        this.TopFrontPart.setRotationPoint(-7.0F, 10.0F, -7.0F);
-        this.TopFrontPart.addBox(0.0F, 0.0F, 0.0F, 14, 1, 4, 0.0F);
-        this.FrontLeftWall = new ModelRenderer(this, 114, 0);
-        this.FrontLeftWall.setRotationPoint(3.0F, 11.0F, -5.0F);
-        this.FrontLeftWall.addBox(0.0F, 0.0F, 0.0F, 2, 12, 1, 0.0F);
-        this.FrontBottemWall = new ModelRenderer(this, 13, 3);
-        this.FrontBottemWall.setRotationPoint(-3.0F, 20.0F, -5.0F);
-        this.FrontBottemWall.addBox(0.0F, 0.0F, 0.0F, 6, 3, 1, 0.0F);
-        this.RightWall = new ModelRenderer(this, 0, 0);
-        this.RightWall.setRotationPoint(-6.0F, 11.0F, -5.0F);
-        this.RightWall.addBox(0.0F, 0.0F, 0.0F, 1, 13, 11, 0.0F);
-        this.FaucetBack = new ModelRenderer(this, 4, 0);
-        this.FaucetBack.setRotationPoint(2.0F, 8.0F, 3.0F);
-        this.FaucetBack.addBox(0.0F, 0.0F, 0.0F, 1, 2, 1, 0.0F);
-        this.BasinTopBack = new ModelRenderer(this, 88, 15);
-        this.BasinTopBack.setRotationPoint(-5.5F, 9.8F, 4.0F);
-        this.BasinTopBack.addBox(0.0F, 0.0F, 0.0F, 11, 1, 1, 0.0F);
-        this.Door = new ModelRenderer(this, 70, 10);
-        this.Door.setRotationPoint(-4.0F, 12.0F, -5.0F);
-        this.Door.addBox(0.0F, 0.0F, -1.0F, 8, 9, 1, 0.0F);
-        this.BottemWall = new ModelRenderer(this, 70, 0);
-        this.BottemWall.setRotationPoint(-5.0F, 21.0F, -4.0F);
-        this.BottemWall.addBox(0.0F, 0.0F, 0.0F, 10, 1, 9, 0.0F);
-        this.BasinTopFront = new ModelRenderer(this, 88, 13);
-        this.BasinTopFront.setRotationPoint(-5.5F, 9.8F, -4.0F);
-        this.BasinTopFront.addBox(0.0F, 0.0F, 0.0F, 11, 1, 1, 0.0F);
-        this.BasinFront = new ModelRenderer(this, 13, 7);
-        this.BasinFront.setRotationPoint(-5.0F, 9.7F, -3.5F);
-        this.BasinFront.addBox(0.0F, 0.0F, 0.0F, 10, 3, 1, 0.0F);
-        this.BasinTopRight = new ModelRenderer(this, 105, 13);
-        this.BasinTopRight.setRotationPoint(-5.5F, 9.8F, -3.0F);
-        this.BasinTopRight.addBox(0.0F, 0.0F, 0.0F, 1, 1, 7, 0.0F);
+    public ModelSink()
+    {
+        this.textureWidth = 128;
+        this.textureHeight = 64;
+        this.MetalMiddle = new ModelRenderer(this, 34, 4);
+        this.MetalMiddle.setRotationPoint(-2.0F, 10.0F, -4.5F);
+        this.MetalMiddle.addBox(0.0F, 0.0F, 0.0F, 1, 6, 8, 0.0F);
+        this.WallBottom = new ModelRenderer(this, 0, 43);
+        this.WallBottom.setRotationPoint(8.0F, 16.0F, -6.5F);
+        this.WallBottom.addBox(-16.0F, 0.0F, 0.0F, 16, 7, 14, 0.0F);
+        this.WallRight = new ModelRenderer(this, 60, 44);
+        this.WallRight.setRotationPoint(-8.0F, 10.0F, -6.5F);
+        this.WallRight.addBox(0.0F, 0.0F, 0.0F, 3, 6, 14, 0.0F);
+        this.TopLeft = new ModelRenderer(this, 94, 48);
+        this.TopLeft.setRotationPoint(-6.0F, 9.0F, -7.5F);
+        this.TopLeft.addBox(-2.0F, 0.0F, 0.0F, 2, 1, 15, 0.0F);
+        this.TopFront = new ModelRenderer(this, 60, 12);
+        this.TopFront.setRotationPoint(-6.0F, 9.0F, -7.5F);
+        this.TopFront.addBox(0.0F, 0.0F, 0.0F, 12, 1, 2, 0.0F);
+        this.FaucetEnd = new ModelRenderer(this, 24, 0);
+        this.FaucetEnd.setRotationPoint(1.0F, 7.0F, 2.5F);
+        this.FaucetEnd.addBox(0.0F, 0.0F, 0.0F, 1, 1, 1, 0.0F);
+        this.WallBack = new ModelRenderer(this, 60, 18);
+        this.WallBack.setRotationPoint(-5.0F, 10.0F, 3.5F);
+        this.WallBack.addBox(0.0F, 0.0F, 0.0F, 10, 6, 4, 0.0F);
+        this.FaucetBase = new ModelRenderer(this, 24, 5);
+        this.FaucetBase.setRotationPoint(1.0F, 7.0F, 3.5F);
+        this.FaucetBase.addBox(0.0F, 0.0F, 0.0F, 1, 3, 1, 0.0F);
+        this.TopBack = new ModelRenderer(this, 94, 44);
+        this.TopBack.setRotationPoint(-6.0F, 9.0F, 4.5F);
+        this.TopBack.addBox(0.0F, 0.0F, 0.0F, 12, 1, 3, 0.0F);
+        this.WallFront = new ModelRenderer(this, 0, 1);
+        this.WallFront.setRotationPoint(-5.0F, 10.0F, -6.5F);
+        this.WallFront.addBox(0.0F, 0.0F, 0.0F, 10, 6, 2, 0.0F);
+        this.Backsplash = new ModelRenderer(this, 60, 15);
+        this.Backsplash.setRotationPoint(-8.0F, 7.0F, 6.5F);
+        this.Backsplash.addBox(0.0F, 0.0F, 0.0F, 16, 2, 1, 0.0F);
+        this.WallLeft = new ModelRenderer(this, 0, 9);
+        this.WallLeft.setRotationPoint(5.0F, 10.0F, -6.5F);
+        this.WallLeft.addBox(0.0F, 0.0F, 0.0F, 3, 6, 14, 0.0F);
+        this.TopRight = new ModelRenderer(this, 60, 28);
+        this.TopRight.setRotationPoint(8.0F, 9.0F, -7.5F);
+        this.TopRight.addBox(-2.0F, 0.0F, 0.0F, 2, 1, 15, 0.0F);
+        this.Bottom = new ModelRenderer(this, 0, 29);
+        this.Bottom.setRotationPoint(-8.0F, 24.0F, -5.5F);
+        this.Bottom.addBox(0.0F, -1.0F, 0.0F, 16, 1, 13, 0.0F);
+        this.Door = new ModelRenderer(this, 34, 18);
+        this.Door.setRotationPoint(-5.5F, 11.8F, -7.5F);
+        this.Door.addBox(0.0F, 0.0F, 0.0F, 11, 10, 1, 0.0F);
+        this.Handle = new ModelRenderer(this, 24, 2);
+        this.Handle.setRotationPoint(-4.5F, 16.0F, -8.0F);
+        this.Handle.addBox(0.0F, 0.0F, 0.0F, 1, 2, 1, 0.0F);
     }
 
-    @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        this.BasinTopLeft.render(f5);
-        this.LeftWall.render(f5);
-        this.BasinMiddleWall.render(f5);
-        this.DoorHandle.render(f5);
-        this.BasinBack.render(f5);
-        this.TopRightPart_1.render(f5);
-        this.FaucetFront.render(f5);
-        this.FrontTopWall.render(f5);
-        this.TopRightPart.render(f5);
-        this.FrontRightWall.render(f5);
-        this.TopBackPart.render(f5);
-        this.BasinBottem.render(f5);
-        this.BackWall.render(f5);
-        this.BasinLeft.render(f5);
-        this.BasinRight.render(f5);
-        this.TopFrontPart.render(f5);
-        this.FrontLeftWall.render(f5);
-        this.FrontBottemWall.render(f5);
-        this.RightWall.render(f5);
-        this.FaucetBack.render(f5);
-        this.BasinTopBack.render(f5);
-        this.Door.render(f5);
-        this.BottemWall.render(f5);
-        this.BasinTopFront.render(f5);
-        this.BasinFront.render(f5);
-        this.BasinTopRight.render(f5);
-    }
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        super.render(entity, f, f1, f2, f3, f4, f5);
+        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
+        Backsplash.render(f5);
+        TopRight.render(f5);
+        Bottom.render(f5);
+        WallBottom.render(f5);
+        Door.render(f5);
+        Handle.render(f5);
+        TopFront.render(f5);
+        TopLeft.render(f5);
+        TopBack.render(f5);
+        WallLeft.render(f5);
+        WallRight.render(f5);
+        WallBack.render(f5);
+        WallFront.render(f5);
+        MetalMiddle.render(f5);
+        FaucetBase.render(f5);
+        FaucetEnd.render(f5);
     }
-
+    
     public void renderAll() {
         float f5 = 0.0625f;
-        this.BasinTopLeft.render(f5);
-        this.LeftWall.render(f5);
-        this.BasinMiddleWall.render(f5);
-        this.DoorHandle.render(f5);
-        this.BasinBack.render(f5);
-        this.TopRightPart_1.render(f5);
-        this.FaucetFront.render(f5);
-        this.FrontTopWall.render(f5);
-        this.TopRightPart.render(f5);
-        this.FrontRightWall.render(f5);
-        this.TopBackPart.render(f5);
-        this.BasinBottem.render(f5);
-        this.BackWall.render(f5);
-        this.BasinLeft.render(f5);
-        this.BasinRight.render(f5);
-        this.TopFrontPart.render(f5);
-        this.FrontLeftWall.render(f5);
-        this.FrontBottemWall.render(f5);
-        this.RightWall.render(f5);
-        this.FaucetBack.render(f5);
-        this.BasinTopBack.render(f5);
-        this.Door.render(f5);
-        this.BottemWall.render(f5);
-        this.BasinTopFront.render(f5);
-        this.BasinFront.render(f5);
-        this.BasinTopRight.render(f5);
+
+
     }
+    public void renderUncolored() {
+        float f5 = 0.0625f;
+        MetalMiddle.render(f5);
+        FaucetBase.render(f5);
+        FaucetEnd.render(f5);
+        Handle.render(f5);
+        TopFront.render(f5);
+        TopLeft.render(f5);
+        TopBack.render(f5);
+        TopRight.render(f5);
+
+    }
+    public void renderColored() {
+        float f5 = 0.0625f;
+        Backsplash.render(f5);
+        Bottom.render(f5);
+        WallBottom.render(f5);
+        Door.render(f5);
+
+        WallLeft.render(f5);
+        WallRight.render(f5);
+        WallBack.render(f5);
+        WallFront.render(f5);
+    }
+    
+    
+    private void setRotation(ModelRenderer model, float x, float y, float z)
+    {
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
+     
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+    {
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    }
+ 
 }

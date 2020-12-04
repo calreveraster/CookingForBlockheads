@@ -12,6 +12,7 @@ import net.blay09.mods.cookingforblockheads.item.ItemBlockFridge;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockGenericKitchen;
 import net.blay09.mods.cookingforblockheads.network.NetworkHandler;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
+import net.blay09.mods.cookingforblockheads.tile.TileCabinet;
 import net.blay09.mods.cookingforblockheads.tile.TileCookingTable;
 import net.blay09.mods.cookingforblockheads.tile.TileCounter;
 import net.blay09.mods.cookingforblockheads.tile.TileFridge;
@@ -36,6 +37,7 @@ public class CommonProxy {
 		GameRegistry.registerBlock(CookingForBlockheads.blockCookingTable, ItemBlockGenericKitchen.class, "cookingtable", new Object[]{"cookingtable", false});
 		GameRegistry.registerBlock(CookingForBlockheads.blockOven, ItemBlockGenericKitchen.class, "cookingoven", new Object[]{"cookingoven", false});
 		GameRegistry.registerBlock(CookingForBlockheads.blockCounter, ItemBlockGenericKitchen.class, "counter", new Object[]{"counter", true});
+		GameRegistry.registerBlock(CookingForBlockheads.blockCabinet, ItemBlockGenericKitchen.class, "cabinet", new Object[]{"cabinet", true});
 		GameRegistry.registerBlock(CookingForBlockheads.blockFridge, ItemBlockFridge.class, "fridge");
 		GameRegistry.registerBlock(CookingForBlockheads.blockKitchenFloor, ItemBlockGenericKitchen.class, "kitchen_floor", new Object[]{"kitchen_floor", false});
 		GameRegistry.registerBlock(CookingForBlockheads.blockSink, ItemBlockGenericKitchen.class, "sink", new Object[]{"sink", false});
@@ -45,6 +47,7 @@ public class CommonProxy {
 		GameRegistry.registerTileEntity(TileOven.class, CookingForBlockheads.MOD_ID + ":cookingoven");
 		GameRegistry.registerTileEntity(TileFridge.class, CookingForBlockheads.MOD_ID + ":fridge");
 		GameRegistry.registerTileEntity(TileCounter.class, CookingForBlockheads.MOD_ID + ":counter");
+		GameRegistry.registerTileEntity(TileCabinet.class, CookingForBlockheads.MOD_ID + ":cabinet");
 		GameRegistry.registerTileEntity(TileToolRack.class, CookingForBlockheads.MOD_ID + ":toolrack");
 		GameRegistry.registerTileEntity(TileSink.class, CookingForBlockheads.MOD_ID + ":sink");
 		GameRegistry.registerTileEntity(TileCookingTable.class, CookingForBlockheads.MOD_ID + ":cookingtable");

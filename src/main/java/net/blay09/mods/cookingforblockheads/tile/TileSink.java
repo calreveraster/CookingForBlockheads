@@ -18,6 +18,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileSink extends TileEntity implements IKitchenItemProvider, IFluidHandler {
+    protected int color;
+    private final List<ItemStack> itemStacks = new ArrayList<>();
+
+    private final FluidTank waterTank = new WaterTank(16000);
+    private int craftingBuffer;
+
+
+    public TileSink() {
+        itemStacks.add(new ItemStack(Items.water_bucket));
+        ItemStack pamsWater = GameRegistry.findItemStack("harvestcraft", "freshwaterItem", 1);
+        if(pamsWater != null) {
+            itemStacks.add(pamsWater);
+        }
+    }
+
 
     private static class WaterTank extends FluidTank {
 
@@ -32,17 +47,6 @@ public class TileSink extends TileEntity implements IKitchenItemProvider, IFluid
             return super.fill(resource, doFill);
         }
 
-    }
-    private final List<ItemStack> itemStacks = new ArrayList<>();
-
-    private final FluidTank waterTank = new WaterTank(16000);
-    private int craftingBuffer;
-    public TileSink() {
-        itemStacks.add(new ItemStack(Items.water_bucket));
-        ItemStack pamsWater = GameRegistry.findItemStack("harvestcraft", "freshwaterItem", 1);
-        if(pamsWater != null) {
-            itemStacks.add(pamsWater);
-        }
     }
 
     @Override
@@ -98,12 +102,14 @@ public class TileSink extends TileEntity implements IKitchenItemProvider, IFluid
     @Override
     public void writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
+        tagCompound.setByte("Color", (byte) color);
         waterTank.writeToNBT(tagCompound);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
+        color = tagCompound.getByte("Color");
         waterTank.readFromNBT(tagCompound);
     }
 
@@ -143,5 +149,15 @@ public class TileSink extends TileEntity implements IKitchenItemProvider, IFluid
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from) {
         return new FluidTankInfo[] { waterTank.getInfo() };
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+        markDirty();
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType(), 2, color);
+    }
+
+    public int getColor() {
+        return color;
     }
 }

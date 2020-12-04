@@ -39,13 +39,22 @@ public class KitchenMultiBlock {
     }
 
     private void findNeighbourKitchenBlocks(World world, int x, int y, int z, boolean extendedUpSearch) {
+        List<ChunkPosition> dirToCheck = new ArrayList<>();
+        
         for (int i = 0; i <= 5; i++) {
             ForgeDirection dir = ForgeDirection.getOrientation(i);
-            ChunkPosition pos = new ChunkPosition(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
+            final int upSearch = (extendedUpSearch && dir == ForgeDirection.UP) ? 2 : 1;
+            for (int j = 0; j < upSearch ; j++) {
+                ChunkPosition pos = new ChunkPosition(x + dir.offsetX, y + dir.offsetY + j, z + dir.offsetZ);
+                dirToCheck.add(pos);
+            }
+        }
+        
+        for(ChunkPosition pos : dirToCheck) {
             // TODO: Add extended up search for cabinets
             if (checkedPos.add(pos)) {
-                final TileEntity tileEntity = world.getTileEntity(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
-                final Block block = world.getBlock(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
+                final TileEntity tileEntity = world.getTileEntity(pos.chunkPosX, pos.chunkPosY, pos.chunkPosZ);
+                final Block block = world.getBlock(pos.chunkPosX, pos.chunkPosY, pos.chunkPosZ);
                 final IMultiblockKitchen kitchenPart;
                 if (tileEntity instanceof IMultiblockKitchen) {
                     kitchenPart = (IMultiblockKitchen) tileEntity;

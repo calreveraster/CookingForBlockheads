@@ -1,9 +1,9 @@
 package net.blay09.mods.cookingforblockheads.client.render.tile;
 
 import net.blay09.mods.cookingforblockheads.CookingConfig;
-import net.blay09.mods.cookingforblockheads.client.model.ModelCounter;
+import net.blay09.mods.cookingforblockheads.client.model.ModelCabinet;
 import net.blay09.mods.cookingforblockheads.client.render.RenderUtils;
-import net.blay09.mods.cookingforblockheads.tile.TileCounter;
+import net.blay09.mods.cookingforblockheads.tile.TileCabinet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -13,18 +13,18 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileEntityCounterRenderer extends TileEntityRendererBase {
+public class TileEntityCabinetRenderer extends TileEntityRendererBase {
 
-    private static final ResourceLocation textureSmall = new ResourceLocation("cookingforblockheads", "textures/entity/ModelCounter.png");
+    private static final ResourceLocation textureSmall = new ResourceLocation("cookingforblockheads", "textures/entity/ModelCabinet.png");
 
-    private ModelCounter model = new ModelCounter();
+    private ModelCabinet model = new ModelCabinet();
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float delta) {
         int metadata = 0;
-        TileCounter tileCounter = (TileCounter) tileEntity;
-        final boolean isDoorFlipped = tileCounter.isFlipped();
-        final int dye = tileCounter.getColor();
+        TileCabinet tileCabinet = (TileCabinet) tileEntity;
+        final boolean isDoorFlipped = tileCabinet.isFlipped();
+        final int dye = tileCabinet.getColor();
         if(tileEntity.hasWorldObj()) {
             metadata = tileEntity.getBlockMetadata();
         }
@@ -40,11 +40,10 @@ public class TileEntityCounterRenderer extends TileEntityRendererBase {
         GL11.glColor4f(1f, 1f, 1f, 1f);
         GL11.glRotatef(angle, 0f, 1f, 0f);
         GL11.glRotatef(180f, 0f, 0f, 1f);
-        float doorAngle = tileCounter.getPrevDoorAngle() + (tileCounter.getDoorAngle() - tileCounter.getPrevDoorAngle()) * delta;
+        float doorAngle = tileCabinet.getPrevDoorAngle() + (tileCabinet.getDoorAngle() - tileCabinet.getPrevDoorAngle()) * delta;
         doorAngle = 1.0f - doorAngle;
         doorAngle = 1.0f - doorAngle * doorAngle * doorAngle;
         
-//        ModelWithDoor model = modelSmall;
         bindTexture(textureSmall);
 
         model.setFlipped(isDoorFlipped);
@@ -67,17 +66,17 @@ public class TileEntityCounterRenderer extends TileEntityRendererBase {
             GL11.glScalef(0.5f, 0.5f, 0.5f);
             if(!CookingConfig.disableItemRender && Minecraft.getMinecraft().gameSettings.fancyGraphics) {
                 RenderItem.renderInFrame = true;
-                for (int i = 0; i < tileCounter.getSizeInventory(); i++) {
-                    final ItemStack itemStack = tileCounter.getStackInSlot(i);
+                for (int i = 0; i < tileCabinet.getSizeInventory(); i++) {
+                    final ItemStack itemStack = tileCabinet.getStackInSlot(i);
                     int relSlot;
                     if (itemStack != null) {
                         float itemX, itemY, itemZ, partialTickTime;
                         relSlot = i;
-                        if (i > tileCounter.getSizeInventory() / 2) {
-                            relSlot -= tileCounter.getSizeInventory() / 2;
+                        if (i > tileCabinet.getSizeInventory() / 2) {
+                            relSlot -= tileCabinet.getSizeInventory() / 2;
                         }
                         itemX = (relSlot > 8) ? Math.min(4f / 5f, (relSlot - 9) / 5f) : Math.min(8f / 9f, (float) relSlot / 9f);
-                        itemY = -2f + ((i > tileCounter.getSizeInventory() / 2) ? -0.7f : 0.01f);
+                        itemY = -2f + ((i > tileCabinet.getSizeInventory() / 2) ? -0.7f : 0.01f);
                         itemZ = (relSlot > 8) ? -0.8f : -0.1f;
                         partialTickTime = 0f;
                          
@@ -85,8 +84,8 @@ public class TileEntityCounterRenderer extends TileEntityRendererBase {
                             itemZ -= 0.1f;
                         }
 
-                        tileCounter.getRenderItem().setEntityItemStack(itemStack);
-                        RenderManager.instance.renderEntityWithPosYaw(tileCounter.getRenderItem(), 0.45f - itemX, itemY, 0.5f + itemZ, 0f, partialTickTime);
+                        tileCabinet.getRenderItem().setEntityItemStack(itemStack);
+                        RenderManager.instance.renderEntityWithPosYaw(tileCabinet.getRenderItem(), 0.45f - itemX, itemY, 0.5f + itemZ, 0f, partialTickTime);
                     }
                 }
                 RenderItem.renderInFrame = false;

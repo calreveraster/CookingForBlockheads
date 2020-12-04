@@ -4,11 +4,13 @@ import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
 import net.blay09.mods.cookingforblockheads.client.render.block.CookingTableBlockRenderer;
 import net.blay09.mods.cookingforblockheads.tile.TileCookingTable;
+import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -78,6 +80,14 @@ public class BlockCookingTable extends BlockBaseKitchen {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ) {
+        if(player.getHeldItem() != null && player.getHeldItem().getItem() == Items.dye) {
+            int dye = BlockColored.func_150032_b(player.getHeldItem().getItemDamage());
+            TileCookingTable table = (TileCookingTable) world.getTileEntity(x, y, z);
+            table.setColor(dye);
+            player.getHeldItem().stackSize--;
+            return true;
+        }
+        
         ItemStack heldItem = player.getHeldItem();
         if(heldItem != null) {
             TileCookingTable tileEntity = (TileCookingTable) world.getTileEntity(x, y, z);

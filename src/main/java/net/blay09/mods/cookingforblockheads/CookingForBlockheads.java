@@ -5,6 +5,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import net.blay09.mods.cookingforblockheads.api.CookingForBlockheadsAPI;
+import net.blay09.mods.cookingforblockheads.block.BlockCabinet;
 import net.blay09.mods.cookingforblockheads.block.BlockCounter;
 import net.blay09.mods.cookingforblockheads.block.BlockKitchenFloor;
 import net.blay09.mods.cookingforblockheads.item.ItemRecipeBook;
@@ -36,6 +37,7 @@ public class CookingForBlockheads {
 	public static Block blockCookingTable = new BlockCookingTable();
 	public static Block blockOven = new BlockOven();
 	public static Block blockCounter = new BlockCounter();
+	public static Block blockCabinet = new BlockCabinet();
 	public static Block blockFridge = new BlockFridge();
 	public static Block blockKitchenFloor = new BlockKitchenFloor();
 	public static Block blockSink = new BlockSink();

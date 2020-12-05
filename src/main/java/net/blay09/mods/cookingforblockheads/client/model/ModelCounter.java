@@ -41,9 +41,11 @@ public class ModelCounter extends ModelBase {
         this.RightWall = new ModelRenderer(this, 30, 20);
         this.RightWall.setRotationPoint(8.0F, 24.0F, -6.5F);
         this.RightWall.addBox(-1.0F, -14.0F, 0.0F, 1, 14, 14, 0.0F);
+
         this.BackSplash = new ModelRenderer(this, 62, 33);
         this.BackSplash.setRotationPoint(8.0F, 9.0F, 6.5F);
         this.BackSplash.addBox(-16.0F, -2.0F, 0.0F, 16, 2, 1, 0.0F);
+        
         this.InnerBoard = new ModelRenderer(this, 62, 36);
         this.InnerBoard.setRotationPoint(7.0F, 17.5F, -5.7F);
         this.InnerBoard.addBox(-14.0F, -1.0F, 0.0F, 14, 1, 13, 0.0F);

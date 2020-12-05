@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11;
  * ModelFridge - BlayTheNinth & Zero9o1o
  * Created using Tabula 5.1.0
  */
-public class ModelFridge extends ModelWithDoor {
+public class ModelFridge extends ModelBaseFridge {
     public ModelRenderer FrontRightFoot;
     public ModelRenderer FrontLeftFoot;
     public ModelRenderer BackRightFoot;

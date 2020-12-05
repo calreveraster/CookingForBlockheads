@@ -51,34 +51,6 @@ public class ModelCookingTable extends ModelBase {
         this.DoorTop.addBox(0.0F, 0.0F, 0.0F, 11, 3, 1, 0.0F);
     }
 
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-    {
-        super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
-        Backsplash.render(f5);
-        Top.render(f5);
-        Bottom.render(f5);
-        Body.render(f5);
-        CraftingPlate.render(f5);
-        DoorTop.render(f5);
-        DoorBottom.render(f5);
-        HandleTop.render(f5);
-        HandleBottom.render(f5);
-    }
-
-    public void renderAll() {
-        float f5 = 0.0625f;
-        Backsplash.render(f5);
-        Top.render(f5);
-        Bottom.render(f5);
-        Body.render(f5);
-        CraftingPlate.render(f5);
-        DoorTop.render(f5);
-        DoorBottom.render(f5);
-        HandleTop.render(f5);
-        HandleBottom.render(f5);
-    }
     public void renderUncolored() {
         float f5 = 0.0625f;
         Backsplash.render(f5);

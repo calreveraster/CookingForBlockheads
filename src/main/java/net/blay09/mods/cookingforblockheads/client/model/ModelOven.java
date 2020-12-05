@@ -2,7 +2,6 @@ package net.blay09.mods.cookingforblockheads.client.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -68,27 +67,6 @@ public class ModelOven extends ModelBase {
         this.OvenDoorBurning.addChild(this.OvenDoorHandle);
         this.OvenDoorBurning.addChild(this.OvenDoorHandleKnobLeft);
         this.OvenDoorBurning.addChild(this.OvenDoorHandleKnobRight);
-    }
-
-    @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        this.OvenDoor.render(f5);
-        this.OvenRight.render(f5);
-        this.OvenBack.render(f5);
-        this.OvenTop.render(f5);
-        this.OvenBottom.render(f5);
-        this.OvenFront.render(f5);
-        this.OvenLeft.render(f5);
-        this.OvenGrid.render(f5);
-    }
-
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
     }
 
     public void renderAll(boolean isBurning) {

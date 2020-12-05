@@ -4,7 +4,7 @@ import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.client.model.ModelFridge;
 import net.blay09.mods.cookingforblockheads.client.model.ModelSmallFridge;
-import net.blay09.mods.cookingforblockheads.client.model.ModelWithDoor;
+import net.blay09.mods.cookingforblockheads.client.model.ModelBaseFridge;
 import net.blay09.mods.cookingforblockheads.client.render.RenderUtils;
 import net.blay09.mods.cookingforblockheads.tile.TileFridge;
 import net.minecraft.block.Block;
@@ -60,7 +60,7 @@ public class TileEntityFridgeRenderer extends TileEntityRendererBase {
         doorAngle = 1.0f - doorAngle;
         doorAngle = 1.0f - doorAngle * doorAngle * doorAngle;
         
-        ModelWithDoor model;
+        ModelBaseFridge model;
         if (isLargeFridge) {
             model = modelBig;
             TileFridge upperFridge = tileFridge.findNeighbourFridge();

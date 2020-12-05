@@ -1,13 +1,10 @@
-package net.blay09.mods.cookingforblockheads.client.model;// Cubik Studio 2.9.482 Beta JAVA exporter
-// Designed by Blay09 with Cubik Studio - https://cubik.studio
+package net.blay09.mods.cookingforblockheads.client.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 
 public class ModelSink extends ModelBase {
 
-    //fields
     public ModelRenderer Backsplash;
     public ModelRenderer TopRight;
     public ModelRenderer Bottom;
@@ -79,34 +76,6 @@ public class ModelSink extends ModelBase {
         this.Handle.addBox(0.0F, 0.0F, 0.0F, 1, 2, 1, 0.0F);
     }
 
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-    {
-        super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
-        Backsplash.render(f5);
-        TopRight.render(f5);
-        Bottom.render(f5);
-        WallBottom.render(f5);
-        Door.render(f5);
-        Handle.render(f5);
-        TopFront.render(f5);
-        TopLeft.render(f5);
-        TopBack.render(f5);
-        WallLeft.render(f5);
-        WallRight.render(f5);
-        WallBack.render(f5);
-        WallFront.render(f5);
-        MetalMiddle.render(f5);
-        FaucetBase.render(f5);
-        FaucetEnd.render(f5);
-    }
-    
-    public void renderAll() {
-        float f5 = 0.0625f;
-
-
-    }
     public void renderUncolored() {
         float f5 = 0.0625f;
         MetalMiddle.render(f5);
@@ -130,19 +99,6 @@ public class ModelSink extends ModelBase {
         WallRight.render(f5);
         WallBack.render(f5);
         WallFront.render(f5);
-    }
-    
-    
-    private void setRotation(ModelRenderer model, float x, float y, float z)
-    {
-        model.rotateAngleX = x;
-        model.rotateAngleY = y;
-        model.rotateAngleZ = z;
-    }
-     
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
-    {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     }
  
 }

@@ -3,7 +3,7 @@ package net.blay09.mods.cookingforblockheads.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
-public abstract class ModelWithDoor extends ModelBase {
+public abstract class ModelBaseFridge extends ModelBase {
     protected boolean isFlipped;
     public ModelRenderer BottomWall;
     public ModelRenderer RightWall;
@@ -28,15 +28,7 @@ public abstract class ModelWithDoor extends ModelBase {
         this.BottomWall.render(f5);
         this.BackWall.render(f5);
     }
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
-    
+ 
     public abstract void renderUncolored();
     public abstract void renderInterior();
     

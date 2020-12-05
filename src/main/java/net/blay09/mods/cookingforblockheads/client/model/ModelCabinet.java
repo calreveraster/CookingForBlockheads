@@ -3,7 +3,6 @@ package net.blay09.mods.cookingforblockheads.client.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 
 public class ModelCabinet extends ModelBase {
     protected boolean isFlipped;
@@ -66,25 +65,6 @@ public class ModelCabinet extends ModelBase {
         this.BottomStick.setRotationPoint(-7.0F, 23.5F, -5.0F);
         this.BottomStick.addBox(0.0F, -1.5F, 0.0F, 14, 2, 2, 0.0F);
     }
-
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-    {
-        super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
-        this.BottomWall.render(f5);
-        this.RightWall.render(f5);
-        this.LeftWall.render(f5);
-        this.BackWall.render(f5);
-        this.BottomStick.render(f5);
-        this.InnerBoard.render(f5);
-        this.LeftStick.render(f5);
-        this.RightStick.render(f5);
-        this.TopWall.render(f5);
-        this.Door.render(f5);
-        this.DoorHandle.render(f5);
-    }
-
 
     public void renderUncolored() {
         float f5 = 0.0625f;

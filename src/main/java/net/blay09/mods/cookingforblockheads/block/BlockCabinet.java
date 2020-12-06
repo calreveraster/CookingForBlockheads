@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockCabinet extends BlockCounter {
 
@@ -16,7 +17,7 @@ public class BlockCabinet extends BlockCounter {
         setStepSound(soundTypeStone);
         setHardness(5f);
         setResistance(10f);
-//        setBlockBounds(0.0625f, 0f, 0.0625f, 0.9375f, 0.975f, 0.9375f);
+        setBlockBounds(0.0625f, 0f, 0.0625f, 0.9375f, 0.825f, 0.9375f);
     }
 
     @Override
@@ -50,5 +51,11 @@ public class BlockCabinet extends BlockCounter {
         return new TileCabinet();
     }
 
+    @Override
+    public boolean recolourBlock(World world, int x, int y, int z, ForgeDirection side, int colour) {
+        TileCabinet cabinet = (TileCabinet) world.getTileEntity(x, y, z);
+        cabinet.setColor(colour);
+        return true;
+    }
 
 }

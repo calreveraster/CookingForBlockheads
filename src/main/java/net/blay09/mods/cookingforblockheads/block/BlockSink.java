@@ -4,13 +4,12 @@ import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.client.render.block.SinkBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
 import net.blay09.mods.cookingforblockheads.tile.TileSink;
-import net.minecraft.block.BlockColored;
+import net.blay09.mods.cookingforblockheads.utils.DyeUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -21,6 +20,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.Optional;
 
 public class BlockSink extends BlockBaseKitchen {
 
@@ -66,12 +67,21 @@ public class BlockSink extends BlockBaseKitchen {
     }
 
     @Override
+    public boolean recolourBlock(World world, int x, int y, int z, ForgeDirection side, int colour) {
+        TileSink sink = (TileSink) world.getTileEntity(x, y, z);
+        sink.setColor(colour);
+        return true;
+    }
+
+    
+    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-        if(player.getHeldItem() != null && player.getHeldItem().getItem() == Items.dye) {
-            int dye = BlockColored.func_150032_b(player.getHeldItem().getItemDamage());
-            TileSink sink = (TileSink) world.getTileEntity(x, y, z);
-            sink.setColor(dye);
-            player.getHeldItem().stackSize--;
+        ItemStack heldItem = player.getHeldItem();
+        if(heldItem != null && DyeUtils.isDye(heldItem)) {
+            Optional<Integer> dyeColor = DyeUtils.colorFromStack(heldItem);
+            if (dyeColor.isPresent() && recolourBlock(world, x, y, z, ForgeDirection.UNKNOWN, dyeColor.get())) {
+                player.getHeldItem().stackSize--;
+            }
             return true;
         }
         if (FluidContainerRegistry.isEmptyContainer(player.getHeldItem())) {

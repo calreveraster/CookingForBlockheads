@@ -5,20 +5,21 @@ import net.blay09.mods.cookingforblockheads.GuiHandler;
 import net.blay09.mods.cookingforblockheads.client.render.block.FridgeBlockRenderer;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockFridge;
 import net.blay09.mods.cookingforblockheads.tile.TileFridge;
+import net.blay09.mods.cookingforblockheads.utils.DyeUtils;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Optional;
 
 public class BlockFridge extends BlockBaseKitchen {
 
@@ -98,15 +99,18 @@ public class BlockFridge extends BlockBaseKitchen {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-        // TODO: GT Dye compat
-        if(player.getHeldItem() != null && player.getHeldItem().getItem() == Items.dye) {
-            int dye = BlockColored.func_150032_b(player.getHeldItem().getItemDamage());
-            TileFridge fridge = (TileFridge) world.getTileEntity(x, y, z);
-            fridge.setColor(dye);
-            if(fridge.findNeighbourFridge() != null) {
-                fridge.findNeighbourFridge().setColor(dye);
+        ItemStack heldItem = player.getHeldItem();
+        if(heldItem != null && DyeUtils.isDye(heldItem)) {
+            Optional<Integer> dyeColor = DyeUtils.colorFromStack(heldItem);
+            if (dyeColor.isPresent()) {
+                TileFridge fridge = (TileFridge) world.getTileEntity(x, y, z);
+                fridge.setColor(dyeColor.get());
+                if(fridge.findNeighbourFridge() != null) {
+                    fridge.findNeighbourFridge().setColor(dyeColor.get());
+                }
+                player.getHeldItem().stackSize--;
+
             }
-            player.getHeldItem().stackSize--;
             return true;
         }
         if(!world.isRemote) {

@@ -101,6 +101,21 @@ public class CommonProxy {
 
 		// Tool Rack
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToolRack), "PPP", "I I", 'P', Blocks.wooden_pressure_plate, 'I', "ingotIron"));
+		
+		// Kitchen Floor
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockKitchenFloor, 12), "QC", "CQ", 'Q', Blocks.quartz_block, 'C', Blocks.coal_block));
+		
+		// Counter
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounter), "SSS", "CBC", "CCC", 'B', Blocks.chest, 'S', Blocks.stone, 'C', Blocks.hardened_clay));
+		// Counter Corner
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounterCorner), "SSS", "CCC", "CCC", 'S', Blocks.stone, 'C', Blocks.hardened_clay));
+		
+		// Cabinet
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinet), "CCC", "CBC", 'B', Blocks.chest, 'C', Blocks.hardened_clay));
+		// Cabinet Corner
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinetCorner), "CCC", "CCC", 'C', Blocks.hardened_clay));
+		
+		
 
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(CookingForBlockheads.instance, new GuiHandler());

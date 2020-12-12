@@ -18,7 +18,7 @@ public class TileCookingTable extends TileEntity implements IMultiblockKitchen {
 
     public TileCookingTable() {
         super();
-        this.color = 3;
+        this.color = 0;
     }
     @Override
     public void setWorldObj(World world) {

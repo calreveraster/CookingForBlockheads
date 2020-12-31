@@ -14,6 +14,14 @@ public class TileCounter extends BaseKitchenTileWithInventory implements IInvent
     
     public TileCounter(String name) { super(name); }
 
+    @Override
+    public void updateEntity() {
+        super.updateEntity();
+
+        if (tickCounter == 1) {
+            sharedInventory = internalInventory;
+        }
+    }
 
     @Override
     public boolean receiveClientEvent(int id, int value) {

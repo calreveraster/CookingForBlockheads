@@ -41,7 +41,7 @@ public class ModelCabinet extends ModelBase {
         this.BackWall.setRotationPoint(-7.0F, 24.0F, 6.5F);
         this.BackWall.addBox(0.0F, -13.0F, 0.0F, 14, 13, 1, 0.0F);
         this.InnerBoard = new ModelRenderer(this, 54, 115);
-        this.InnerBoard.setRotationPoint(-7.0F, 18.0F, -5.0F);
+        this.InnerBoard.setRotationPoint(-7.0F, 18.0F, -4.9F);
         this.InnerBoard.addBox(0.0F, -1.0F, 0.0F, 14, 1, 12, 0.0F);
         this.LeftStick = new ModelRenderer(this, 112, 116);
         this.LeftStick.setRotationPoint(-7.0F, 23.0F, -5.0F);

@@ -25,6 +25,7 @@ public class CookingConfig {
     public static boolean moduleAppleCore;
     public static boolean moduleStorageDrawers;
     public static boolean moduleDreamcraft;
+    public static boolean moduleGrectech5U;
     public static boolean usePamsToast;
 
     public static boolean disableItemRender;
@@ -53,6 +54,7 @@ public class CookingConfig {
         moduleAppleCore = config.getBoolean("AppleCore", "modules", true, "Dynamic Food Values");
         moduleStorageDrawers = config.getBoolean("StorageDrawers", "modules", true, "StorageDrawers");
         moduleDreamcraft = config.getBoolean("Dreamcraft", "modules", true, "Dreamcraft");
+        moduleGrectech5U = config.getBoolean("Gregtech5U", "modules", true, "Gregtech5U");
         usePamsToast = config.getBoolean("Use Pam's Toast", "modules", true, "Should bread be toasted into Pam's toast (if available) instead of the Cooking for Blockheads one?");
 
         disableItemRender = config.getBoolean("disableItemRender", "client", false, "If you hate cool things, set this to true to disable the item rendering inside of fridges and ovens. Note that the inside only renders when the door is open anyways, so you won't gain much from this.");

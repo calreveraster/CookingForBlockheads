@@ -10,6 +10,7 @@ public class DreamcraftAddon {
 
     private static final String[] DREAMCRAFT_ITEMS = new String[] {
             "item.EdibleSalt",
+            "item.WetTofu",
     };
 
 

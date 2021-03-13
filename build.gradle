@@ -9,16 +9,24 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        maven {
+            name = "jitpack"
+            url = "https://jitpack.io"
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath "com.github.GTNH2:ForgeGradle:FG_1.2-SNAPSHOT"
     }
 }
 
+plugins {
+    id("org.ajoberstar.grgit") version("3.1.1")
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'forge'
 apply plugin: 'maven'
-apply plugin: 'idea'
-apply plugin: 'java'
 
 file "build.properties" withReader {
     def prop = new Properties()
@@ -31,7 +39,7 @@ targetCompatibility = JavaVersion.VERSION_1_8
 compileJava.options.encoding("UTF-8")
 
 
-version = "1.2.2-GTNH"
+version = "1.2.3-GTNH"
 group= "net.blay09.mods"
 archivesBaseName = "CookingForBlockheads"
 
@@ -99,7 +107,6 @@ repositories {
 
 dependencies {
     compile "applecore:AppleCore:1.7.10-1.2.1+107.59407:api"
-//    compile "gregtech:gregtech:5.09.33.53:dev"
     compileOnly files("gregtech-5.09.33.57-dev.jar")
     compileOnly files("NotEnoughItems-1.7.10-2.0.2-GTNH-dev.jar") 
     compileOnly files("CraftTweaker2-1.7.10-3.2.0-GTNH-legacy-Dev.jar")

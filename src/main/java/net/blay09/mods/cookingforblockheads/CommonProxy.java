@@ -145,6 +145,9 @@ public class CommonProxy {
 		if(CookingConfig.moduleDreamcraft) {
 			event.buildSoftDependProxy("dreamcraft", "net.blay09.mods.cookingforblockheads.compat.DreamcraftAddon");
 		}
+		if(CookingConfig.moduleGrectech5U) {
+			event.buildSoftDependProxy("gregtech", "net.blay09.mods.cookingforblockheads.compat.GregTech5UAddon");
+		}
  
 		CookingRegistry.initFoodRegistry();
 	}

@@ -1,3 +1,4 @@
+import java.util.concurrent.TimeUnit
 buildscript {
     repositories {
         mavenCentral()
@@ -99,19 +100,28 @@ repositories {
         name = "AppleCore"
         url = "http://www.ryanliptak.com/maven/"
     }
+    maven {
+        name = "jitpack"
+        url = "https://jitpack.io"
+    }
     ivy {
         name = 'gtnh_download_source'
         artifactPattern("http://downloads.gtnewhorizons.com/Mods_for_Jenkins/[module]-[revision].[ext]")
     }
 }
-
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
+    setTransitive(false)
+}
 dependencies {
     compile "applecore:AppleCore:1.7.10-1.2.1+107.59407:api"
-    compileOnly files("gregtech-5.09.33.57-dev.jar")
     compileOnly files("NotEnoughItems-1.7.10-2.0.2-GTNH-dev.jar") 
     compileOnly files("CraftTweaker2-1.7.10-3.2.0-GTNH-legacy-Dev.jar")
     compileOnly files("InventoryTweaks-147-deobf.jar")
     compileOnly files("MouseTweaks-2.4.4-mc1.7.10.jar")
+    compile("com.github.GTNewHorizons:GT5-Unofficial:experimental-SNAPSHOT:dev") {
+        setChanging(true)
+    }
 }
 
 idea {

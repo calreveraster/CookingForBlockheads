@@ -1,6 +1,7 @@
 item.cookingforblockheads:recipebook_tier0.name=Cooking for Blockheads
 item.cookingforblockheads:recipebook_tier1.name=Cooking for Blockheads I
 item.cookingforblockheads:recipebook_tier2.name=Cooking for Blockheads II
+item.cookingforblockheads:toast.name=Toast
 
 tile.cookingforblockheads:cookingtable.name=Cooking Table
 tile.cookingforblockheads:cookingoven.name=Cooking Oven
@@ -12,6 +13,7 @@ tile.cookingforblockheads:cabinet_corner.name=Cabinet Corner
 tile.cookingforblockheads:kitchen_floor.name=Kitchen Floor
 tile.cookingforblockheads:sink.name=Sink
 tile.cookingforblockheads:toolrack.name=Tool Rack
+tile.cookingforblockheads:toaster.name=Toaster
 
 container.cookingforblockheads:cookingoven=Cooking Oven
 container.cookingforblockheads:fridge=Fridge
@@ -41,6 +43,7 @@ cookingforblockheads:cabinet.tooltipDesc=Stores ingredients for recipes.
 cookingforblockheads:cabinetcorner.tooltipDesc=Keeping up appearances
 cookingforblockheads:kitchen_floor.tooltipDesc=No use in particular.
 cookingforblockheads:toolrack.tooltipDesc=Provides contained tools to recipes.
+cookingforblockheads:toaster.tooltipDesc=Toasts Bread.
 
 cookingforblockheads:sort_by_name.tooltip=Sort by Name
 cookingforblockheads:sort_by_hunger.tooltip=Sort by Hunger Restored

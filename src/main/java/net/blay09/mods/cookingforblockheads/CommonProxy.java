@@ -85,8 +85,7 @@ public class CommonProxy {
 
 		// Toaster
 		if(CookingConfig.enableToaster) {
-			// TODO Toaster Recipe
-			//GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockSink), "III", "WBW", "WWW", 'I', "ingotIron", 'W', "logWood", 'B', Items.water_bucket));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToaster), "   ", "IRI", "SSS", 'I', "ingotIron", 'R', "dustRedstone", 'S', "stoneSmooth"));
 		}
 
 		// Cooking Table

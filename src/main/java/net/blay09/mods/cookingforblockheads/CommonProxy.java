@@ -124,7 +124,7 @@ public class CommonProxy {
 
 		// Tool Rack
 		if (Loader.isModLoaded("gregtech")) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToolRack), "PPP", "I I", 'P', Blocks.wooden_pressure_plate, 'I', "screwIron"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToolRack), "PPP", "ISI", 'P', Blocks.wooden_pressure_plate, 'I', "screwIron", 'S', "craftinToolScrewdriver"));
 		} else {
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToolRack), "PPP", "I I", 'P', Blocks.wooden_pressure_plate, 'I', "ingotIron"));
 		}

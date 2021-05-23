@@ -98,7 +98,7 @@ public class CommonProxy {
 		// Toaster
 		if (CookingConfig.enableToaster) {
 			if (Loader.isModLoaded("gregtech")) {
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToaster), "IBI", "IRI", "SSS", 'B', Blocks.iron_bars, 'I', "plateIron", 'R', "SpringIron", 'S', "plateStone"));
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToaster), "IBI", "IRI", "SSS", 'B', Blocks.iron_bars, 'I', "plateIron", 'R', "springIron", 'S', "plateStone"));
 			} else {
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToaster), "   ", "IRI", "SSS", 'I', "ingotIron", 'R', "dustRedstone", 'S', "stoneSmooth"));
 			}

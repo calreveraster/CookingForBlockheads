@@ -81,7 +81,7 @@ public class CommonProxy {
 
 		// Fridge
 		if (Loader.isModLoaded("gregtech")) {
-			GameRegistry.addRecipe(new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), "PSP", "PCP", "PSP", 'S', "screwIron", 'P', "plateIron", 'C', Blocks.chest);
+			GameRegistry.addRecipe(new ItemStack(CookingForBlockheads.blockFridge), "PSP", "PCP", "PSP", 'S', "screwIron", 'P', "plateIron", 'C', Blocks.chest);
 		} else {
 			GameRegistry.addShapelessRecipe(new ItemStack(CookingForBlockheads.blockFridge), Blocks.chest, Items.iron_door);
 		}

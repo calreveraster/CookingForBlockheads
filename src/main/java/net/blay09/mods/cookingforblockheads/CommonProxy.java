@@ -7,6 +7,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import gregtech.api.enums.Materials;
+import gregtech.api.enums.OrePrefixes;
 import net.blay09.mods.cookingforblockheads.compat.VanillaAddon;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockFridge;
 import net.blay09.mods.cookingforblockheads.item.ItemBlockGenericKitchen;
@@ -47,7 +49,7 @@ public class CommonProxy {
 		GameRegistry.registerBlock(CookingForBlockheads.blockSink, ItemBlockGenericKitchen.class, "sink", new Object[]{"sink", false});
 		GameRegistry.registerBlock(CookingForBlockheads.blockToolRack, ItemBlockGenericKitchen.class, "toolrack", new Object[]{"toolrack", false});
 		GameRegistry.registerBlock(CookingForBlockheads.blockToaster, ItemBlockGenericKitchen.class, "toaster", new Object[]{"toaster", false});
-		
+
 		GameRegistry.registerTileEntity(TileOven.class, CookingForBlockheads.MOD_ID + ":cookingoven");
 		GameRegistry.registerTileEntity(TileFridge.class, CookingForBlockheads.MOD_ID + ":fridge");
 		GameRegistry.registerTileEntity(TileCounter.class, CookingForBlockheads.MOD_ID + ":counter");
@@ -60,7 +62,7 @@ public class CommonProxy {
 		GameRegistry.registerTileEntity(TileToaster.class, CookingForBlockheads.MOD_ID + ":toaster");
 
 		// #NoFilter Edition
-		if(CookingConfig.enableNoFilter) {
+		if (CookingConfig.enableNoFilter) {
 			GameRegistry.addShapelessRecipe(new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 3), Items.book, Items.painting);
 		}
 
@@ -71,50 +73,94 @@ public class CommonProxy {
 		}
 
 		// Cooking for Blockheads II
-		if(CookingConfig.enableCraftingBook) {
-			GameRegistry.addRecipe(new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), " C ", "DBD", " C ", 'C', Blocks.crafting_table, 'D', Items.diamond, 'B', CookingForBlockheads.itemRecipeBook);
+		if (CookingConfig.enableCraftingBook) {
+			if (Loader.isModLoaded("gregtech")) {
+				GameRegistry.addRecipe(new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), " C ", "DBD", " C ", 'C', Blocks.crafting_table, 'D', OrePrefixes.plate.get(Materials.Diamond), 'B', CookingForBlockheads.itemRecipeBook);
+			} else {
+				GameRegistry.addRecipe(new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), " C ", "DBD", " C ", 'C', Blocks.crafting_table, 'D', Items.diamond, 'B', CookingForBlockheads.itemRecipeBook);
+			}
 		}
 
 		// Fridge
-		GameRegistry.addShapelessRecipe(new ItemStack(CookingForBlockheads.blockFridge), Blocks.chest, Items.iron_door);
+		if (Loader.isModLoaded("gregtech")) {
+			GameRegistry.addRecipe(new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), "PSP", "PCP", "PSP", 'S', OrePrefixes.screw.get(Materials.Iron), 'P', OrePrefixes.plate.get(Materials.Iron), 'C', Blocks.chest);
+		} else {
+			GameRegistry.addShapelessRecipe(new ItemStack(CookingForBlockheads.blockFridge), Blocks.chest, Items.iron_door);
+		}
 
 		// Sink
-		if(CookingConfig.enableSink) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockSink), "III", "WBW", "WWW", 'I', "ingotIron", 'W', "logWood", 'B', Items.water_bucket));
+		if (CookingConfig.enableSink) {
+			if (Loader.isModLoaded("gregtech")) {
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockSink), "III", "WBW", "WWW", 'I', OrePrefixes.plate.get(Materials.Iron), 'W', OrePrefixes.plate.get(Materials.Wood), 'B', Items.water_bucket));
+			} else {
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockSink), "III", "WBW", "WWW", 'I', "ingotIron", 'W', "logWood", 'B', Items.water_bucket));
+			}
 		}
 
 		// Toaster
-		if(CookingConfig.enableToaster) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToaster), "   ", "IRI", "SSS", 'I', "ingotIron", 'R', "dustRedstone", 'S', "stoneSmooth"));
+		if (CookingConfig.enableToaster) {
+			if (Loader.isModLoaded("gregtech")) {
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToaster), "IBI", "IRI", "SSS", 'B', Blocks.iron_bars, 'I', OrePrefixes.plate.get(Materials.Iron), 'R', OrePrefixes.spring.get(Materials.Iron), 'S', OrePrefixes.plate.get(Materials.Stone)));
+			} else {
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToaster), "   ", "IRI", "SSS", 'I', "ingotIron", 'R', "dustRedstone", 'S', "stoneSmooth"));
+			}
 		}
 
 		// Cooking Table
-		if(CookingConfig.enableCraftingBook) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCookingTable), "CCC", "WBW", "WWW", 'B', new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), 'W', "logWood", 'C', new ItemStack(Blocks.stained_hardened_clay, 1, 15)));
+		if (CookingConfig.enableCraftingBook) {
+			if (Loader.isModLoaded("gregtech")) {
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCookingTable), "CCC", "WBW", "SWS", 'B', new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), 'W', OrePrefixes.plate.get(Materials.Wood), 'C', OrePrefixes.plate.get(Materials.Stone), 'S', OrePrefixes.screw.get(Materials.Iron)));
+			} else {
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCookingTable), "CCC", "WBW", "WWW", 'B', new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), 'W', "logWood", 'C', new ItemStack(Blocks.stained_hardened_clay, 1, 15)));
+			}
 		}
-
+		
 		// Cooking Oven
-		if(CookingConfig.enableOven) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockOven), "GGG", "IFI", "III", 'G', new ItemStack(Blocks.stained_glass, 1, 15), 'I', "ingotIron", 'F', Blocks.furnace));
+		if (CookingConfig.enableOven) {
+			if (Loader.isModLoaded("gregtech")) {
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockOven), "GGG", "IFI", "III", 'G', new ItemStack(Blocks.stained_glass_pane, 1, 15), 'I', OrePrefixes.plate.get(Materials.Iron), 'F', "craftingIronFurnace"));
+			} else {
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockOven), "GGG", "IFI", "III", 'G', new ItemStack(Blocks.stained_glass, 1, 15), 'I', "ingotIron", 'F', Blocks.furnace));
+			}
 		}
 
 		// Tool Rack
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToolRack), "PPP", "I I", 'P', Blocks.wooden_pressure_plate, 'I', "ingotIron"));
-		
+		if (Loader.isModLoaded("gregtech")) {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToolRack), "PPP", "I I", 'P', Blocks.wooden_pressure_plate, 'I', OrePrefixes.screw.get(Materials.Iron)));
+		} else {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockToolRack), "PPP", "I I", 'P', Blocks.wooden_pressure_plate, 'I', "ingotIron"));
+		}
+
 		// Kitchen Floor
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockKitchenFloor, 12), "QC", "CQ", 'Q', Blocks.quartz_block, 'C', Blocks.coal_block));
-		
+
 		// Counter
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounter), "SSS", "CBC", "CCC", 'B', Blocks.chest, 'S', Blocks.stone, 'C', Blocks.hardened_clay));
+		if (Loader.isModLoaded("gregtech")) {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounter), "SSS", "CBC", "SSS", 'B', Blocks.chest, 'S', OrePrefixes.plate.get(Materials.Stone), 'C', OrePrefixes.plate.get(Materials.Wood)));
+		} else {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounter), "SSS", "CBC", "CCC", 'B', Blocks.chest, 'S', Blocks.stone, 'C', Blocks.hardened_clay));
+		}
+
 		// Counter Corner
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounterCorner), "SSS", "CCC", "CCC", 'S', Blocks.stone, 'C', Blocks.hardened_clay));
-		
+		if (Loader.isModLoaded("gregtech")) {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounterCorner), "SSS", "BCC", "SSS", 'B', Blocks.chest, 'S', OrePrefixes.plate.get(Materials.Stone), 'C', OrePrefixes.plate.get(Materials.Wood)));
+		} else {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounterCorner), "SSS", "CCC", "CCC", 'S', Blocks.stone, 'C', Blocks.hardened_clay));
+		}
+
 		// Cabinet
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinet), "CCC", "CBC", 'B', Blocks.chest, 'C', Blocks.hardened_clay));
+		if (Loader.isModLoaded("gregtech")) {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinet), "CCC", "SBS", "CCC", 'B', Blocks.chest, 'C', OrePrefixes.plate.get(Materials.Wood), 'S', OrePrefixes.screw.get(Materials.Iron)));
+		} else {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinet), "CCC", "CBC", 'B', Blocks.chest, 'C', Blocks.hardened_clay));
+		}
+
 		// Cabinet Corner
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinetCorner), "CCC", "CCC", 'C', Blocks.hardened_clay));
-		
-		
+		if (Loader.isModLoaded("gregtech")) {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinetCorner), "CCC", "BSS", "CCC", 'B', Blocks.chest, 'C', OrePrefixes.plate.get(Materials.Wood), 'S', OrePrefixes.screw.get(Materials.Iron)));
+		}else {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinetCorner), "CCC", "CCC", 'C', Blocks.hardened_clay));
+		}
 
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(CookingForBlockheads.instance, new GuiHandler());

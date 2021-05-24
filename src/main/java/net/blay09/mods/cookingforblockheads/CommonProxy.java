@@ -73,7 +73,7 @@ public class CommonProxy {
 		// Cooking for Blockheads II
 		if (CookingConfig.enableCraftingBook) {
 			if (Loader.isModLoaded("gregtech")) {
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), " C ", "DBD", " C ", 'C', Blocks.crafting_table, 'D', "plateDiamond", 'B', CookingForBlockheads.itemRecipeBook));
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), " C ", "DBD", " C ", 'C', Blocks.crafting_table, 'D', "plateSteel", 'B', CookingForBlockheads.itemRecipeBook));
 			} else {
 				GameRegistry.addRecipe(new ItemStack(CookingForBlockheads.itemRecipeBook, 1, 1), " C ", "DBD", " C ", 'C', Blocks.crafting_table, 'D', Items.diamond, 'B', CookingForBlockheads.itemRecipeBook);
 			}

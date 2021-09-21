@@ -134,28 +134,28 @@ public class CommonProxy {
 
 		// Counter
 		if (Loader.isModLoaded("gregtech")) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounter), "SSS", "CBC", "SSS", 'B', Blocks.chest, 'S', "plateStone", 'C',"plateWood"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounter), "SSS", "CBC", "SSS", 'B', Blocks.chest, 'S', "plateStone", 'C', "plateWood"));
 		} else {
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounter), "SSS", "CBC", "CCC", 'B', Blocks.chest, 'S', Blocks.stone, 'C', Blocks.hardened_clay));
 		}
 
 		// Counter Corner
 		if (Loader.isModLoaded("gregtech")) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounterCorner), "SSS", "BCC", "SSS", 'B', Blocks.chest, 'S',"plateStone", 'C', "plateWood"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounterCorner), "SSS", "SIS", "SS ", 'I', "screwIron", 'S', "plateStone"));
 		} else {
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCounterCorner), "SSS", "CCC", "CCC", 'S', Blocks.stone, 'C', Blocks.hardened_clay));
 		}
 
 		// Cabinet
 		if (Loader.isModLoaded("gregtech")) {
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinet), "CCC", "SBS", "CCC", 'B', Blocks.chest, 'C',"plateWood", 'S', "screwIron"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinet), "CCC", "SBS", "CCC", 'B', Blocks.chest, 'C', "plateWood", 'S', "screwIron"));
 		} else {
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinet), "CCC", "CBC", 'B', Blocks.chest, 'C', Blocks.hardened_clay));
 		}
 
 		// Cabinet Corner
 		if (Loader.isModLoaded("gregtech")) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinetCorner), "CCC", "BSS", "CCC", 'B', Blocks.chest, 'C', "plateWood", 'S', "screwIron"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinetCorner), "WWW", "WIS", "WSS", 'S', "plateStone", 'W', "plateWood", 'I', "screwIron"));
 		}else {
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(CookingForBlockheads.blockCabinetCorner), "CCC", "CCC", 'C', Blocks.hardened_clay));
 		}

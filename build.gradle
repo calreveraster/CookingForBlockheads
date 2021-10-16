@@ -40,7 +40,7 @@ targetCompatibility = JavaVersion.VERSION_1_8
 compileJava.options.encoding("UTF-8")
 
 
-version = "1.2.4-GTNH"
+version = "1.2.5-GTNH"
 group= "net.blay09.mods"
 archivesBaseName = "CookingForBlockheads"
 

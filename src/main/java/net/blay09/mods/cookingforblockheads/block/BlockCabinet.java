@@ -17,7 +17,6 @@ public class BlockCabinet extends BlockCounter {
         setStepSound(soundTypeStone);
         setHardness(5f);
         setResistance(10f);
-        setBlockBounds(0.0625f, 0f, 0.0625f, 0.9375f, 0.825f, 0.9375f);
     }
 
     @Override
@@ -26,18 +25,15 @@ public class BlockCabinet extends BlockCounter {
     }
 
     @Override
-    public void registerBlockIcons(IIconRegister iconRegister) {
-    }
+    public void registerBlockIcons(IIconRegister iconRegister) {}
 
     @Override
-    public boolean isOpaqueCube()
-    {
+    public boolean isOpaqueCube() {
         return false;
     }
 
     @Override
-    public boolean renderAsNormalBlock()
-    {
+    public boolean renderAsNormalBlock() {
         return true;
     }
 
@@ -60,5 +56,4 @@ public class BlockCabinet extends BlockCounter {
         cabinet.setColor(colour);
         return true;
     }
-
 }

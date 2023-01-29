@@ -1,8 +1,8 @@
 package net.blay09.mods.cookingforblockheads.container.inventory;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
 import net.blay09.mods.cookingforblockheads.registry.food.FoodIngredient;
@@ -18,6 +18,8 @@ import net.minecraft.stats.AchievementList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
+
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class InventoryCraftBook extends InventoryCrafting {
 
@@ -44,8 +46,7 @@ public class InventoryCraftBook extends InventoryCrafting {
             sourceInventories[i] = -1;
             sourceInventorySlots[i] = -1;
         }
-        ingredientLoop:
-        for (int i = 0; i < ingredients.size(); i++) {
+        ingredientLoop: for (int i = 0; i < ingredients.size(); i++) {
             int origX = i % recipe.getRecipeWidth();
             int origY = i / recipe.getRecipeWidth();
             int targetIdx = origY * 3 + origX;
@@ -68,8 +69,7 @@ public class InventoryCraftBook extends InventoryCrafting {
                 for (int j = 0; j < inventories.size(); j++) {
                     for (int k = 0; k < inventories.get(j).getSizeInventory(); k++) {
                         ItemStack itemStack = inventories.get(j).getStackInSlot(k);
-                        if (itemStack != null
-                                && ingredients.get(i).isValidItem(itemStack)
+                        if (itemStack != null && ingredients.get(i).isValidItem(itemStack)
                                 && itemStack.stackSize - usedStackSize[j][k] > 0) {
                             usedStackSize[j][k]++;
                             setInventorySlotContents(targetIdx, itemStack);
@@ -110,8 +110,7 @@ public class InventoryCraftBook extends InventoryCrafting {
                         if (itemStack.getItem().hasContainerItem(itemStack) && sourceInventories[i] != -1) {
                             // Fire PlayerDestroyItem event
                             ItemStack containerItem = itemStack.getItem().getContainerItem(itemStack);
-                            if (containerItem != null
-                                    && containerItem.isItemStackDamageable()
+                            if (containerItem != null && containerItem.isItemStackDamageable()
                                     && itemStack.getItemDamage() > itemStack.getMaxDamage()) {
                                 MinecraftForge.EVENT_BUS.post(new PlayerDestroyItemEvent(player, containerItem));
                                 continue;
@@ -128,8 +127,7 @@ public class InventoryCraftBook extends InventoryCrafting {
                         }
 
                         if (sourceInventories[i] != -1 && sourceInventorySlots[i] != -1 && getStackInSlot(i) == null) {
-                            inventories
-                                    .get(sourceInventories[i])
+                            inventories.get(sourceInventories[i])
                                     .setInventorySlotContents(sourceInventorySlots[i], null);
                         }
                     }
@@ -168,6 +166,7 @@ public class InventoryCraftBook extends InventoryCrafting {
 
     /**
      * SERVER ONLY
+     * 
      * @param inventories
      */
     public void setInventories(List<IInventory> inventories) {
@@ -176,6 +175,7 @@ public class InventoryCraftBook extends InventoryCrafting {
 
     /**
      * SERVER ONLY
+     * 
      * @param itemProviders
      */
     public void setItemProviders(List<IKitchenItemProvider> itemProviders) {

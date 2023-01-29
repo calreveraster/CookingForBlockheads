@@ -1,6 +1,7 @@
 package net.blay09.mods.cookingforblockheads.block;
 
 import java.util.Optional;
+
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
 import net.blay09.mods.cookingforblockheads.client.render.block.CookingTableBlockRenderer;
@@ -87,8 +88,8 @@ public class BlockCookingTable extends BlockBaseKitchen {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX,
+            float subY, float subZ) {
         ItemStack heldItem = player.getHeldItem();
         TileCookingTable table = (TileCookingTable) world.getTileEntity(x, y, z);
 
@@ -101,8 +102,7 @@ public class BlockCookingTable extends BlockBaseKitchen {
         }
 
         if (heldItem != null) {
-            if (!table.hasNoFilterBook()
-                    && heldItem.getItem() == CookingForBlockheads.itemRecipeBook
+            if (!table.hasNoFilterBook() && heldItem.getItem() == CookingForBlockheads.itemRecipeBook
                     && heldItem.getItemDamage() == 3) {
                 table.setNoFilterBook(heldItem.splitStack(1));
                 return true;

@@ -1,6 +1,7 @@
 package net.blay09.mods.cookingforblockheads.block;
 
 import java.util.Optional;
+
 import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.client.render.block.SinkBlockRenderer;
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
@@ -74,8 +75,8 @@ public class BlockSink extends BlockBaseKitchen {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
+            float hitY, float hitZ) {
         ItemStack heldItem = player.getHeldItem();
         TileSink sink = (TileSink) world.getTileEntity(x, y, z);
 
@@ -89,7 +90,8 @@ public class BlockSink extends BlockBaseKitchen {
         if (FluidContainerRegistry.isEmptyContainer(player.getHeldItem())) {
             FluidStack fluidStack = null;
             int amount = FluidContainerRegistry.getContainerCapacity(
-                    new FluidStack(FluidRegistry.WATER, FluidContainerRegistry.BUCKET_VOLUME), player.getHeldItem());
+                    new FluidStack(FluidRegistry.WATER, FluidContainerRegistry.BUCKET_VOLUME),
+                    player.getHeldItem());
             if (CookingConfig.sinkRequiresWater) {
                 if (sink.getWaterAmount() >= amount) {
                     fluidStack = sink.drain(ForgeDirection.UNKNOWN, amount, true);

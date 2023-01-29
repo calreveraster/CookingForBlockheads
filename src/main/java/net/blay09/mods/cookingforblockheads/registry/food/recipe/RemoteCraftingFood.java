@@ -1,22 +1,20 @@
 package net.blay09.mods.cookingforblockheads.registry.food.recipe;
 
-import cpw.mods.fml.common.network.ByteBufUtils;
-import io.netty.buffer.ByteBuf;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.blay09.mods.cookingforblockheads.registry.food.FoodIngredient;
 import net.blay09.mods.cookingforblockheads.registry.food.FoodRecipe;
 import net.minecraft.item.ItemStack;
+
+import cpw.mods.fml.common.network.ByteBufUtils;
+import io.netty.buffer.ByteBuf;
 
 public class RemoteCraftingFood extends FoodRecipe {
 
     private final boolean isSmeltingRecipe;
 
-    public RemoteCraftingFood(
-            ItemStack outputItem,
-            int recipeWidth,
-            int recipeHeight,
-            List<FoodIngredient> craftMatrix,
+    public RemoteCraftingFood(ItemStack outputItem, int recipeWidth, int recipeHeight, List<FoodIngredient> craftMatrix,
             boolean isSmeltingRecipe) {
         this.outputItem = outputItem;
         this.recipeWidth = recipeWidth;

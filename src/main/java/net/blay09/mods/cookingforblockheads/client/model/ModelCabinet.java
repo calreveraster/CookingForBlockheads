@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelCabinet extends ModelBase {
+
     protected boolean isFlipped;
 
     public ModelRenderer BottomWall;

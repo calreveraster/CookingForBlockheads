@@ -1,9 +1,11 @@
 package net.blay09.mods.cookingforblockheads.container.comparator;
 
 import java.util.Comparator;
+
 import net.blay09.mods.cookingforblockheads.api.CookingForBlockheadsAPI;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
 import squeek.applecore.api.AppleCoreAPI;
 
 public class ComparatorSaturation implements Comparator<ItemStack> {

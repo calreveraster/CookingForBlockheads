@@ -1,14 +1,5 @@
 package net.blay09.mods.cookingforblockheads;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartedEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.blay09.mods.cookingforblockheads.api.CookingForBlockheadsAPI;
 import net.blay09.mods.cookingforblockheads.block.BlockCabinet;
 import net.blay09.mods.cookingforblockheads.block.BlockCabinetCorner;
@@ -27,16 +18,29 @@ import net.blay09.mods.cookingforblockheads.utils.DyeUtils;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+
 @Mod(modid = CookingForBlockheads.MOD_ID, version = CookingForBlockheads.VERSION, name = CookingForBlockheads.NAME)
 public class CookingForBlockheads {
+
     public static final String VERSION = "GRADLETOKEN_VERSION";
     public static final String NAME = "GRADLETOKEN_MODNAME";
     public static final String MOD_ID = "GRADLETOKEN_MODID";
 
     public static CreativeTabs creativeTab = new CreativeTabs(MOD_ID) {
+
         @Override
         public Item getTabIconItem() {
             return itemRecipeBook;
@@ -122,8 +126,8 @@ public class CookingForBlockheads {
                     case "cookingbook:fridge":
                         mapping.remap(CookingForBlockheads.blockFridge);
                         break;
-                        // These weren't in the original cooking book mod, but they were in a version
-                        // distributed to Bear's Den.  Map those over too
+                    // These weren't in the original cooking book mod, but they were in a version
+                    // distributed to Bear's Den. Map those over too
                     case "cookingbook:counter":
                         mapping.remap(CookingForBlockheads.blockCounter);
                         break;
@@ -170,8 +174,8 @@ public class CookingForBlockheads {
                     case "cookingbook:fridge":
                         mapping.remap(Item.getItemFromBlock(CookingForBlockheads.blockFridge));
                         break;
-                        // These weren't in the original cooking book mod, but they were in a version
-                        // distributed to Bear's Den.  Map those over too
+                    // These weren't in the original cooking book mod, but they were in a version
+                    // distributed to Bear's Den. Map those over too
                     case "cookingbook:counter":
                         mapping.remap(Item.getItemFromBlock(CookingForBlockheads.blockCounter));
                         break;

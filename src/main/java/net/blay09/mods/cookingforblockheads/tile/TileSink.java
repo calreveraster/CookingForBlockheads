@@ -1,8 +1,8 @@
 package net.blay09.mods.cookingforblockheads.tile;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;
@@ -16,7 +16,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class TileSink extends TileEntity implements IKitchenItemProvider, IFluidHandler {
+
     protected int color;
     private final List<ItemStack> itemStacks = new ArrayList<>();
 
@@ -145,7 +148,7 @@ public class TileSink extends TileEntity implements IKitchenItemProvider, IFluid
 
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-        return new FluidTankInfo[] {waterTank.getInfo()};
+        return new FluidTankInfo[] { waterTank.getInfo() };
     }
 
     public void setColor(int color) {

@@ -5,10 +5,10 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 /**
- * ModelToolRack - BlayTheNinth
- * Created using Tabula 4.1.1
+ * ModelToolRack - BlayTheNinth Created using Tabula 4.1.1
  */
 public class ModelToolRack extends ModelBase {
+
     public ModelRenderer woodenBeam;
     public ModelRenderer hookLeft;
     public ModelRenderer hookRight;

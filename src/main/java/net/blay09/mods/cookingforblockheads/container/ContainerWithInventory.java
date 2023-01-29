@@ -1,6 +1,5 @@
 package net.blay09.mods.cookingforblockheads.container;
 
-import invtweaks.api.container.ChestContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -8,7 +7,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import invtweaks.api.container.ChestContainer;
+
 public abstract class ContainerWithInventory extends Container implements IContainerInventory {
+
     protected final IInventory inventory;
     protected final int numRows;
 

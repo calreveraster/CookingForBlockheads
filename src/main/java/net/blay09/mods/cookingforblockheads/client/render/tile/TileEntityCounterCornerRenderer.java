@@ -5,13 +5,15 @@ import net.blay09.mods.cookingforblockheads.client.render.RenderUtils;
 import net.blay09.mods.cookingforblockheads.tile.TileCounterCorner;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileEntityCounterCornerRenderer extends TileEntityRendererBase {
 
-    private static final ResourceLocation textureSmall =
-            new ResourceLocation("cookingforblockheads", "textures/entity/ModelCounterCorner.png");
+    private static final ResourceLocation textureSmall = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/entity/ModelCounterCorner.png");
 
     private ModelCounterCorner model = new ModelCounterCorner();
 

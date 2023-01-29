@@ -1,4 +1,5 @@
 package net.blay09.mods.cookingforblockheads.client.model; // Cubik Studio 2.9.482 Beta JAVA exporter
+
 // Designed by Blay09 with Cubik Studio - https://cubik.studio
 
 import net.minecraft.client.model.ModelBase;

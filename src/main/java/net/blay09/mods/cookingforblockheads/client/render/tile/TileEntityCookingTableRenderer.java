@@ -6,13 +6,15 @@ import net.blay09.mods.cookingforblockheads.tile.TileCookingTable;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileEntityCookingTableRenderer extends TileEntityRendererBase {
 
-    private static final ResourceLocation texture =
-            new ResourceLocation("cookingforblockheads", "textures/entity/ModelCookingTable.png");
+    private static final ResourceLocation texture = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/entity/ModelCookingTable.png");
 
     private ModelCookingTable model = new ModelCookingTable();
 

@@ -1,6 +1,5 @@
 package net.blay09.mods.cookingforblockheads;
 
-import cpw.mods.fml.common.network.IGuiHandler;
 import net.blay09.mods.cookingforblockheads.client.GuiCookingOven;
 import net.blay09.mods.cookingforblockheads.client.GuiInventory;
 import net.blay09.mods.cookingforblockheads.client.GuiRecipeBook;
@@ -16,6 +15,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
 
@@ -46,15 +47,10 @@ public class GuiHandler implements IGuiHandler {
                     if (world.getBlock(x, y, z) == CookingForBlockheads.blockCookingTable
                             && tileEntity instanceof TileCookingTable) {
                         if (((TileCookingTable) tileEntity).hasNoFilterBook()) {
-                            return new ContainerRecipeBook(player, false)
-                                    .allowCrafting()
-                                    .allowSmelting()
-                                    .setNoFilter()
+                            return new ContainerRecipeBook(player, false).allowCrafting().allowSmelting().setNoFilter()
                                     .setKitchenMultiBlock(new KitchenMultiBlock(world, x, y, z));
                         } else {
-                            return new ContainerRecipeBook(player, false)
-                                    .allowCrafting()
-                                    .allowSmelting()
+                            return new ContainerRecipeBook(player, false).allowCrafting().allowSmelting()
                                     .setKitchenMultiBlock(new KitchenMultiBlock(world, x, y, z));
                         }
                     }
@@ -96,9 +92,7 @@ public class GuiHandler implements IGuiHandler {
             TileEntity tileEntity = world.getTileEntity(x, y, z);
             switch (ID) {
                 case COOKING_TABLE:
-                    return new GuiRecipeBook(new ContainerRecipeBook(player, true)
-                            .allowCrafting()
-                            .allowSmelting());
+                    return new GuiRecipeBook(new ContainerRecipeBook(player, true).allowCrafting().allowSmelting());
                 case COOKING_OVEN:
                     if (tileEntity instanceof TileOven) {
                         return new GuiCookingOven(player.inventory, (TileOven) tileEntity);

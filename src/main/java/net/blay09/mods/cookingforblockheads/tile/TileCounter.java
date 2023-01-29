@@ -4,6 +4,7 @@ import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenStorageProvider;
 import net.minecraft.inventory.IInventory;
 
 public class TileCounter extends BaseKitchenTileWithInventory implements IInventory, IKitchenStorageProvider {
+
     public static String getName() {
         return "counter";
     }

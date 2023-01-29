@@ -3,14 +3,15 @@ package net.blay09.mods.cookingforblockheads.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+
 import org.lwjgl.opengl.GL11;
 
 /**
- * toaster - ZeroTheShinigami
- * Created using Tabula 4.1.1
+ * toaster - ZeroTheShinigami Created using Tabula 4.1.1
  */
 public class ModelToaster extends ModelBase {
-    public double[] modelScale = new double[] {2D, 2D, 2D};
+
+    public double[] modelScale = new double[] { 2D, 2D, 2D };
     public ModelRenderer Buttery;
     public ModelRenderer Why;
     public ModelRenderer Biscuit;

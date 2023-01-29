@@ -1,9 +1,7 @@
 package net.blay09.mods.cookingforblockheads.client;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import javax.annotation.Nullable;
+
 import net.blay09.mods.cookingforblockheads.container.ContainerRecipeBook;
 import net.blay09.mods.cookingforblockheads.container.slot.SlotRecipe;
 import net.blay09.mods.cookingforblockheads.network.MessageSort;
@@ -18,10 +16,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+
 import yalter.mousetweaks.api.IMTModGuiContainer;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 @Optional.Interface(modid = "MouseTweaks", iface = "yalter.mousetweaks.api.IMTModGuiContainer")
 public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
@@ -31,8 +34,9 @@ public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
     private static final int SCROLLBAR_WIDTH = 7;
     private static final int SCROLLBAR_HEIGHT = 77;
 
-    private static final ResourceLocation guiTexture =
-            new ResourceLocation("cookingforblockheads", "textures/gui/gui.png");
+    private static final ResourceLocation guiTexture = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/gui/gui.png");
     private static final int VISIBLE_ROWS = 4;
 
     private final ContainerRecipeBook container;
@@ -68,10 +72,8 @@ public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
         super(container);
         this.container = container;
 
-        noIngredients = StatCollector.translateToLocal("cookingforblockheads:no_ingredients")
-                .split("\\\\n");
-        noSelection = StatCollector.translateToLocal("cookingforblockheads:no_selection")
-                .split("\\\\n");
+        noIngredients = StatCollector.translateToLocal("cookingforblockheads:no_ingredients").split("\\\\n");
+        noSelection = StatCollector.translateToLocal("cookingforblockheads:no_selection").split("\\\\n");
 
         if (Loader.isModLoaded("SpiceOfLife")) {
             isSoLLoaded = true;
@@ -91,28 +93,45 @@ public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
         btnNextRecipe.visible = false;
         buttonList.add(btnNextRecipe);
 
-        btnSortName =
-                new GuiButtonSort(2, width / 2 + 87, height / 2 - 80, 196, "cookingforblockheads:sort_by_name.tooltip");
+        btnSortName = new GuiButtonSort(
+                2,
+                width / 2 + 87,
+                height / 2 - 80,
+                196,
+                "cookingforblockheads:sort_by_name.tooltip");
         buttonList.add(btnSortName);
 
         btnSortHunger = new GuiButtonSort(
-                3, width / 2 + 87, height / 2 - 60, 216, "cookingforblockheads:sort_by_hunger.tooltip");
+                3,
+                width / 2 + 87,
+                height / 2 - 60,
+                216,
+                "cookingforblockheads:sort_by_hunger.tooltip");
         buttonList.add(btnSortHunger);
 
         btnSortSaturation = new GuiButtonSort(
-                4, width / 2 + 87, height / 2 - 40, 236, "cookingforblockheads:sort_by_saturation.tooltip");
+                4,
+                width / 2 + 87,
+                height / 2 - 40,
+                236,
+                "cookingforblockheads:sort_by_saturation.tooltip");
         buttonList.add(btnSortSaturation);
 
         if (isSoLLoaded) {
             btnSortSoL = new GuiButtonSort(
-                    5, width / 2 + 87, height / 2 - 20, 176, 60, "cookingforblockheads:sort_by_sol.tooltip");
+                    5,
+                    width / 2 + 87,
+                    height / 2 - 20,
+                    176,
+                    60,
+                    "cookingforblockheads:sort_by_sol.tooltip");
             buttonList.add(btnSortSoL);
         }
 
         if (isSoLLoaded) {
-            sortButtons = new GuiButtonSort[] {btnSortName, btnSortHunger, btnSortSaturation, btnSortSoL};
+            sortButtons = new GuiButtonSort[] { btnSortName, btnSortHunger, btnSortSaturation, btnSortSoL };
         } else {
-            sortButtons = new GuiButtonSort[] {btnSortName, btnSortHunger, btnSortSaturation};
+            sortButtons = new GuiButtonSort[] { btnSortName, btnSortHunger, btnSortSaturation };
         }
 
         searchBar = new GuiTextField(fontRendererObj, guiLeft + xSize - 85, guiTop - 10, 70, 10);
@@ -165,10 +184,8 @@ public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
         this.scrollBarScaledHeight = (int) (scrollBarTotalHeight
                 * Math.min(1f, ((float) VISIBLE_ROWS / (Math.ceil(container.getAvailableRecipeCount() / 3f)))));
         this.scrollBarXPos = guiLeft + xSize - SCROLLBAR_WIDTH - 9;
-        this.scrollBarYPos = guiTop
-                + SCROLLBAR_Y
-                + ((scrollBarTotalHeight - scrollBarScaledHeight)
-                        * currentOffset
+        this.scrollBarYPos = guiTop + SCROLLBAR_Y
+                + ((scrollBarTotalHeight - scrollBarScaledHeight) * currentOffset
                         / Math.max(1, (int) Math.ceil((container.getAvailableRecipeCount() / 3f)) - VISIBLE_ROWS));
     }
 
@@ -202,8 +219,7 @@ public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int button) {
         super.mouseClicked(mouseX, mouseY, button);
-        if (button == 1
-                && mouseX >= searchBar.xPosition
+        if (button == 1 && mouseX >= searchBar.xPosition
                 && mouseX < searchBar.xPosition + searchBar.width
                 && mouseY >= searchBar.yPosition
                 && mouseY < searchBar.yPosition + searchBar.height) {
@@ -211,8 +227,7 @@ public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
         } else {
             searchBar.mouseClicked(mouseX, mouseY, button);
         }
-        if (mouseX >= scrollBarXPos
-                && mouseX <= scrollBarXPos + SCROLLBAR_WIDTH
+        if (mouseX >= scrollBarXPos && mouseX <= scrollBarXPos + SCROLLBAR_WIDTH
                 && mouseY >= scrollBarYPos
                 && mouseY <= scrollBarYPos + scrollBarScaledHeight) {
             mouseClickY = mouseY;
@@ -261,7 +276,10 @@ public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
             int curY = guiTop + 79 / 2 - noSelection.length / 2 * fontRendererObj.FONT_HEIGHT;
             for (String s : noSelection) {
                 fontRendererObj.drawStringWithShadow(
-                        s, guiLeft + 23 + 27 - fontRendererObj.getStringWidth(s) / 2, curY, 0xFFFFFFFF);
+                        s,
+                        guiLeft + 23 + 27 - fontRendererObj.getStringWidth(s) / 2,
+                        curY,
+                        0xFFFFFFFF);
                 curY += fontRendererObj.FONT_HEIGHT + 5;
             }
         } else if (container.isFurnaceRecipe()) {
@@ -282,12 +300,15 @@ public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
             int curY = guiTop + 79 / 2 - noIngredients.length / 2 * fontRendererObj.FONT_HEIGHT;
             for (String s : noIngredients) {
                 fontRendererObj.drawStringWithShadow(
-                        s, guiLeft + 97 + 36 - fontRendererObj.getStringWidth(s) / 2, curY, 0xFFFFFFFF);
+                        s,
+                        guiLeft + 97 + 36 - fontRendererObj.getStringWidth(s) / 2,
+                        curY,
+                        0xFFFFFFFF);
                 curY += fontRendererObj.FONT_HEIGHT + 5;
             }
         }
 
-        //		searchBar.drawTextBox();
+        // searchBar.drawTextBox();
 
         hoverSlot = getSlotAtPosition(mouseX, mouseY);
     }
@@ -307,18 +328,18 @@ public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
                 }
             } else if (container.gotRecipeInfo()
                     && container.canClickSmelt((currentOffset * 3) + hoverSlot.getSlotIndex())) {
-                if (container.isMissingOven()) {
-                    event.toolTip.add("\u00a7c" + I18n.format("cookingforblockheads:missing_oven"));
-                } else {
-                    if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-                        event.toolTip.add("\u00a7a" + I18n.format("cookingforblockheads:click_to_smelt_all"));
+                        if (container.isMissingOven()) {
+                            event.toolTip.add("\u00a7c" + I18n.format("cookingforblockheads:missing_oven"));
+                        } else {
+                            if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+                                event.toolTip.add("\u00a7a" + I18n.format("cookingforblockheads:click_to_smelt_all"));
+                            } else {
+                                event.toolTip.add("\u00a7a" + I18n.format("cookingforblockheads:click_to_smelt_one"));
+                            }
+                        }
                     } else {
-                        event.toolTip.add("\u00a7a" + I18n.format("cookingforblockheads:click_to_smelt_one"));
+                        event.toolTip.add("\u00a7e" + I18n.format("cookingforblockheads:click_to_see_recipe"));
                     }
-                }
-            } else {
-                event.toolTip.add("\u00a7e" + I18n.format("cookingforblockheads:click_to_see_recipe"));
-            }
         }
     }
 
@@ -339,7 +360,8 @@ public class GuiRecipeBook extends GuiContainer implements IMTModGuiContainer {
 
     public void setCurrentOffset(int currentOffset) {
         this.currentOffset = Math.max(
-                0, Math.min(currentOffset, (int) Math.ceil(container.getAvailableRecipeCount() / 3f) - VISIBLE_ROWS));
+                0,
+                Math.min(currentOffset, (int) Math.ceil(container.getAvailableRecipeCount() / 3f) - VISIBLE_ROWS));
 
         container.setScrollOffset(this.currentOffset);
 

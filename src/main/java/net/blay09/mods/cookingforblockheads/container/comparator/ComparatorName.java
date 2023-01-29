@@ -1,6 +1,7 @@
 package net.blay09.mods.cookingforblockheads.container.comparator;
 
 import java.util.Comparator;
+
 import net.minecraft.item.ItemStack;
 
 public class ComparatorName implements Comparator<ItemStack> {

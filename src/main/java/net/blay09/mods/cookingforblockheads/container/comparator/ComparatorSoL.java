@@ -1,8 +1,10 @@
 package net.blay09.mods.cookingforblockheads.container.comparator;
 
 import java.util.Comparator;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
 import squeek.spiceoflife.ModConfig;
 import squeek.spiceoflife.foodtracker.FoodHistory;
 import squeek.spiceoflife.helpers.FoodHelper;

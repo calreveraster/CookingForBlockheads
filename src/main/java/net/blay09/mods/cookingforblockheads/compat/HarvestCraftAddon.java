@@ -1,9 +1,8 @@
 package net.blay09.mods.cookingforblockheads.compat;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.blay09.mods.cookingforblockheads.KitchenMultiBlock;
 import net.blay09.mods.cookingforblockheads.api.CookingForBlockheadsAPI;
 import net.blay09.mods.cookingforblockheads.api.ToastHandler;
@@ -19,6 +18,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class HarvestCraftAddon {
 
@@ -38,8 +40,8 @@ public class HarvestCraftAddon {
                 ItemStack slotStack = inventory.getStackInSlot(slot);
                 if (slotStack != null) {
                     if (slotStack.isItemEqual(slotStack)) {
-                        int spaceLeft =
-                                Math.min(itemStack.stackSize, slotStack.getMaxStackSize() - slotStack.stackSize);
+                        int spaceLeft = Math
+                                .min(itemStack.stackSize, slotStack.getMaxStackSize() - slotStack.stackSize);
                         if (spaceLeft > 0) {
                             slotStack.stackSize += spaceLeft;
                             itemStack.stackSize -= spaceLeft;
@@ -84,6 +86,7 @@ public class HarvestCraftAddon {
     }
 
     public static class CuttingBoardWrapper extends ToolWrapper {
+
         public CuttingBoardWrapper(Block block) {
             super(block);
             itemStacks.add(GameRegistry.findItemStack("harvestcraft", "cuttingboardItem", 1));
@@ -91,67 +94,28 @@ public class HarvestCraftAddon {
     }
 
     public static class PotWrapper extends ToolWrapper {
+
         public PotWrapper(Block block) {
             super(block);
             itemStacks.add(GameRegistry.findItemStack("harvestcraft", "potItem", 1));
         }
     }
 
-    private static final String[] ADDITIONAL_RECIPES = new String[] {
-        "flourItem",
-        "doughItem",
-        "cornmealItem",
-        "freshwaterItem",
-        "pastaItem",
-        "vanillaItem",
-        "butterItem",
-        "heavycreamItem",
-        "saltItem",
-        "freshmilkItem",
-        "mayoItem",
-        "cocoapowderItem",
-        "ketchupItem",
-        "vinegarItem",
-        "mustardItem",
-        "blackpepperItem",
-        "groundcinnamonItem",
-        "groundnutmegItem",
-        "saladdressingItem",
-        "batterItem",
-        "oliveoilItem",
-        "carrotcakeItem",
-        "cheesecakeItem",
-        "cherrycheesecakeItem",
-        "pineappleupsidedowncakeItem",
-        "chocolatesprinklecakeItem",
-        "redvelvetcakeItem",
-        "lamingtonItem",
-        "pavlovaItem",
-        "holidaycakeItem",
-        "pumpkincheesecakeItem",
-        //            "toastedsesameseedsItem", // no usage
-        "bubblywaterItem",
-        "currypowderItem",
-        "soysauceItem",
-        "garammasalaItem",
-    };
+    private static final String[] ADDITIONAL_RECIPES = new String[] { "flourItem", "doughItem", "cornmealItem",
+            "freshwaterItem", "pastaItem", "vanillaItem", "butterItem", "heavycreamItem", "saltItem", "freshmilkItem",
+            "mayoItem", "cocoapowderItem", "ketchupItem", "vinegarItem", "mustardItem", "blackpepperItem",
+            "groundcinnamonItem", "groundnutmegItem", "saladdressingItem", "batterItem", "oliveoilItem",
+            "carrotcakeItem", "cheesecakeItem", "cherrycheesecakeItem", "pineappleupsidedowncakeItem",
+            "chocolatesprinklecakeItem", "redvelvetcakeItem", "lamingtonItem", "pavlovaItem", "holidaycakeItem",
+            "pumpkincheesecakeItem",
+            // "toastedsesameseedsItem", // no usage
+            "bubblywaterItem", "currypowderItem", "soysauceItem", "garammasalaItem", };
 
-    private static final String[] OVEN_RECIPES = new String[] {
-        "turkeyrawItem", "turkeycookedItem",
-        "rabbitrawItem", "rabbitcookedItem",
-        "venisonrawItem", "venisoncookedItem"
-    };
+    private static final String[] OVEN_RECIPES = new String[] { "turkeyrawItem", "turkeycookedItem", "rabbitrawItem",
+            "rabbitcookedItem", "venisonrawItem", "venisoncookedItem" };
 
-    private static final String[] TOOLS = new String[] {
-        "cuttingboardItem",
-        "potItem",
-        "skilletItem",
-        "saucepanItem",
-        "bakewareItem",
-        "mortarandpestleItem",
-        "mixingbowlItem",
-        "juicerItem"
-    };
+    private static final String[] TOOLS = new String[] { "cuttingboardItem", "potItem", "skilletItem", "saucepanItem",
+            "bakewareItem", "mortarandpestleItem", "mixingbowlItem", "juicerItem" };
 
     private static final String TOAST_ITEM = "toastItem";
 
@@ -178,6 +142,7 @@ public class HarvestCraftAddon {
         }
 
         CookingForBlockheadsAPI.addToastHandler(new ItemStack(Items.bread), new ToastHandler() {
+
             @Override
             public ItemStack getToasterOutput(ItemStack itemStack) {
                 return GameRegistry.findItemStack("harvestcraft", TOAST_ITEM, 1);
@@ -222,8 +187,7 @@ public class HarvestCraftAddon {
                     secondItem = (ItemStack) list.get(0);
                 }
             }
-            if (firstItem != null
-                    && secondItem != null
+            if (firstItem != null && secondItem != null
                     && ItemStack.areItemStacksEqual(firstItem, secondItem)
                     && oreRecipe.getRecipeOutput().isItemEqual(firstItem)) {
                 return true;

@@ -2,13 +2,14 @@ package net.blay09.mods.cookingforblockheads.client.model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+
 import org.lwjgl.opengl.GL11;
 
 /**
- * Small Fridge - Blay & Zero
- * Created using Tabula 5.1.0
+ * Small Fridge - Blay & Zero Created using Tabula 5.1.0
  */
 public class ModelSmallFridge extends ModelBaseFridge {
+
     public ModelRenderer Shelf;
     public ModelRenderer TopHinge;
     public ModelRenderer TopHingeFlipped;

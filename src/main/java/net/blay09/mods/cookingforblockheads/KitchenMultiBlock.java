@@ -1,13 +1,12 @@
 package net.blay09.mods.cookingforblockheads;
 
-import com.google.common.collect.Sets;
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenSmeltingProvider;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenStorageProvider;
@@ -20,6 +19,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import com.google.common.collect.Sets;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class KitchenMultiBlock {
 
@@ -126,9 +128,7 @@ public class KitchenMultiBlock {
             if (clazz != null) {
                 try {
                     return clazz.getConstructor(Block.class).newInstance(block);
-                } catch (InstantiationException
-                        | IllegalAccessException
-                        | NoSuchMethodException
+                } catch (InstantiationException | IllegalAccessException | NoSuchMethodException
                         | InvocationTargetException e) {
                     e.printStackTrace();
                 }
@@ -138,14 +138,11 @@ public class KitchenMultiBlock {
     }
 
     public static IMultiblockKitchen getWrapper(TileEntity tileEntity) {
-        Class<? extends IMultiblockKitchen> clazz =
-                tileEntityWrappers.get(tileEntity.getClass().getName());
+        Class<? extends IMultiblockKitchen> clazz = tileEntityWrappers.get(tileEntity.getClass().getName());
         if (clazz != null) {
             try {
                 return clazz.getConstructor(TileEntity.class).newInstance(tileEntity);
-            } catch (InstantiationException
-                    | IllegalAccessException
-                    | NoSuchMethodException
+            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException
                     | InvocationTargetException e) {
                 e.printStackTrace();
             }

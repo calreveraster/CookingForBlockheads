@@ -1,6 +1,7 @@
 package net.blay09.mods.cookingforblockheads.registry.food;
 
 import java.util.List;
+
 import net.minecraft.item.ItemStack;
 
 public abstract class FoodRecipe {

@@ -1,9 +1,10 @@
 package net.blay09.mods.cookingforblockheads.network;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class MessageTileEntity implements IMessage {
 

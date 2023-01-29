@@ -11,13 +11,15 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileEntityOvenRenderer extends TileEntitySpecialRenderer {
 
-    private static final ResourceLocation texture =
-            new ResourceLocation("cookingforblockheads", "textures/entity/ModelOven.png");
+    private static final ResourceLocation texture = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/entity/ModelOven.png");
 
     private ModelOven model = new ModelOven();
 
@@ -63,8 +65,8 @@ public class TileEntityOvenRenderer extends TileEntitySpecialRenderer {
                         GL11.glTranslatef(itemX - 0.5f, -2.25f, 0.05f + itemZ);
                         GL11.glRotatef(90f, 1f, 0f, 0f);
                         tileEntityOven.getInteriorRenderItem().setEntityItemStack(itemStack);
-                        RenderManager.instance.renderEntityWithPosYaw(
-                                tileEntityOven.getInteriorRenderItem(), 0, 0, 0, 0f, 0f);
+                        RenderManager.instance
+                                .renderEntityWithPosYaw(tileEntityOven.getInteriorRenderItem(), 0, 0, 0, 0f, 0f);
                         GL11.glPopMatrix();
                     }
                 }

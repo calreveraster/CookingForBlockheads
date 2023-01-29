@@ -14,15 +14,18 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileEntityFridgeRenderer extends TileEntityRendererBase {
 
-    private static final ResourceLocation textureSmall =
-            new ResourceLocation("cookingforblockheads", "textures/entity/ModelSmallFridge.png");
-    private static final ResourceLocation textureBig =
-            new ResourceLocation("cookingforblockheads", "textures/entity/ModelFridge.png");
+    private static final ResourceLocation textureSmall = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/entity/ModelSmallFridge.png");
+    private static final ResourceLocation textureBig = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/entity/ModelFridge.png");
 
     private ModelFridge modelBig = new ModelFridge();
     private ModelSmallFridge modelSmall = new ModelSmallFridge();
@@ -36,13 +39,13 @@ public class TileEntityFridgeRenderer extends TileEntityRendererBase {
         final int dye = tileFridge.getColor();
         if (tileEntity.hasWorldObj()) {
             metadata = tileEntity.getBlockMetadata();
-            final Block above =
-                    tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord + 1, tileEntity.zCoord);
+            final Block above = tileEntity.getWorldObj()
+                    .getBlock(tileEntity.xCoord, tileEntity.yCoord + 1, tileEntity.zCoord);
             if (above == CookingForBlockheads.blockFridge) {
                 isLargeFridge = true;
             }
-            final Block below =
-                    tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord - 1, tileEntity.zCoord);
+            final Block below = tileEntity.getWorldObj()
+                    .getBlock(tileEntity.xCoord, tileEntity.yCoord - 1, tileEntity.zCoord);
             if (below == CookingForBlockheads.blockFridge) {
                 return;
             }
@@ -59,8 +62,8 @@ public class TileEntityFridgeRenderer extends TileEntityRendererBase {
         GL11.glColor4f(1f, 1f, 1f, 1f);
         GL11.glRotatef(angle, 0f, 1f, 0f);
         GL11.glRotatef(180f, 0f, 0f, 1f);
-        float doorAngle =
-                tileFridge.getPrevDoorAngle() + (tileFridge.getDoorAngle() - tileFridge.getPrevDoorAngle()) * delta;
+        float doorAngle = tileFridge.getPrevDoorAngle()
+                + (tileFridge.getDoorAngle() - tileFridge.getPrevDoorAngle()) * delta;
         doorAngle = 1.0f - doorAngle;
         doorAngle = 1.0f - doorAngle * doorAngle * doorAngle;
 
@@ -125,8 +128,7 @@ public class TileEntityFridgeRenderer extends TileEntityRendererBase {
                             if (i > tileFridge.getSizeInventory() / 2) {
                                 relSlot -= tileFridge.getSizeInventory() / 2;
                             }
-                            itemX = (relSlot > 8)
-                                    ? Math.min(4f / 5f, (relSlot - 9) / 5f)
+                            itemX = (relSlot > 8) ? Math.min(4f / 5f, (relSlot - 9) / 5f)
                                     : Math.min(8f / 9f, (float) relSlot / 9f);
                             itemY = -2f + ((i > tileFridge.getSizeInventory() / 2) ? -0.7f : 0.01f);
                             itemZ = (relSlot > 8) ? -0.8f : -0.1f;
@@ -139,7 +141,12 @@ public class TileEntityFridgeRenderer extends TileEntityRendererBase {
 
                         tileFridge.getRenderItem().setEntityItemStack(itemStack);
                         RenderManager.instance.renderEntityWithPosYaw(
-                                tileFridge.getRenderItem(), 0.45f - itemX, itemY, 0.5f + itemZ, 0f, partialTickTime);
+                                tileFridge.getRenderItem(),
+                                0.45f - itemX,
+                                itemY,
+                                0.5f + itemZ,
+                                0f,
+                                partialTickTime);
                     }
                 }
                 RenderItem.renderInFrame = false;

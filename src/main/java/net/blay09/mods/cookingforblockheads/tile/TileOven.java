@@ -1,6 +1,7 @@
 package net.blay09.mods.cookingforblockheads.tile;
 
 import java.util.List;
+
 import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenSmeltingProvider;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenStorageProvider;
@@ -22,12 +23,15 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.apache.commons.lang3.ArrayUtils;
+
 import squeek.applecore.api.AppleCoreAPI;
 
 public class TileOven extends TileEntity implements ISidedInventory, IKitchenSmeltingProvider, IKitchenStorageProvider {
 
     public static class OvenInventory implements IInventory {
+
         private final IInventory inventory;
 
         public OvenInventory(IInventory inventory) {
@@ -117,10 +121,10 @@ public class TileOven extends TileEntity implements ISidedInventory, IKitchenSme
         }
     }
 
-    private static final int[] slotsTop = new int[] {0, 1, 2};
-    private static final int[] slotsSide = new int[] {3};
-    private static final int[] slotsBottom = new int[] {4, 5, 6};
-    private static final int[] slotsCenter = new int[] {7, 8, 9, 10, 11, 12, 13, 14, 15};
+    private static final int[] slotsTop = new int[] { 0, 1, 2 };
+    private static final int[] slotsSide = new int[] { 3 };
+    private static final int[] slotsBottom = new int[] { 4, 5, 6 };
+    private static final int[] slotsCenter = new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15 };
     private static final int SLOT_CENTER_OFFSET = 7;
     private static final int COOK_TIME = 200;
 
@@ -311,8 +315,8 @@ public class TileOven extends TileEntity implements ISidedInventory, IKitchenSme
                 for (int j : slotsSide) {
                     if (getStackInSlot(j) != null) {
                         ItemStack fuelItem = getStackInSlot(j);
-                        currentItemBurnTime = furnaceBurnTime = (int)
-                                Math.max(1, (float) getItemBurnTime(fuelItem) * CookingConfig.ovenFuelTimeMultiplier);
+                        currentItemBurnTime = furnaceBurnTime = (int) Math
+                                .max(1, (float) getItemBurnTime(fuelItem) * CookingConfig.ovenFuelTimeMultiplier);
                         if (furnaceBurnTime != 0) {
                             fuelItem.stackSize--;
                             if (fuelItem.stackSize == 0) {

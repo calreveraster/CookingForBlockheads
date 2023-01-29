@@ -57,14 +57,14 @@ public class BlockToaster extends BlockBaseKitchen {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
+            float hitY, float hitZ) {
         TileToaster tileEntity = (TileToaster) world.getTileEntity(x, y, z);
         ItemStack heldItem = player.getHeldItem();
         if (heldItem == null) {
-            //            if(!tileEntity.isActive()) {
+            // if(!tileEntity.isActive()) {
             tileEntity.setActive(!tileEntity.isActive());
-            //            }
+            // }
         } else {
             ItemStack output = CookingRegistry.getToastOutput(heldItem);
             if (output != null) {

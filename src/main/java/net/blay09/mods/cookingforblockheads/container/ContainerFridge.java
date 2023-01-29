@@ -1,9 +1,10 @@
 package net.blay09.mods.cookingforblockheads.container;
 
-import invtweaks.api.container.ChestContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
+
+import invtweaks.api.container.ChestContainer;
 
 @ChestContainer
 public class ContainerFridge extends ContainerWithInventory {

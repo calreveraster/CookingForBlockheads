@@ -8,13 +8,15 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileEntityToolRackRenderer extends TileEntitySpecialRenderer {
 
-    private static final ResourceLocation texture =
-            new ResourceLocation("cookingforblockheads", "textures/entity/ModelToolRack-texture.png");
+    private static final ResourceLocation texture = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/entity/ModelToolRack-texture.png");
 
     private ModelToolRack model = new ModelToolRack();
 

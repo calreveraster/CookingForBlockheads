@@ -5,6 +5,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
 public class InventoryNormal implements IInventory {
+
     private final String inventoryName;
 
     public InventoryNormal(String inventoryName) {

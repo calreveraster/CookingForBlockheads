@@ -1,8 +1,7 @@
 package net.blay09.mods.cookingforblockheads.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
+
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
 import net.blay09.mods.cookingforblockheads.client.render.block.OvenBlockRenderer;
@@ -24,6 +23,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockOven extends BlockBaseKitchen {
 
@@ -69,8 +71,8 @@ public class BlockOven extends BlockBaseKitchen {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX,
+            float subY, float subZ) {
         if (side == ForgeDirection.UP.ordinal()) {
             if (CookingRegistry.isToolItem(player.getHeldItem())) {
                 int metadata = world.getBlockMetadata(x, y, z);
@@ -168,8 +170,8 @@ public class BlockOven extends BlockBaseKitchen {
                                 new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
 
                         if (itemstack.hasTagCompound()) {
-                            entityitem.getEntityItem().setTagCompound((NBTTagCompound)
-                                    itemstack.getTagCompound().copy());
+                            entityitem.getEntityItem()
+                                    .setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                         }
 
                         float f3 = 0.05F;

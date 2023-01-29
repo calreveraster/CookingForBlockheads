@@ -1,10 +1,12 @@
 package net.blay09.mods.cookingforblockheads.compat;
 
-import codechicken.nei.api.INEIGuiAdapter;
 import net.blay09.mods.cookingforblockheads.client.GuiButtonSort;
 import net.blay09.mods.cookingforblockheads.client.GuiRecipeBook;
 import net.minecraft.client.gui.inventory.GuiContainer;
+
 import org.lwjgl.util.Rectangle;
+
+import codechicken.nei.api.INEIGuiAdapter;
 
 public class NEIRecipeBookGuiHandler extends INEIGuiAdapter {
 

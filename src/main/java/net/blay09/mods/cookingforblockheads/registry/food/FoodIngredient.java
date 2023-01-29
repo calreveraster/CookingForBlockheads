@@ -9,7 +9,7 @@ public class FoodIngredient {
     private final boolean isToolItem;
 
     public FoodIngredient(ItemStack itemStack, boolean isToolItem) {
-        this(new ItemStack[] {itemStack}, isToolItem);
+        this(new ItemStack[] { itemStack }, isToolItem);
     }
 
     public FoodIngredient(ItemStack[] itemStacks, boolean isToolItem) {

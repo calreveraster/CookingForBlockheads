@@ -1,16 +1,15 @@
 package net.blay09.mods.cookingforblockheads.compat;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.blay09.mods.cookingforblockheads.api.event.FoodRegistryInitEvent;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class DreamcraftAddon {
 
-    private static final String[] DREAMCRAFT_ITEMS = new String[] {
-        "item.EdibleSalt", "item.WetTofu",
-    };
+    private static final String[] DREAMCRAFT_ITEMS = new String[] { "item.EdibleSalt", "item.WetTofu", };
 
     public DreamcraftAddon() {
         MinecraftForge.EVENT_BUS.register(this);

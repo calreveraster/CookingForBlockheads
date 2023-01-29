@@ -8,13 +8,15 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileEntityToasterRenderer extends TileEntitySpecialRenderer {
 
-    private static final ResourceLocation texture =
-            new ResourceLocation(CookingForBlockheads.MOD_ID, "textures/entity/ModelToaster.png");
+    private static final ResourceLocation texture = new ResourceLocation(
+            CookingForBlockheads.MOD_ID,
+            "textures/entity/ModelToaster.png");
 
     private ModelToaster model = new ModelToaster();
 

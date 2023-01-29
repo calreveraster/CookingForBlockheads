@@ -18,7 +18,7 @@ import net.minecraftforge.common.util.Constants;
 
 public class TileToaster extends TileEntity implements IInventory, IKitchenStorageProvider {
 
-    //    private static final int TOAST_TICKS = 60 * 20;
+    // private static final int TOAST_TICKS = 60 * 20;
     private static final int TOAST_TICKS = 60;
     private ItemStack[] inventory = new ItemStack[2];
     private EntityItem[] renderItems = new EntityItem[2];
@@ -182,8 +182,12 @@ public class TileToaster extends TileEntity implements IInventory, IKitchenStora
                             outputStack = inputStack;
                         }
                         if (!worldObj.isRemote) {
-                            EntityItem entityItem =
-                                    new EntityItem(worldObj, xCoord + 0.5f, yCoord + 0.75f, zCoord + 0.5f, outputStack);
+                            EntityItem entityItem = new EntityItem(
+                                    worldObj,
+                                    xCoord + 0.5f,
+                                    yCoord + 0.75f,
+                                    zCoord + 0.5f,
+                                    outputStack);
                             entityItem.motionX = 0f;
                             entityItem.motionY = 0.1f;
                             entityItem.motionZ = 0f;

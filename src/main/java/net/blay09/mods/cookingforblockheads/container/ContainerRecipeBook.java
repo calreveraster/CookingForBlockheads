@@ -1,12 +1,9 @@
 package net.blay09.mods.cookingforblockheads.container;
 
-import com.google.common.collect.ArrayListMultimap;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import invtweaks.api.container.IgnoreContainer;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 import net.blay09.mods.cookingforblockheads.KitchenMultiBlock;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;
 import net.blay09.mods.cookingforblockheads.container.comparator.ComparatorName;
@@ -28,6 +25,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S2FPacketSetSlot;
+
+import com.google.common.collect.ArrayListMultimap;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import invtweaks.api.container.IgnoreContainer;
 
 @IgnoreContainer
 public class ContainerRecipeBook extends Container {
@@ -80,8 +83,8 @@ public class ContainerRecipeBook extends Container {
         craftMatrix = new InventoryRecipeBookMatrix();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                craftMatrixSlots[j + i * 3] =
-                        new SlotCraftMatrix(player, craftMatrix, j + i * 3, 24 + j * 18, 20 + i * 18);
+                craftMatrixSlots[j
+                        + i * 3] = new SlotCraftMatrix(player, craftMatrix, j + i * 3, 24 + j * 18, 20 + i * 18);
                 craftMatrixSlots[j + i * 3].setSourceInventories(playerInventoryList);
                 craftMatrixSlots[j + i * 3].setItemProviders(emptyProviderList);
                 addSlotToContainer(craftMatrixSlots[j + i * 3]);
@@ -147,8 +150,7 @@ public class ContainerRecipeBook extends Container {
                     int targetIdx = origY * 3 + origX;
                     targetIdx += offset;
                     if (i < recipe.getCraftMatrix().size()) {
-                        craftMatrixSlots[targetIdx].setIngredient(
-                                recipe.getCraftMatrix().get(i));
+                        craftMatrixSlots[targetIdx].setIngredient(recipe.getCraftMatrix().get(i));
                     }
                     craftMatrixSlots[i].setEnabled(true);
                     if (!isClientSide) {
@@ -178,14 +180,12 @@ public class ContainerRecipeBook extends Container {
             ItemStack lastItemStack = recipeBook.getStackInSlot(i);
             int recipeIdx = i + scrollOffset * 3;
             if (recipeIdx < sortedRecipes.size()) {
-                recipeBook.setFoodItem(
-                        i, availableRecipes.get(sortedRecipes.get(recipeIdx).toString()));
+                recipeBook.setFoodItem(i, availableRecipes.get(sortedRecipes.get(recipeIdx).toString()));
             } else {
                 recipeBook.setFoodItem(i, null);
             }
             ItemStack itemStack = recipeBook.getStackInSlot(i);
-            if (recipeIdx == currentSlotIndex
-                    && !ItemStack.areItemStacksEqual(lastItemStack, itemStack)
+            if (recipeIdx == currentSlotIndex && !ItemStack.areItemStacksEqual(lastItemStack, itemStack)
                     && resetCraftMatrix) {
                 currentSlotIndex = -1;
                 currentRecipe = null;
@@ -245,8 +245,7 @@ public class ContainerRecipeBook extends Container {
                 currentSlotIndex = (scrollOffset * 3) + slot.getSlotIndex();
                 if (oldSlotIndex != currentSlotIndex) {
                     if (!isClientSide) {
-                        currentRecipeKey =
-                                recipeBook.getStackInSlot(slot.getSlotIndex()).toString();
+                        currentRecipeKey = recipeBook.getStackInSlot(slot.getSlotIndex()).toString();
                         currentRecipeList = recipeBook.getFoodList(slot.getSlotIndex());
                         currentRecipeIdx = 0;
                         currentRecipe = currentRecipeList.get(currentRecipeIdx);
@@ -267,11 +266,10 @@ public class ContainerRecipeBook extends Container {
             for (int j = 0; j < sourceInventories.get(i).getSizeInventory(); j++) {
                 ItemStack itemStack = sourceInventories.get(i).getStackInSlot(j);
                 if (itemStack != null) {
-                    for (ItemStack ingredientStack :
-                            recipe.getCraftMatrix().get(0).getItemStacks()) {
+                    for (ItemStack ingredientStack : recipe.getCraftMatrix().get(0).getItemStacks()) {
                         if (CookingRegistry.areItemStacksEqualWithWildcard(itemStack, ingredientStack)) {
-                            int count =
-                                    isShiftDown ? Math.min(itemStack.stackSize, ingredientStack.getMaxStackSize()) : 1;
+                            int count = isShiftDown ? Math.min(itemStack.stackSize, ingredientStack.getMaxStackSize())
+                                    : 1;
                             ItemStack restStack = kitchenMultiBlock.smeltItem(itemStack, count);
                             sourceInventories.get(i).setInventorySlotContents(j, restStack);
                             if (i == 0) { // Player Inventory
@@ -302,12 +300,12 @@ public class ContainerRecipeBook extends Container {
                     ItemStack mouseItem = player.inventory.getItemStack();
                     if (mouseItem != null) {
                         mouseItem.stackSize += craftingResult.stackSize;
-                        ((EntityPlayerMP) player)
-                                .playerNetServerHandler.sendPacket(new S2FPacketSetSlot(-1, 0, mouseItem));
+                        ((EntityPlayerMP) player).playerNetServerHandler
+                                .sendPacket(new S2FPacketSetSlot(-1, 0, mouseItem));
                     } else {
                         player.inventory.setItemStack(craftingResult);
-                        ((EntityPlayerMP) player)
-                                .playerNetServerHandler.sendPacket(new S2FPacketSetSlot(-1, 0, craftingResult));
+                        ((EntityPlayerMP) player).playerNetServerHandler
+                                .sendPacket(new S2FPacketSetSlot(-1, 0, craftingResult));
                     }
                 }
                 player.inventory.markDirty();
@@ -377,15 +375,13 @@ public class ContainerRecipeBook extends Container {
     }
 
     public boolean canClickSmelt(int slotIndex) {
-        return allowSmelting
-                && currentSlotIndex == slotIndex
+        return allowSmelting && currentSlotIndex == slotIndex
                 && currentRecipe != null
                 && currentRecipe.isSmeltingRecipe();
     }
 
     public boolean canClickCraft(int slotIndex) {
-        return allowCrafting
-                && currentSlotIndex == slotIndex
+        return allowCrafting && currentSlotIndex == slotIndex
                 && currentRecipe != null
                 && !currentRecipe.isSmeltingRecipe();
     }
@@ -403,8 +399,8 @@ public class ContainerRecipeBook extends Container {
     }
 
     @SideOnly(Side.CLIENT)
-    public void setAvailableItems(
-            List<ItemStack> sortedRecipes, ArrayListMultimap<String, FoodRecipe> availableRecipes) {
+    public void setAvailableItems(List<ItemStack> sortedRecipes,
+            ArrayListMultimap<String, FoodRecipe> availableRecipes) {
         this.sortedRecipes.clear();
         this.sortedRecipes.addAll(sortedRecipes);
         this.availableRecipes.clear();
@@ -426,13 +422,11 @@ public class ContainerRecipeBook extends Container {
         for (FoodRecipe foodRecipe : CookingRegistry.getFoodRecipes()) {
             ItemStack foodStack = foodRecipe.getOutputItem();
             if (foodStack != null) {
-                if (noFilter
-                        || CookingRegistry.areIngredientsAvailableFor(
-                                foodRecipe.getCraftMatrix(),
-                                kitchenMultiBlock != null
-                                        ? kitchenMultiBlock.getSourceInventories(player.inventory)
-                                        : playerInventoryList,
-                                kitchenMultiBlock != null ? kitchenMultiBlock.getItemProviders() : emptyProviderList)) {
+                if (noFilter || CookingRegistry.areIngredientsAvailableFor(
+                        foodRecipe.getCraftMatrix(),
+                        kitchenMultiBlock != null ? kitchenMultiBlock.getSourceInventories(player.inventory)
+                                : playerInventoryList,
+                        kitchenMultiBlock != null ? kitchenMultiBlock.getItemProviders() : emptyProviderList)) {
                     String foodStackString = foodStack.toString();
                     if (!availableRecipes.containsKey(foodStackString)) {
                         sortedRecipes.add(foodStack);
@@ -446,6 +440,7 @@ public class ContainerRecipeBook extends Container {
 
     /**
      * SERVER ONLY
+     * 
      * @param comparator
      */
     public void sortRecipes(Comparator<ItemStack> comparator) {
@@ -514,13 +509,17 @@ public class ContainerRecipeBook extends Container {
                 isMissingOven = kitchenMultiBlock == null || !kitchenMultiBlock.hasSmeltingProvider();
                 NetworkHandler.instance.sendTo(
                         new MessageRecipeInfo(
-                                currentSlotIndex, currentRecipe, isMissingTools, hasVariants, isMissingOven),
+                                currentSlotIndex,
+                                currentRecipe,
+                                isMissingTools,
+                                hasVariants,
+                                isMissingOven),
                         (EntityPlayerMP) player);
             }
 
             if (isRecipeListDirty) {
-                NetworkHandler.instance.sendTo(
-                        new MessageSyncList(sortedRecipes, availableRecipes), (EntityPlayerMP) player);
+                NetworkHandler.instance
+                        .sendTo(new MessageSyncList(sortedRecipes, availableRecipes), (EntityPlayerMP) player);
                 isRecipeListDirty = false;
             }
 
@@ -542,6 +541,7 @@ public class ContainerRecipeBook extends Container {
 
     /**
      * SERVER ONLY
+     * 
      * @return
      */
     public ContainerRecipeBook setNoFilter() {
@@ -556,6 +556,7 @@ public class ContainerRecipeBook extends Container {
 
     /**
      * SERVER ONLY
+     * 
      * @param kitchenMultiBlock
      */
     public ContainerRecipeBook setKitchenMultiBlock(KitchenMultiBlock kitchenMultiBlock) {
@@ -573,12 +574,8 @@ public class ContainerRecipeBook extends Container {
     }
 
     @SideOnly(Side.CLIENT)
-    public void setSelectedRecipe(
-            int currentSlotIndex,
-            FoodRecipe currentRecipe,
-            boolean hasVariants,
-            boolean isMissingTools,
-            boolean isMissingOven) {
+    public void setSelectedRecipe(int currentSlotIndex, FoodRecipe currentRecipe, boolean hasVariants,
+            boolean isMissingTools, boolean isMissingOven) {
         this.currentSlotIndex = currentSlotIndex;
         this.syncSlotIndex = currentSlotIndex;
         this.currentRecipe = currentRecipe;

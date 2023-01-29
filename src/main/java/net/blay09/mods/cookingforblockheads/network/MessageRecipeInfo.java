@@ -1,9 +1,10 @@
 package net.blay09.mods.cookingforblockheads.network;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import io.netty.buffer.ByteBuf;
 import net.blay09.mods.cookingforblockheads.registry.food.FoodRecipe;
 import net.blay09.mods.cookingforblockheads.registry.food.recipe.RemoteCraftingFood;
+
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import io.netty.buffer.ByteBuf;
 
 public class MessageRecipeInfo implements IMessage {
 
@@ -15,8 +16,8 @@ public class MessageRecipeInfo implements IMessage {
 
     public MessageRecipeInfo() {}
 
-    public MessageRecipeInfo(
-            int slotIndex, FoodRecipe recipe, boolean isMissingTools, boolean hasVariants, boolean canSmelt) {
+    public MessageRecipeInfo(int slotIndex, FoodRecipe recipe, boolean isMissingTools, boolean hasVariants,
+            boolean canSmelt) {
         this.slotIndex = slotIndex;
         this.recipe = recipe;
         this.isMissingTools = isMissingTools;

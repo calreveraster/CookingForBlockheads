@@ -2,13 +2,14 @@ package net.blay09.mods.cookingforblockheads.client.model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+
 import org.lwjgl.opengl.GL11;
 
 /**
- * ModelFridge - BlayTheNinth & Zero9o1o
- * Created using Tabula 5.1.0
+ * ModelFridge - BlayTheNinth & Zero9o1o Created using Tabula 5.1.0
  */
 public class ModelFridge extends ModelBaseFridge {
+
     public ModelRenderer FrontRightFoot;
     public ModelRenderer FrontLeftFoot;
     public ModelRenderer BackRightFoot;

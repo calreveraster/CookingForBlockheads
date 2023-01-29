@@ -1,11 +1,9 @@
 package net.blay09.mods.cookingforblockheads.registry;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 import net.blay09.mods.cookingforblockheads.api.SinkHandler;
 import net.blay09.mods.cookingforblockheads.api.ToastHandler;
 import net.blay09.mods.cookingforblockheads.api.event.FoodRegistryInitEvent;
@@ -33,7 +31,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
 import squeek.applecore.api.AppleCoreAPI;
+
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public class CookingRegistry {
 
@@ -116,15 +119,14 @@ public class CookingRegistry {
         }
     }
 
-    public static boolean areIngredientsAvailableFor(
-            List<FoodIngredient> craftMatrix, List<IInventory> inventories, List<IKitchenItemProvider> itemProviders) {
+    public static boolean areIngredientsAvailableFor(List<FoodIngredient> craftMatrix, List<IInventory> inventories,
+            List<IKitchenItemProvider> itemProviders) {
         int[][] usedStackSize = new int[inventories.size()][];
         for (int i = 0; i < usedStackSize.length; i++) {
             usedStackSize[i] = new int[inventories.get(i).getSizeInventory()];
         }
         boolean[] itemFound = new boolean[craftMatrix.size()];
-        matrixLoop:
-        for (int i = 0; i < craftMatrix.size(); i++) {
+        matrixLoop: for (int i = 0; i < craftMatrix.size(); i++) {
             if (craftMatrix.get(i) == null || craftMatrix.get(i).isToolItem()) {
                 itemFound[i] = true;
                 continue;
@@ -143,8 +145,7 @@ public class CookingRegistry {
             for (int j = 0; j < inventories.size(); j++) {
                 for (int k = 0; k < inventories.get(j).getSizeInventory(); k++) {
                     ItemStack itemStack = inventories.get(j).getStackInSlot(k);
-                    if (itemStack != null
-                            && craftMatrix.get(i).isValidItem(itemStack)
+                    if (itemStack != null && craftMatrix.get(i).isValidItem(itemStack)
                             && itemStack.stackSize - usedStackSize[j][k] > 0) {
                         usedStackSize[j][k]++;
                         itemFound[i] = true;
@@ -246,9 +247,8 @@ public class CookingRegistry {
         if (first == null || second == null) {
             return false;
         }
-        return first.getItem() == second.getItem()
-                && (first.getItemDamage() == second.getItemDamage()
-                        || first.getItemDamage() == OreDictionary.WILDCARD_VALUE
-                        || second.getItemDamage() == OreDictionary.WILDCARD_VALUE);
+        return first.getItem() == second.getItem() && (first.getItemDamage() == second.getItemDamage()
+                || first.getItemDamage() == OreDictionary.WILDCARD_VALUE
+                || second.getItemDamage() == OreDictionary.WILDCARD_VALUE);
     }
 }

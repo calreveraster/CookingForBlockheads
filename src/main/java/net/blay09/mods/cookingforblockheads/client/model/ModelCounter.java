@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelCounter extends ModelBase {
+
     protected boolean isFlipped;
 
     public ModelRenderer Door;

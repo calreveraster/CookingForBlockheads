@@ -1,9 +1,11 @@
 package net.blay09.mods.cookingforblockheads.compat;
 
-import cpw.mods.fml.common.Optional;
 import minetweaker.MineTweakerImplementationAPI;
 import minetweaker.util.IEventHandler;
+
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
+
+import cpw.mods.fml.common.Optional;
 
 @Optional.Interface(modid = "MineTweaker3", iface = "minetweaker.util.IEventHandler", striprefs = true)
 public class MineTweakerAddon implements IEventHandler<MineTweakerImplementationAPI.ReloadEvent> {

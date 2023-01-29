@@ -6,12 +6,14 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 public class GuiCookingOven extends GuiContainer {
 
-    private static final ResourceLocation texture =
-            new ResourceLocation("cookingforblockheads", "textures/gui/oven.png");
+    private static final ResourceLocation texture = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/gui/oven.png");
     private TileOven tileEntity;
 
     public GuiCookingOven(InventoryPlayer playerInventory, TileOven tileEntity) {
@@ -24,8 +26,8 @@ public class GuiCookingOven extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String s = I18n.format(tileEntity.getInventoryName());
-        this.fontRendererObj.drawString(
-                s, (this.xSize + 22) / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRendererObj
+                .drawString(s, (this.xSize + 22) / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
         this.fontRendererObj.drawString(I18n.format("container.inventory"), 8 + 22, this.ySize - 96 + 2, 4210752);
     }
 

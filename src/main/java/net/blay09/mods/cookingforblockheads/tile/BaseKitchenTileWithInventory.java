@@ -2,6 +2,7 @@ package net.blay09.mods.cookingforblockheads.tile;
 
 import java.util.List;
 import java.util.Random;
+
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenStorageProvider;
 import net.blay09.mods.cookingforblockheads.container.ContainerWithInventory;
 import net.blay09.mods.cookingforblockheads.container.inventory.InventoryLarge;
@@ -21,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
 public class BaseKitchenTileWithInventory extends TileEntity implements IInventory, IKitchenStorageProvider {
+
     protected static final Random random = new Random();
     private final String inventoryName;
     protected InventoryNormal internalInventory;
@@ -68,7 +70,8 @@ public class BaseKitchenTileWithInventory extends TileEntity implements IInvento
         for (int i = 0; i < tagList.tagCount(); i++) {
             NBTTagCompound itemCompound = tagList.getCompoundTagAt(i);
             internalInventory.setInventorySlotContents(
-                    itemCompound.getByte("Slot"), ItemStack.loadItemStackFromNBT(itemCompound));
+                    itemCompound.getByte("Slot"),
+                    ItemStack.loadItemStackFromNBT(itemCompound));
         }
         color = tagCompound.getByte("Color");
         isFlipped = tagCompound.getBoolean("IsFlipped");
@@ -110,11 +113,10 @@ public class BaseKitchenTileWithInventory extends TileEntity implements IInvento
                             (float) zCoord + 1 + range));
             for (EntityPlayer entityPlayer : players) {
                 if (entityPlayer.openContainer instanceof ContainerWithInventory) {
-                    IInventory inventory =
-                            ((ContainerWithInventory) entityPlayer.openContainer).getContainerInventory();
-                    if (inventory == this
-                            || (inventory instanceof InventoryLarge
-                                    && ((InventoryLarge) inventory).containsInventory(this))) {
+                    IInventory inventory = ((ContainerWithInventory) entityPlayer.openContainer)
+                            .getContainerInventory();
+                    if (inventory == this || (inventory instanceof InventoryLarge
+                            && ((InventoryLarge) inventory).containsInventory(this))) {
                         numPlayersUsing++;
                     }
                 }
@@ -231,9 +233,8 @@ public class BaseKitchenTileWithInventory extends TileEntity implements IInvento
                 float offsetX = random.nextFloat() * 0.8f + 0.1f;
                 float offsetY = random.nextFloat() * 0.8f + 0.1f;
                 EntityItem entityItem;
-                for (float offsetZ = random.nextFloat() * 0.8f + 0.1f;
-                        itemStack.stackSize > 0;
-                        worldObj.spawnEntityInWorld(entityItem)) {
+                for (float offsetZ = random.nextFloat() * 0.8f + 0.1f; itemStack.stackSize > 0; worldObj
+                        .spawnEntityInWorld(entityItem)) {
                     int stackSize = random.nextInt(21) + 10;
 
                     if (stackSize > itemStack.stackSize) {
@@ -253,8 +254,7 @@ public class BaseKitchenTileWithInventory extends TileEntity implements IInvento
                     entityItem.motionZ = (double) ((float) random.nextGaussian() * f3);
 
                     if (itemStack.hasTagCompound()) {
-                        entityItem.getEntityItem().setTagCompound((NBTTagCompound)
-                                itemStack.getTagCompound().copy());
+                        entityItem.getEntityItem().setTagCompound((NBTTagCompound) itemStack.getTagCompound().copy());
                     }
                 }
             }

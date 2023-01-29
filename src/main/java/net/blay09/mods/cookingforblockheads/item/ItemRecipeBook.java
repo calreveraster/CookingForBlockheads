@@ -1,6 +1,7 @@
 package net.blay09.mods.cookingforblockheads.item;
 
 import java.util.List;
+
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.GuiHandler;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -67,7 +68,12 @@ public class ItemRecipeBook extends Item {
         int guiId = GuiHandler.ITEM_RECIPE_BOOK;
 
         player.openGui(
-                CookingForBlockheads.instance, guiId, world, (int) player.posX, (int) player.posY, (int) player.posZ);
+                CookingForBlockheads.instance,
+                guiId,
+                world,
+                (int) player.posX,
+                (int) player.posY,
+                (int) player.posZ);
         return itemStack;
     }
 
@@ -77,20 +83,17 @@ public class ItemRecipeBook extends Item {
 
         if (itemStack.getItemDamage() == 1) {
             list.add("\u00a7e" + I18n.format("cookingforblockheads:recipebook_tier2.tooltip"));
-            for (String s : I18n.format("cookingforblockheads:recipebook_tier2.tooltipDesc")
-                    .split("\\\\n")) {
+            for (String s : I18n.format("cookingforblockheads:recipebook_tier2.tooltipDesc").split("\\\\n")) {
                 list.add("\u00a77" + s);
             }
         } else if (itemStack.getItemDamage() == 3) {
             list.add("\u00a7e" + I18n.format("cookingforblockheads:recipebook_tier0.tooltip"));
-            for (String s : I18n.format("cookingforblockheads:recipebook_tier0.tooltipDesc")
-                    .split("\\\\n")) {
+            for (String s : I18n.format("cookingforblockheads:recipebook_tier0.tooltipDesc").split("\\\\n")) {
                 list.add("\u00a77" + s);
             }
         } else {
             list.add("\u00a7e" + I18n.format("cookingforblockheads:recipebook_tier1.tooltip"));
-            for (String s : I18n.format("cookingforblockheads:recipebook_tier1.tooltipDesc")
-                    .split("\\\\n")) {
+            for (String s : I18n.format("cookingforblockheads:recipebook_tier1.tooltipDesc").split("\\\\n")) {
                 list.add("\u00a77" + s);
             }
         }

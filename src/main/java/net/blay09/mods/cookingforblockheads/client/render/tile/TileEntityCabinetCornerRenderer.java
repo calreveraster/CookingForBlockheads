@@ -5,13 +5,15 @@ import net.blay09.mods.cookingforblockheads.client.render.RenderUtils;
 import net.blay09.mods.cookingforblockheads.tile.TileCabinetCorner;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileEntityCabinetCornerRenderer extends TileEntityRendererBase {
 
-    private static final ResourceLocation textureSmall =
-            new ResourceLocation("cookingforblockheads", "textures/entity/ModelCabinetCorner.png");
+    private static final ResourceLocation textureSmall = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/entity/ModelCabinetCorner.png");
 
     private ModelCabinetCorner model = new ModelCabinetCorner();
 

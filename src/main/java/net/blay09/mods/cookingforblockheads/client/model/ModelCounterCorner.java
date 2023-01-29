@@ -1,8 +1,10 @@
 package net.blay09.mods.cookingforblockheads.client.model; // Cubik Studio 2.9.482 Beta JAVA exporter
+
 // Designed by Blay09 with Cubik Studio - https://cubik.studio
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+
 import org.lwjgl.opengl.GL11;
 
 public class ModelCounterCorner extends ModelBase {
@@ -91,7 +93,9 @@ public class ModelCounterCorner extends ModelBase {
         GL11.glScaled(0.96875D, 1.0D, 0.96875D);
         GL11.glTranslatef(-this.Base.offsetX, -this.Base.offsetY, -this.Base.offsetZ);
         GL11.glTranslatef(
-                -this.Base.rotationPointX * f5, -this.Base.rotationPointY * f5, -this.Base.rotationPointZ * f5);
+                -this.Base.rotationPointX * f5,
+                -this.Base.rotationPointY * f5,
+                -this.Base.rotationPointZ * f5);
         this.Base.render(f5);
         GL11.glPopMatrix();
 

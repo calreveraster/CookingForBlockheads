@@ -5,9 +5,8 @@ import static net.minecraftforge.common.util.ForgeDirection.NORTH;
 import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
 import static net.minecraftforge.common.util.ForgeDirection.WEST;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
+
 import net.blay09.mods.cookingforblockheads.CookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.client.render.block.ToolRackBlockRenderer;
 import net.blay09.mods.cookingforblockheads.tile.TileToolRack;
@@ -25,6 +24,9 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockToolRack extends BlockBaseKitchen {
 
@@ -101,15 +103,14 @@ public class BlockToolRack extends BlockBaseKitchen {
 
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-        return world.isSideSolid(x - 1, y, z, EAST)
-                || world.isSideSolid(x + 1, y, z, WEST)
+        return world.isSideSolid(x - 1, y, z, EAST) || world.isSideSolid(x + 1, y, z, WEST)
                 || world.isSideSolid(x, y, z - 1, SOUTH)
                 || world.isSideSolid(x, y, z + 1, NORTH);
     }
 
     @Override
-    public int onBlockPlaced(
-            World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
+    public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ,
+            int metadata) {
         int newMetadata = metadata;
         if ((metadata == 0 || side == 2) && world.isSideSolid(x, y, z + 1, NORTH)) {
             newMetadata = 2;
@@ -127,8 +128,8 @@ public class BlockToolRack extends BlockBaseKitchen {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
+            float hitY, float hitZ) {
         if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemBlock) {
             return true;
         }
@@ -188,9 +189,8 @@ public class BlockToolRack extends BlockBaseKitchen {
                     float offsetY = random.nextFloat() * 0.8F + 0.1F;
                     EntityItem entityItem;
 
-                    for (float offsetZ = random.nextFloat() * 0.8F + 0.1F;
-                            itemStack.stackSize > 0;
-                            world.spawnEntityInWorld(entityItem)) {
+                    for (float offsetZ = random.nextFloat() * 0.8F + 0.1F; itemStack.stackSize > 0; world
+                            .spawnEntityInWorld(entityItem)) {
                         int stackSize = random.nextInt(21) + 10;
 
                         if (stackSize > itemStack.stackSize) {
@@ -210,8 +210,8 @@ public class BlockToolRack extends BlockBaseKitchen {
                         entityItem.motionZ = (double) ((float) random.nextGaussian() * f3);
 
                         if (itemStack.hasTagCompound()) {
-                            entityItem.getEntityItem().setTagCompound((NBTTagCompound)
-                                    itemStack.getTagCompound().copy());
+                            entityItem.getEntityItem()
+                                    .setTagCompound((NBTTagCompound) itemStack.getTagCompound().copy());
                         }
                     }
                 }

@@ -1,6 +1,7 @@
 package net.blay09.mods.cookingforblockheads.api.kitchen;
 
 import java.util.List;
+
 import net.minecraft.item.ItemStack;
 
 public interface IKitchenItemProvider extends IMultiblockKitchen {

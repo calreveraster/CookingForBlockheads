@@ -5,6 +5,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 
 public class SimpleStorageProvider implements IKitchenStorageProvider {
+
     private final IInventory inventory;
 
     public SimpleStorageProvider(TileEntity tileEntity) {

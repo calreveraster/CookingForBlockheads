@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 public abstract class ModelBaseFridge extends ModelBase {
+
     protected boolean isFlipped;
     public ModelRenderer BottomWall;
     public ModelRenderer RightWall;

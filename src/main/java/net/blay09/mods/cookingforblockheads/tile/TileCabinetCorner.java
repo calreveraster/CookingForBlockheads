@@ -5,6 +5,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileCabinetCorner extends BaseKitchenTileWithInventory implements IInventory, IKitchenStorageProvider {
+
     protected static final String name = "cabinetcorner";
 
     public TileCabinetCorner() {

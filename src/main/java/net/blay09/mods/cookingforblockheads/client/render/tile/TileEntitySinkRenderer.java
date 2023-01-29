@@ -5,13 +5,15 @@ import net.blay09.mods.cookingforblockheads.client.render.RenderUtils;
 import net.blay09.mods.cookingforblockheads.tile.TileSink;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileEntitySinkRenderer extends TileEntityRendererBase {
 
-    private static final ResourceLocation texture =
-            new ResourceLocation("cookingforblockheads", "textures/entity/ModelSink.png");
+    private static final ResourceLocation texture = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/entity/ModelSink.png");
 
     private ModelSink model = new ModelSink();
 

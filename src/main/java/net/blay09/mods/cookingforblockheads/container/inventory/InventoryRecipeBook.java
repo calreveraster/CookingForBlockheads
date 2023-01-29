@@ -1,6 +1,7 @@
 package net.blay09.mods.cookingforblockheads.container.inventory;
 
 import java.util.List;
+
 import net.blay09.mods.cookingforblockheads.registry.food.FoodRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

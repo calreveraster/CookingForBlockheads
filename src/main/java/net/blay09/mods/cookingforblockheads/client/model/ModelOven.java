@@ -2,13 +2,14 @@ package net.blay09.mods.cookingforblockheads.client.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+
 import org.lwjgl.opengl.GL11;
 
 /**
- * ModelOven - BlayTheNinth
- * Created using Tabula 4.1.1
+ * ModelOven - BlayTheNinth Created using Tabula 4.1.1
  */
 public class ModelOven extends ModelBase {
+
     public ModelRenderer OvenLeft;
     public ModelRenderer OvenDoor;
     public ModelRenderer OvenDoorBurning;

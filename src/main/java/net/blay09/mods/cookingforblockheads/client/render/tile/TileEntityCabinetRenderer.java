@@ -10,13 +10,15 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileEntityCabinetRenderer extends TileEntityRendererBase {
 
-    private static final ResourceLocation textureSmall =
-            new ResourceLocation("cookingforblockheads", "textures/entity/ModelCabinet.png");
+    private static final ResourceLocation textureSmall = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/entity/ModelCabinet.png");
 
     private ModelCabinet model = new ModelCabinet();
 
@@ -41,8 +43,8 @@ public class TileEntityCabinetRenderer extends TileEntityRendererBase {
         GL11.glColor4f(1f, 1f, 1f, 1f);
         GL11.glRotatef(angle, 0f, 1f, 0f);
         GL11.glRotatef(180f, 0f, 0f, 1f);
-        float doorAngle =
-                tileCabinet.getPrevDoorAngle() + (tileCabinet.getDoorAngle() - tileCabinet.getPrevDoorAngle()) * delta;
+        float doorAngle = tileCabinet.getPrevDoorAngle()
+                + (tileCabinet.getDoorAngle() - tileCabinet.getPrevDoorAngle()) * delta;
         doorAngle = 1.0f - doorAngle;
         doorAngle = 1.0f - doorAngle * doorAngle * doorAngle;
 
@@ -77,8 +79,7 @@ public class TileEntityCabinetRenderer extends TileEntityRendererBase {
                         if (i > tileCabinet.getSizeInventory() / 2) {
                             relSlot -= tileCabinet.getSizeInventory() / 2;
                         }
-                        itemX = (relSlot > 8)
-                                ? Math.min(4f / 5f, (relSlot - 9) / 5f)
+                        itemX = (relSlot > 8) ? Math.min(4f / 5f, (relSlot - 9) / 5f)
                                 : Math.min(8f / 9f, (float) relSlot / 9f);
                         itemY = -2f + ((i > tileCabinet.getSizeInventory() / 2) ? -0.7f : 0.01f);
                         itemZ = (relSlot > 8) ? -0.8f : -0.1f;
@@ -90,7 +91,12 @@ public class TileEntityCabinetRenderer extends TileEntityRendererBase {
 
                         tileCabinet.getRenderItem().setEntityItemStack(itemStack);
                         RenderManager.instance.renderEntityWithPosYaw(
-                                tileCabinet.getRenderItem(), 0.45f - itemX, itemY, 0.5f + itemZ, 0f, partialTickTime);
+                                tileCabinet.getRenderItem(),
+                                0.45f - itemX,
+                                itemY,
+                                0.5f + itemZ,
+                                0f,
+                                partialTickTime);
                     }
                 }
                 RenderItem.renderInFrame = false;

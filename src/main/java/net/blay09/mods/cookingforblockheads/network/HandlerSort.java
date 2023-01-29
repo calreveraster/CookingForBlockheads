@@ -1,14 +1,15 @@
 package net.blay09.mods.cookingforblockheads.network;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.blay09.mods.cookingforblockheads.container.ContainerRecipeBook;
 import net.blay09.mods.cookingforblockheads.container.comparator.ComparatorHunger;
 import net.blay09.mods.cookingforblockheads.container.comparator.ComparatorName;
 import net.blay09.mods.cookingforblockheads.container.comparator.ComparatorSaturation;
 import net.blay09.mods.cookingforblockheads.container.comparator.ComparatorSoL;
 import net.minecraft.inventory.Container;
+
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class HandlerSort implements IMessageHandler<MessageSort, IMessage> {
 

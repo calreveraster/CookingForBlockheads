@@ -1,13 +1,8 @@
 package net.blay09.mods.cookingforblockheads.container;
 
-import com.google.common.collect.Maps;
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import invtweaks.api.container.ContainerSection;
-import invtweaks.api.container.ContainerSectionCallback;
 import java.util.List;
 import java.util.Map;
+
 import net.blay09.mods.cookingforblockheads.container.slot.SlotOven;
 import net.blay09.mods.cookingforblockheads.container.slot.SlotOvenFuel;
 import net.blay09.mods.cookingforblockheads.container.slot.SlotOvenInput;
@@ -20,7 +15,16 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
 import squeek.applecore.api.AppleCoreAPI;
+
+import com.google.common.collect.Maps;
+
+import cpw.mods.fml.common.Optional;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import invtweaks.api.container.ContainerSection;
+import invtweaks.api.container.ContainerSectionCallback;
 
 public class ContainerCookingOven extends Container {
 

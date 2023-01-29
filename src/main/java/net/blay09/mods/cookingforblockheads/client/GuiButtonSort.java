@@ -2,16 +2,19 @@ package net.blay09.mods.cookingforblockheads.client;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 public class GuiButtonSort extends GuiButton {
 
-    private static final ResourceLocation guiTexture =
-            new ResourceLocation("cookingforblockheads", "textures/gui/gui.png");
+    private static final ResourceLocation guiTexture = new ResourceLocation(
+            "cookingforblockheads",
+            "textures/gui/gui.png");
 
     private final int texCoordX;
     private final int texCoordY;
@@ -38,8 +41,7 @@ public class GuiButtonSort extends GuiButton {
 
     @Override
     public void drawButton(Minecraft mc, int mouseX, int mouseY) {
-        this.field_146123_n = mouseX >= this.xPosition
-                && mouseY >= this.yPosition
+        this.field_146123_n = mouseX >= this.xPosition && mouseY >= this.yPosition
                 && mouseX < this.xPosition + this.width
                 && mouseY < this.yPosition + this.height;
 

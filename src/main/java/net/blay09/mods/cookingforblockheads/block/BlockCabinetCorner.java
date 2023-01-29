@@ -1,6 +1,7 @@
 package net.blay09.mods.cookingforblockheads.block;
 
 import java.util.Optional;
+
 import net.blay09.mods.cookingforblockheads.client.render.block.CabinetCornerBlockRenderer;
 import net.blay09.mods.cookingforblockheads.tile.TileCabinetCorner;
 import net.blay09.mods.cookingforblockheads.utils.DyeUtils;
@@ -40,8 +41,8 @@ public class BlockCabinetCorner extends BlockCounterCorner {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
+            float hitY, float hitZ) {
         ItemStack heldItem = player.getHeldItem();
 
         if (heldItem != null && DyeUtils.isDye(heldItem)) {

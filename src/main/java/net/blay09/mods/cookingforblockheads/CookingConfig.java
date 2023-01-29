@@ -1,8 +1,10 @@
 package net.blay09.mods.cookingforblockheads;
 
-import cpw.mods.fml.common.Loader;
 import java.io.File;
+
 import net.minecraftforge.common.config.Configuration;
+
+import cpw.mods.fml.common.Loader;
 
 public class CookingConfig {
 
@@ -65,7 +67,8 @@ public class CookingConfig {
                 "The cooking time multiplier for the cooking oven. Higher values means it will take longer.");
 
         config.setCategoryComment(
-                "blocks", "Setting any of these options to false will disable their crafting recipe.");
+                "blocks",
+                "Setting any of these options to false will disable their crafting recipe.");
         enableSink = config.getBoolean("Sink", "blocks", true, "");
         enableOven = config.getBoolean("Cooking Oven", "blocks", true, "");
         enableToaster = config.getBoolean("Toaster", "blocks", true, "");
@@ -73,10 +76,14 @@ public class CookingConfig {
         config.setCategoryComment("items", "Setting any of these options to false will disable their crafting recipe.");
         enableNoFilter = config.getBoolean("#NoFilter Edition", "items", true, "");
         enableCraftingBook = config.getBoolean(
-                "Crafting Book", "items", true, "Disabling this will also disable the Cooking Table recipe.");
+                "Crafting Book",
+                "items",
+                true,
+                "Disabling this will also disable the Cooking Table recipe.");
 
         config.setCategoryComment(
-                "modules", "Setting any of these options to false will disable their specific mod support.");
+                "modules",
+                "Setting any of these options to false will disable their specific mod support.");
         moduleVanilla = config.getBoolean("Vanilla Minecraft", "modules", true, "Sink Support, Ingredient Recipes");
         moduleHarvestCraft = config.getBoolean(
                 "Pam's HarvestCraft",

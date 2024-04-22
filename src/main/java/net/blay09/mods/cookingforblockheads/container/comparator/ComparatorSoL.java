@@ -1,18 +1,44 @@
 package net.blay09.mods.cookingforblockheads.container.comparator;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.util.Comparator;
+import java.util.function.BiFunction;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import squeek.spiceoflife.ModConfig;
 import squeek.spiceoflife.foodtracker.FoodHistory;
+import squeek.spiceoflife.foodtracker.foodqueue.FoodQueue;
 import squeek.spiceoflife.helpers.FoodHelper;
 
 public class ComparatorSoL implements Comparator<ItemStack> {
 
     private final ComparatorName fallback = new ComparatorName();
     private final EntityPlayer entityPlayer;
+    public static boolean spiceCompat = false;
+    private static MethodHandle getHistoryCompat;
+    private static BiFunction<ItemStack, FoodHistory, Boolean> getEverEaten;
+    static {
+        try {
+            getHistoryCompat = MethodHandles.lookup()
+                    .findVirtual(FoodHistory.class, "getHistory", MethodType.methodType(FoodQueue.class));
+            getEverEaten = (itemstack, history) -> {
+                try {
+                    return ((FoodQueue) getHistoryCompat.invokeExact(history)).stream()
+                            .anyMatch(foodEaten -> foodEaten.itemStack.isItemEqual(itemstack));
+                } catch (Throwable e) {
+                    throw new RuntimeException(e);
+                }
+            };
+        } catch (NoSuchMethodException | SecurityException e) {
+            getEverEaten = (itemstack, history) -> { return history.hasEverEaten(itemstack); };
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public ComparatorSoL(EntityPlayer entityPlayer) {
         this.entityPlayer = entityPlayer;
@@ -40,9 +66,9 @@ public class ComparatorSoL implements Comparator<ItemStack> {
         } else if (!isFoodSecond) {
             return -1;
         }
+        boolean everEatenFirstFood = ComparatorSoL.getEverEaten.apply(o1, foodHistory);
+        boolean everEatenSecondFood = ComparatorSoL.getEverEaten.apply(o2, foodHistory);
 
-        boolean everEatenFirstFood = foodHistory.hasEverEaten(o1);
-        boolean everEatenSecondFood = foodHistory.hasEverEaten(o2);
         if (!everEatenFirstFood && !everEatenSecondFood) {
             return fallback.compare(o1, o2);
         } else if (!everEatenFirstFood) {

@@ -471,7 +471,6 @@ public class CommonProxy {
         if (CookingConfig.moduleVanilla) {
             new VanillaAddon();
         }
-
         try {
             Class<?> mtClass = Class.forName("minetweaker.MineTweakerImplementationAPI");
             mtClass.getMethod("onPostReload", Class.forName("minetweaker.util.IEventHandler"));

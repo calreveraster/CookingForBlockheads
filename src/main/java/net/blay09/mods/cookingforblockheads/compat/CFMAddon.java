@@ -92,14 +92,5 @@ public class CFMAddon {
                 CookingForBlockheadsAPI.addOvenRecipe(source, result);
             }
        }*/ 
-
-        for (String toolName : TOOLS) 
-        {
-            ItemStack toolItem = GameRegistry.findItemStack("cfm", toolName, 1);
-            if (toolItem != null) 
-            {
-                CookingForBlockheadsAPI.addToolItem(toolItem);
-            }
-        }
     }
 }

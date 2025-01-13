@@ -495,6 +495,9 @@ public class CommonProxy {
         if (CookingConfig.moduleGrectech5U && !Loader.isModLoaded("gregapi_post")) {
             event.buildSoftDependProxy("gregtech", "net.blay09.mods.cookingforblockheads.compat.GregTech5UAddon");
         }
+        if (CookingConfig.moduleCFM) {
+            event.buildSoftDependProxy("cfm", "net.blay09.mods.cookingforblockheads.compat.CFMAddon");
+        }
     }
 
     public void loadComplete(FMLLoadCompleteEvent event) {

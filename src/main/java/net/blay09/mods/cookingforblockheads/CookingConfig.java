@@ -95,7 +95,7 @@ public class CookingConfig {
                 true,
                 "Multiblock Kitchen Support, Tool Support, Oven Recipes, Oven Fuel, Ingredient Recipes");
         moduleCFM = config
-                .getBoolean("Pam's HarvestCraft", "modules", true, "Multiblock Kitchen Support, Tool Support");
+                .getBoolean("Crayfish Furniture Mod", "modules", true, "Multiblock Kitchen Support, Tool Support");
         moduleEnviroMine = config.getBoolean("EnviroMine", "modules", true, "Multiblock Kitchen Support (Freezer)");
         moduleAppleCore = config.getBoolean("AppleCore", "modules", true, "Dynamic Food Values");
         moduleStorageDrawers = config.getBoolean("StorageDrawers", "modules", true, "StorageDrawers");

@@ -3,10 +3,14 @@ package net.blay09.mods.cookingforblockheads.compat;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.blay09.mods.cookingforblockheads.CookingConfig;
 import net.blay09.mods.cookingforblockheads.KitchenMultiBlock;
 import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenItemProvider;
+import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenStorageProvider;
 import net.minecraft.block.Block;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -46,32 +50,33 @@ public class CFMAddon {
 
         public BlenderWrapper(Block block) {
             super(block);
-            itemStacks.add(GameRegistry.findItemStack("harvestcraft", "juicerItem", 1));
+
+            // if harvestcraft is also loaded, we're going to permit the blender to stand in for the juicer
+            if (CookingConfig.moduleCFM == true) {
+                itemStacks.add(GameRegistry.findItemStack("harvestcraft", "juicerItem", 1));
+            }
+
+            // I need to figure out a good way to trigger the blender if used from the cooking table...
         }
     }
 
-    /*
-     * private static final String[] ADDITIONAL_RECIPES = new String[] { "flourItem", "doughItem", "cornmealItem",
-     * "freshwaterItem", "pastaItem", "vanillaItem", "butterItem", "heavycreamItem", "saltItem", "freshmilkItem",
-     * "mayoItem", "cocoapowderItem", "ketchupItem", "vinegarItem", "mustardItem", "blackpepperItem",
-     * "groundcinnamonItem", "groundnutmegItem", "saladdressingItem", "batterItem", "oliveoilItem", "carrotcakeItem",
-     * "cheesecakeItem", "cherrycheesecakeItem", "pineappleupsidedowncakeItem", "chocolatesprinklecakeItem",
-     * "redvelvetcakeItem", "lamingtonItem", "pavlovaItem", "holidaycakeItem", "pumpkincheesecakeItem", //
-     * "toastedsesameseedsItem", // no usage "bubblywaterItem", "currypowderItem", "soysauceItem", "garammasalaItem", };
-     * private static final String[] OVEN_RECIPES = new String[] { "turkeyrawItem", "turkeycookedItem", "rabbitrawItem",
-     * "rabbitcookedItem", "venisonrawItem", "venisoncookedItem" }; private static final String[] TOOLS = new String[] {
-     * "cuttingboardItem", "potItem", "skilletItem", "saucepanItem", "bakewareItem", "mortarandpestleItem",
-     * "mixingbowlItem", "juicerItem" }; private static final String TOAST_ITEM = "toastItem";
-     */
-    public CFMAddon() {
-        // KitchenMultiBlock.tileEntityWrappers.put("com.pam.harvestcraft.TileEntityOven", OvenWrapper.class);
-        KitchenMultiBlock.blockWrappers.put("cfm:blender", BlenderWrapper.class);
+    // CFM's kitchen cabinet should also work as a valid cabinet
+    public static class CabinetWrapper implements IKitchenStorageProvider {
 
-        /*
-         * for (int i = 0; i < OVEN_RECIPES.length; i += 2) { ItemStack source =
-         * GameRegistry.findItemStack("harvestcraft", OVEN_RECIPES[i], 1); ItemStack result =
-         * GameRegistry.findItemStack("harvestcraft", OVEN_RECIPES[i + 1], 1); if (source != null && result != null) {
-         * CookingForBlockheadsAPI.addOvenRecipe(source, result); } }
-         */
+        TileEntity tile;
+
+        public CabinetWrapper(TileEntity tile) {
+            this.tile = tile;
+        }
+
+        @Override
+        public IInventory getInventory() {
+            return (IInventory) tile;
+        }
+    }
+
+    public CFMAddon() {
+        KitchenMultiBlock.blockWrappers.put("cfm:blender", BlenderWrapper.class);
+        KitchenMultiBlock.blockWrappers.put("cfm:kitchencabinet", CabinetWrapper.class);
     }
 }

@@ -28,6 +28,7 @@ public class CookingConfig {
     public static boolean moduleStorageDrawers;
     public static boolean moduleDreamcraft;
     public static boolean moduleGrectech5U;
+    public static boolean moduleCFM;
     public static boolean usePamsToast;
 
     public static boolean gregtech5uLoaded;
@@ -69,11 +70,13 @@ public class CookingConfig {
         config.setCategoryComment(
                 "blocks",
                 "Setting any of these options to false will disable their crafting recipe.");
+
         enableSink = config.getBoolean("Sink", "blocks", true, "");
         enableOven = config.getBoolean("Cooking Oven", "blocks", true, "");
         enableToaster = config.getBoolean("Toaster", "blocks", true, "");
 
         config.setCategoryComment("items", "Setting any of these options to false will disable their crafting recipe.");
+
         enableNoFilter = config.getBoolean("#NoFilter Edition", "items", true, "");
         enableCraftingBook = config.getBoolean(
                 "Crafting Book",
@@ -84,17 +87,21 @@ public class CookingConfig {
         config.setCategoryComment(
                 "modules",
                 "Setting any of these options to false will disable their specific mod support.");
+
         moduleVanilla = config.getBoolean("Vanilla Minecraft", "modules", true, "Sink Support, Ingredient Recipes");
         moduleHarvestCraft = config.getBoolean(
                 "Pam's HarvestCraft",
                 "modules",
                 true,
                 "Multiblock Kitchen Support, Tool Support, Oven Recipes, Oven Fuel, Ingredient Recipes");
+        moduleCFM = config
+                .getBoolean("Pam's HarvestCraft", "modules", true, "Multiblock Kitchen Support, Tool Support");
         moduleEnviroMine = config.getBoolean("EnviroMine", "modules", true, "Multiblock Kitchen Support (Freezer)");
         moduleAppleCore = config.getBoolean("AppleCore", "modules", true, "Dynamic Food Values");
         moduleStorageDrawers = config.getBoolean("StorageDrawers", "modules", true, "StorageDrawers");
         moduleDreamcraft = config.getBoolean("Dreamcraft", "modules", true, "Dreamcraft");
         moduleGrectech5U = config.getBoolean("Gregtech5U", "modules", true, "Gregtech5U");
+
         usePamsToast = config.getBoolean(
                 "Use Pam's Toast",
                 "modules",

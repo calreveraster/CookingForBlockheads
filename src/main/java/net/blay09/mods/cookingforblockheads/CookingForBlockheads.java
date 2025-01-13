@@ -36,7 +36,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @Mod(modid = CookingForBlockheads.MOD_ID, version = CookingForBlockheads.VERSION, name = CookingForBlockheads.NAME)
 public class CookingForBlockheads {
 
-    public static final String VERSION = Tags.VERSION;
+    public static final String VERSION = "1.4.1";
     public static final String NAME = "Cooking For Blockheads";
     public static final String MOD_ID = "cookingforblockheads";
 

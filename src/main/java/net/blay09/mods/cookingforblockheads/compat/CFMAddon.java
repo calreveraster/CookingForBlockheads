@@ -10,7 +10,7 @@ import net.blay09.mods.cookingforblockheads.api.kitchen.IKitchenStorageProvider;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 // quick and (extremely) dirty test. Pulled the Harvestcraft addon code and adapted it to make the CFM blender stand-in
@@ -27,12 +27,12 @@ public class CFMAddon {
     public abstract static class BlenderWrapper implements IKitchenItemProvider {
 
         protected final List<ItemStack> itemStacks = new ArrayList<>();
-        private final TileEntity tile;
+        TileEntity tile;
 
         // Add blender compat. We want this to do two things. First, stand in as the juicer from HC if HC is installed.
         // Second, we want it to work like an oven, allowing inputs and will hold an output until interacted with.
-        public BlenderWrapper(TileEntity blenderTile) {
-            this.tile = blenderTile;
+        public BlenderWrapper(TileEntity tile) {
+            this.tile = tile;
 
             // if harvestcraft is also loaded, we're going to permit the blender to stand in for the juicer
             if (CookingConfig.moduleCFM == true) {
@@ -80,6 +80,8 @@ public class CFMAddon {
         KitchenMultiBlock.tileEntityWrappers.put("com.mrcrayfish.tileentity.TileEntityBlender", BlenderWrapper.class);
         KitchenMultiBlock.tileEntityWrappers
                 .put("com.mrcrayfish.tileentity.TileEntityCabinetKitchen", CabinetWrapper.class);
+        
+        MinecraftForge.EVENT_BUS.register(this);
 
     }
 }

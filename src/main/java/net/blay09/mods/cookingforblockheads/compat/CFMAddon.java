@@ -82,8 +82,6 @@ public class CFMAddon {
     // Im pretty sure these need to be tile entities, not blocks...
     // adding both for now until I can figure out which one I need.
     public CFMAddon() {
-        // KitchenMultiBlock.blockWrappers.put("cfm:blender", BlenderWrapper.class);
-        // KitchenMultiBlock.blockWrappers.put("cfm:kitchencabinet", CabinetWrapper.class);
         KitchenMultiBlock.tileEntityWrappers
                 .put("com.mrcrayfish.furniture.tileentity.TileEntityBlender", BlenderWrapper.class);
         KitchenMultiBlock.tileEntityWrappers

@@ -497,7 +497,7 @@ public class CommonProxy {
         }
         if (CookingConfig.moduleCFM) {
             event.buildSoftDependProxy("cfm", "net.blay09.mods.cookingforblockheads.compat.CFMAddon");
-            event.buildSoftDependProxy("mrcrayfish", "net.blay09.mods.cookingforblockheads.compat.CFMAddon");
+            // event.buildSoftDependProxy("mrcrayfish", "net.blay09.mods.cookingforblockheads.compat.CFMAddon");
         }
     }
 

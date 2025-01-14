@@ -11,6 +11,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
 // quick and (extremely) dirty test. Pulled the Harvestcraft addon code and adapted it to make the CFM blender stand-in
@@ -24,22 +25,11 @@ public class CFMAddon {
 
     // first, create the wrapper that allows us to take a tile and register that the item
     // equivalent exists in the cooking table.
-    public abstract static class BlenderWrapper implements IKitchenItemProvider {
+    public abstract static class ToolWrapper implements IKitchenItemProvider {
 
         protected final List<ItemStack> itemStacks = new ArrayList<>();
-        TileEntity tile;
 
-        // Add blender compat. We want this to do two things. First, stand in as the juicer from HC if HC is installed.
-        // Second, we want it to work like an oven, allowing inputs and will hold an output until interacted with.
-        public BlenderWrapper(TileEntity tile) {
-            this.tile = tile;
-
-            // if harvestcraft is also loaded, we're going to permit the blender to stand in for the juicer
-            if (CookingConfig.moduleCFM == true) {
-                itemStacks.add(GameRegistry.findItemStack("harvestcraft", "juicerItem", 1));
-            }
-            // I need to figure out a good way to trigger the blender if used from the cooking table.
-        }
+        public ToolWrapper(TileEntity tile) {}
 
         @Override
         public List<ItemStack> getProvidedItemStacks() {
@@ -73,15 +63,33 @@ public class CFMAddon {
         }
     }
 
+    // Add blender compat. We want this to do two things. First, stand in as the juicer from HC if HC is installed.
+    // Second, we want it to work like an oven, allowing inputs and will hold an output until interacted with.
+    public static class BlenderWrapper extends ToolWrapper {
+
+        public BlenderWrapper(TileEntity tile) {
+            super(tile);
+
+            // if harvestcraft is also loaded, we're going to permit the blender to stand in for the juicer
+            if (CookingConfig.moduleHarvestCraft) {
+                itemStacks.add(GameRegistry.findItemStack("harvestcraft", "juicerItem", 1));
+            }
+
+            // I need to figure out a good way to trigger the blender if used from the cooking table.
+        }
+    }
+
     // Im pretty sure these need to be tile entities, not blocks...
+    // adding both for now until I can figure out which one I need.
     public CFMAddon() {
         // KitchenMultiBlock.blockWrappers.put("cfm:blender", BlenderWrapper.class);
         // KitchenMultiBlock.blockWrappers.put("cfm:kitchencabinet", CabinetWrapper.class);
-        KitchenMultiBlock.tileEntityWrappers.put("com.mrcrayfish.tileentity.TileEntityBlender", BlenderWrapper.class);
         KitchenMultiBlock.tileEntityWrappers
-                .put("com.mrcrayfish.tileentity.TileEntityCabinetKitchen", CabinetWrapper.class);
-        
-        MinecraftForge.EVENT_BUS.register(this);
+                .put("com.mrcrayfish.furniture.tileentity.TileEntityBlender", BlenderWrapper.class);
+        KitchenMultiBlock.tileEntityWrappers
+                .put("com.mrcrayfish.furniture.tileentity.TileEntityCabinetKitchen", CabinetWrapper.class);
 
+        MinecraftForge.EVENT_BUS.register(this);
+        // yeet
     }
 }
